@@ -11,6 +11,7 @@ const nodemailer = require("nodemailer");
 var smtpTransport = require("nodemailer-smtp-transport");
 require("dotenv").config();
 
+//transporter for nodemailer
 var transporter = nodemailer.createTransport(
   smtpTransport({
     service: "gmail",
@@ -143,6 +144,12 @@ router.post(
   }
 );
 
+/**
+ * @method - POST
+ * @param - /login
+ * @description - User Login
+ */
+
 router.post(
   "/login",
   [
@@ -220,6 +227,12 @@ router.post(
     }
   }
 );
+
+/**
+ * @method - GET
+ * @param - /confirm/:token
+ * @description - Email Verification
+ */
 
 router.get("/confirm/:token", async (req, res) => {
   const token = req.params.token;

@@ -6,14 +6,17 @@ const Teacher = require("../model/Teacher");
 const User = require("../model/User");
 
 /**
- * @method - POST
- * @param - /signup
- * @description - User SignUp
+ * @method - GET
+ * @param - /tests
+ * @description - Fetching All the tests that teacher assigned using testID
  */
 
-router.get("/tests/", auth, async (req, res) => {
+router.get("/tests:teacherID", auth, async (req, res) => {
+  const teacherID = req.params.teacherID;
   try {
-    await Test.find({}).exec(function (err, obj) {
+    await Test.find({
+      _id: teacherID,
+    }).exec(function (err, obj) {
       if (err) {
         return res.status(400).json({ err });
       } else {
@@ -28,7 +31,13 @@ router.get("/tests/", auth, async (req, res) => {
   }
 });
 
-router.get("/classes/", auth, async (req, res) => {
+/**
+ * @method - GET
+ * @param - /classes
+ * @description - Fetching All the classes which are registered in Database
+ */
+
+router.get("/classes", auth, async (req, res) => {
   try {
     await User.find({}, "className -_id", function (err, obj) {
       if (err) {
@@ -44,6 +53,12 @@ router.get("/classes/", auth, async (req, res) => {
     res.status(500).send("Error in fetching Tests");
   }
 });
+
+/**
+ * @method - GET
+ * @param - /profile/:profileID
+ * @description - Fetching Teacher Profile from database
+ */
 
 router.get("/profile/:profileID", auth, async (req, res) => {
   const profileID = req.params.profileID;
@@ -67,6 +82,12 @@ router.get("/profile/:profileID", auth, async (req, res) => {
     res.status(500).send("Error in fetching Student Data");
   }
 });
+
+/**
+ * @method - POST
+ * @param - /create-test
+ * @description - Creating Test for the students using teacherID
+ */
 
 router.post("/create-test", auth, async (req, res) => {
   const {
@@ -116,6 +137,12 @@ router.post("/create-test", auth, async (req, res) => {
   }
 });
 
+/**
+ * @method - PUT
+ * @param - /update-test/:testid
+ * @description - Updating Test using testID
+ */
+
 router.put("/update-test/:testid", auth, async (req, res) => {
   const testID = req.params.testid;
   console.log(testID);
@@ -139,6 +166,12 @@ router.put("/update-test/:testid", auth, async (req, res) => {
     res.status(500).send("Error in Updating");
   }
 });
+
+/**
+ * @method - PUT
+ * @param - /update-profile/:profileID
+ * @description - Updating Teacher profile using profileID
+ */
 
 router.put("/update-profile/:profileID", auth, async (req, res) => {
   const profileID = req.params.profileID;
@@ -164,15 +197,21 @@ router.put("/update-profile/:profileID", auth, async (req, res) => {
   }
 });
 
+/**
+ * @method - PUT
+ * @param - /assigend-to/:testID
+ * @description - Fetching classes to which the test assigned using testID
+ */
+
 router.put("/assigend-to/:testID", auth, async (req, res) => {
   const testID = req.params.testID;
   const { className } = req.body;
   try {
     await Test.updateOne(
       { _id: testID },
-      { 
-        $addToSet: { assignedTo: [...className] }
-       },
+      {
+        $addToSet: { assignedTo: [...className] },
+      },
       function (err, updatedData) {
         if (err) {
           return res
@@ -189,6 +228,12 @@ router.put("/assigend-to/:testID", auth, async (req, res) => {
     res.status(500).send("Error in Updating");
   }
 });
+
+/**
+ * @method - DELETE
+ * @param - /delete-test/:testid
+ * @description - Delete a particular test using testID
+ */
 
 router.delete("/delete-test/:testid", auth, async (req, res) => {
   const testID = req.params.testid;
@@ -208,6 +253,5 @@ router.delete("/delete-test/:testid", auth, async (req, res) => {
     res.status(500).send("Error in Deleting");
   }
 });
-
 
 module.exports = router;
