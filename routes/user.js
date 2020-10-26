@@ -6,6 +6,7 @@ const router = express.Router();
 const User = require("../model/User");
 const Student = require("../model/Student");
 const Teacher = require("../model/Teacher");
+const auth = require("../middleware/auth");
 const { STUDENT, TEACHER } = require("../utils/roles");
 const nodemailer = require("nodemailer");
 var smtpTransport = require("nodemailer-smtp-transport");
@@ -55,6 +56,7 @@ router.post(
       section,
       role,
     } = req.body;
+
     try {
       let user = await User.findOne({
         email,
@@ -130,7 +132,6 @@ router.post(
           if (err) throw err;
 
           //cookie
-          //res.cookie('jwt', token, { httpOnly: true });
           res.status(200).json({
             token,
             user,
@@ -184,10 +185,30 @@ router.post(
         });
 
       const payload = {
-        user: {
-          id: user.id,
-        },
+        user,
       };
+
+      switch (user.role) {
+        case STUDENT:
+          let studentData = await Student.findOne({
+            profileInfo: user.id,
+          });
+
+          const studentProfileID = studentData._id;
+          payload.profileID = studentProfileID;
+          break;
+
+        case TEACHER:
+          let teacherData = await Teacher.findOne({
+            profileInfo: user.id,
+          });
+
+          const teacherProfileID = teacherData._id;
+          payload.profileID = teacherProfileID;
+          break;
+          default:
+            console.log("OK");
+      }
 
       jwt.sign(
         payload,
@@ -215,7 +236,8 @@ router.post(
             );
           }
           res.status(200).json({
-            token,
+           payload,
+           token
           });
         }
       );

@@ -5,6 +5,8 @@ const teacher = require("./routes/teacher");
 const student = require("./routes/student");
 const InitiateMongoServer = require("./config/db");
 const cookieParser = require("cookie-parser");
+const cors = require('cors');
+require('dotenv').config()
 
 // Initiate Mongo Server
 InitiateMongoServer();
@@ -17,6 +19,7 @@ const PORT = process.env.PORT || 5000;
 // Middleware
 app.use(bodyParser.json());
 app.use(cookieParser());
+app.use(cors());
 
 app.get("/", (req, res) => {
   res.json({ message: "API Working" });

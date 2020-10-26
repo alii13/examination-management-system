@@ -4,6 +4,7 @@ require('dotenv').config()
 module.exports = function (req, res, next) {
   const authHeader = req.header("Authorization").split(" ");
   const token = authHeader[1];
+ // const token = req.cookies.jwt;
   if (!token) return res.status(401).json({ message: "Auth Error" });
 
   try {

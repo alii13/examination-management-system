@@ -43,13 +43,16 @@ router.get("/profile/:profileID", auth, async (req, res) => {
 router.get("/tests/:studentClass", auth, async (req, res) => {
   const studentClass = req.params.studentClass;
 
+
   try {
     await Test.find({
       className: studentClass,
-    }).exec(function (err, obj) {
+    }, '-assignedTo -submitBy -teacherId -_id -__v').exec(function (err, obj) {
       if (err) {
         return res.status(400).json({ err });
       } else {
+        console.log(obj,studentClass)
+
         return res.status(200).json({
           obj,
         });

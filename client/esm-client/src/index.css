@@ -1,0 +1,36 @@
+@import '~antd/dist/antd.css';
+
+:root {
+  --primary: #1e90ff;
+  --secondary:#fff;
+  --border:#d9d9d9;
+  --dark-secondary: #8b8b8b;
+  --active-link: #1890ff;
+  --typography-sm:1.2em;
+  --typography-md:2em;
+  --typography-xl:3em;
+}
+html { font-size: 2vw;
+overflow-x:hidden }
+
+/* h1, h2, h3, h4, h5 {
+  font-family: 'Viga', sans-serif;
+}
+
+p, span, a {
+  font-family: 'Oxygen', sans-serif;
+} */
+body {
+  margin: 0;
+  padding: 0;
+}
+.hero{
+  height:100vh;
+}
+.container{
+  padding: 1em 20px 2em;
+}
+.is-active{
+  color: var(--active-link);
+}
+
