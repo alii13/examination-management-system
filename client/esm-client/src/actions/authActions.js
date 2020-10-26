@@ -128,7 +128,7 @@ export const loginUser = (values) => dispatch => {
         localStorage.setItem("token", `Bearer ${data.token}`);
         localStorage.setItem('userProfile', JSON.stringify(data.payload.user));
         localStorage.setItem('profileID', data.payload.profileID);
-        dispatch(receiveLogin(data.payload.user));
+        dispatch(receiveLogin(data.payload.user, data.payload.profileID));
        // history.push("/studentHome");
       }
     })

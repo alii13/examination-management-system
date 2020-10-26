@@ -5,6 +5,9 @@ const StudentSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "users",
   },
+  attemptedTest:{
+    type: Array,
+  },
   createdAt: {
     type: Date,
     default: Date.now(),

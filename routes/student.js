@@ -51,7 +51,35 @@ router.get("/tests/:studentClass", auth, async (req, res) => {
       if (err) {
         return res.status(400).json({ err });
       } else {
-        console.log(obj,studentClass)
+
+        return res.status(200).json({
+          obj,
+        });
+      }
+    });
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).send("Error in fetching Test Data");
+  }
+});
+
+
+/**
+ * @method - GET
+ * @param - /attempt-tests/:studentID
+ * @description - Fetch all attempted tests of student
+ */
+
+router.get("/attempt-tests/:studentID", auth, async (req, res) => {
+  const studentID = req.params.studentID;
+
+  try {
+    await Student.find({
+      _id: studentID,
+    }).exec(function (err, obj) {
+      if (err) {
+        return res.status(400).json({ err });
+      } else {
 
         return res.status(200).json({
           obj,
@@ -147,6 +175,8 @@ router.put("/update-profile/:profileID", auth, async (req, res) => {
 router.put("/submit-test/:testID", auth, async (req, res) => {
   const testID = req.params.testID;
   const submittedData = req.body.submitBy;
+  const testName = req.body.testName;
+  const date = Date.now();
 
   try {
     await Test.updateOne(
@@ -155,16 +185,26 @@ router.put("/submit-test/:testID", auth, async (req, res) => {
         $addToSet: { submitBy: [...submittedData] },
         attempted: true,
       },
-      function (err, updatedData) {
+      async function (err, updatedData) {
         if (err) {
           return res.status(400).json({ message: "failed to submit test" });
         } else {
+
+          await Student.updateOne(
+            {_id: submittedData[0].id},
+            {
+              $addToSet: {attemptedTest:[
+                {testName, date }
+              ]}
+            }
+          )
           return res.status(200).json({
             message: "test submitted succesfully",
           });
         }
       }
     );
+
   } catch (err) {
     console.log(err.message);
     res.status(500).send("Error in submitting test data");

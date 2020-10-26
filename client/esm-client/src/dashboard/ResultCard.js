@@ -1,21 +1,21 @@
 import React, { useEffect } from "react";
-import "./Test.css";
+import "./TestCard.css";
 import { HiOutlineClipboardList, HiClipboardCopy } from "react-icons/hi";
-import { fetchTests } from "../actions/testActions";
+import { fetchAttemptTests } from "../actions/testActions";
 import { connect } from "react-redux";
 
-function Test(props) {
-  const { tests, isLoading } = props;
+function ResultCard(props) {
+  const { tests, isLoading, profileID } = props;
 
   useEffect(() => {
-    props.fetchTests(props.studentClassName);
+    props.fetchTests(profileID);
   }, []);
 
   return (
     <>
       <div className="left__header">
         <p className="left__header__text">
-          {<HiOutlineClipboardList />}Today's Test
+          {<HiOutlineClipboardList />}Recently Attempted Tests
         </p>
       </div>
       <div className="left__body">
@@ -41,14 +41,14 @@ function Test(props) {
 
 const mapStateToProps = (state) => {
   return {
-    isLoading: state.tests.isLoading,
-    tests: state.tests.test,
+    isLoading: state.tests.isLoadingAttemptedTest,
+    tests: state.tests.attemptedTest,
   };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchTests: (classID) => dispatch(fetchTests(classID)),
+    fetchTests: (classID) => dispatch(fetchAttemptTests(classID)),
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Test);
+export default connect(mapStateToProps, mapDispatchToProps)(ResultCard);
