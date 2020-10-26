@@ -46,7 +46,6 @@ const requestTests = () => {
       .then((response) => response.json())
       .then((data) => {
         if (data) {
-          
           dispatch(receiveAttemptTests(data.obj));
          // history.push("/studentHome");
         }

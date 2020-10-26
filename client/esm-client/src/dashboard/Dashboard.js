@@ -3,6 +3,7 @@ import { Row, Col } from "antd";
 import { connect } from "react-redux";
 import TestCard from "./TestCard";
 import ResultCard from "./ResultCard";
+import "./Dashboard.css"
 
 function Dashboard(props) {
   const { studentClassName, profileID } = props;
@@ -11,7 +12,7 @@ function Dashboard(props) {
 
   return (
     <>
-      <div className="container">
+      <div className="container dashboard">
         <Row gutter={[48, 10]} justify="center">
           <Col className="gutter-row" xs={24} sm={24} md={9} xl={9}>
           <TestCard studentClassName={studentClassName}/>

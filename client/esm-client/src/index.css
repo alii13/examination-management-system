@@ -34,3 +34,10 @@ body {
   color: var(--active-link);
 }
 
+/* media queries */
+@media(min-width:768px){
+  .dashboard{
+    margin-top: 10vh;
+  }
+}
+

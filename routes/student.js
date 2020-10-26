@@ -113,7 +113,7 @@ router.post("/results/:studentID", auth, async (req, res) => {
           return res.status(400).json({ err });
         } else {
           const result = obj[0].submitBy.filter((student, index) => {
-            return student.id !== studentID;
+            return student.id === studentID;
           });
 
           return res.status(200).json({

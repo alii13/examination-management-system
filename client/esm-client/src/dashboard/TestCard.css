@@ -36,6 +36,15 @@ flex:0.2;
 .test__name{
     flex: 0.7;
 }
+.index__box{
+    width: 20px;
+    margin: 0;
+    height: 20px;
+    text-align: center;
+    border-radius: 2px;
+    background-color: var(--primary);
+    color: var(--secondary);
+}
 .test__icon{
     flex:0.1;
 }

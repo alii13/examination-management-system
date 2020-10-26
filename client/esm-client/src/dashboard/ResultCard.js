@@ -23,7 +23,7 @@ function ResultCard(props) {
           <ul className="left__body__list__ul">
             {tests.map((test, index) => (
               <li className="left__body__test" key={index}>
-                <div className="test__index">{index + 1}</div>
+                <div className="test__index"><p className="index__box">{index + 1}</p></div>
                 <div className="test__name"> {test.testName}</div>
                 <div className="test__icon">
                   <HiClipboardCopy />
