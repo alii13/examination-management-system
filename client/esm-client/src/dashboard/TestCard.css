@@ -8,6 +8,12 @@
     color: var(--secondary);
 
 }
+.red__header{
+    background-color: var(--error);
+}
+.red__index{
+    background-color: var(--error) !important;
+}
 .left__header svg{
     font-size: var(--typography-sm)
 }
@@ -35,6 +41,7 @@ flex:0.2;
 }
 .test__name{
     flex: 0.7;
+    color: black;
 }
 .index__box{
     width: 20px;

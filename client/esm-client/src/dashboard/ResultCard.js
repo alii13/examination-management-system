@@ -3,6 +3,7 @@ import "./TestCard.css";
 import { HiOutlineClipboardList, HiClipboardCopy } from "react-icons/hi";
 import { fetchAttemptTests } from "../actions/testActions";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 function ResultCard(props) {
   const { tests, isLoading, profileID } = props;
@@ -22,13 +23,17 @@ function ResultCard(props) {
         {!isLoading && tests ? (
           <ul className="left__body__list__ul">
             {tests.map((test, index) => (
-              <li className="left__body__test" key={index}>
-                <div className="test__index"><p className="index__box">{index + 1}</p></div>
-                <div className="test__name"> {test.testName}</div>
-                <div className="test__icon">
-                  <HiClipboardCopy />
-                </div>
-              </li>
+              <Link to="/result" key={index}>
+                <li className="left__body__test" >
+                  <div className="test__index">
+                    <p className="index__box ">{index + 1}</p>
+                  </div>
+                  <div className="test__name"> {test.testName}</div>
+                  <div className="test__icon">
+                    <HiClipboardCopy />
+                  </div>
+                </li>
+              </Link>
             ))}
           </ul>
         ) : (
@@ -47,7 +52,7 @@ const mapStateToProps = (state) => {
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchTests: (classID) => dispatch(fetchAttemptTests(classID)),
+    fetchTests: (profileID) => dispatch(fetchAttemptTests(profileID)),
   };
 };
 

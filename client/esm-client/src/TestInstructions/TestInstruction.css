@@ -1,0 +1,77 @@
+.instructions__wrapper{
+    border: 1px solid var(--border);
+        border-radius: 5px;
+        padding: 2em;
+
+}
+.ems__log__wrapper{
+    display: grid;
+    place-items: center;
+    margin-bottom: 15px;
+}
+.ems__logo{
+    max-width:300px;
+}
+.btn-instructions{
+color: var(--secondary);
+border: none;
+border-radius: 5px;
+}
+.btn-instructions:hover{
+    color: var(--secondary);
+}
+.btn-instructions:focus{
+    color: var(--secondary);
+}
+.navigation__buttons__Feature{
+    display: flex;
+    justify-content: space-between;
+    margin: 25px 0;
+}
+.test__subheadings{
+    display: flex;
+    padding: 5px;
+}
+.test__fields{
+flex: 0.5;
+font-weight: 500;
+}
+.rule{
+
+    color:var(--error);
+}
+.rule__description{
+    margin-left: 5px;
+}
+.test__fields__Value{
+    flex: 0.5;
+}
+.test__instructions__subheading{
+    margin-top: 15px;
+}
+@media(max-width:576px){
+    .navigation__buttons__Feature{
+        display: flex;
+        flex-direction: column;
+        margin: 25px 0;
+    }
+    .ems__logo{
+        max-width:250px;
+    }
+
+}
+@media(min-width:768px){
+    .navigation__instructions{
+        max-width: 90%;
+    }
+    .test__info{
+        max-width: 80%;
+       
+    }
+    .btn-instructions{
+        flex: 0.1;
+    }
+    .button__description{
+        flex: 0.7;
+    }
+}

@@ -2,10 +2,14 @@
 
 :root {
   --primary: #1e90ff;
+  --light-primary:#7ebfff;
   --secondary:#fff;
+  --warning:#ec971f;
   --border:#d9d9d9;
   --dark-secondary: #8b8b8b;
   --active-link: #1890ff;
+  --error:#ff4d4f;
+  --success:#449d44;
   --typography-sm:1.2em;
   --typography-md:2em;
   --typography-xl:3em;

@@ -86,9 +86,8 @@ import { connect } from "react-redux";
               <Button type="primary"
               style={{minWidth:"44px"}}
               loading={isLoading}
-              disabled={isLoading}
                htmlType="submit">
-                {(!isLoading)?("Submit"):('')}
+                {(!isLoading)?("Submit"):('Logging In')}
               </Button>
             </Form.Item>
           </Form>
