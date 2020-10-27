@@ -194,7 +194,7 @@ router.put("/submit-test/:testID", auth, async (req, res) => {
             {_id: submittedData[0].id},
             {
               $addToSet: {attemptedTest:[
-                {testName, date, submittedData }
+                {testName, date, ...submittedData }
               ]}
             }
           )

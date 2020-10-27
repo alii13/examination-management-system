@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import "./SelectTest.css";
 import TestList from "./TestList";
 
+
 function SelectTest(props) {
   const { tests, profileID } = props;
 
@@ -19,7 +20,7 @@ function SelectTest(props) {
   return (
     <>
       <div className="select__test__container">
-        {tests ? <TestList tests={tests} handleSelectedTest={handleSelectedTest} /> : null}
+        <TestList tests={tests} handleSelectedTest={handleSelectedTest} />
       </div>
     </>
   );
