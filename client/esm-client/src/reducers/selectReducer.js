@@ -1,7 +1,8 @@
-import { TEST_SELECTED } from "../actions/selectTestActions";
+import { TEST_SELECTED, SELECTED_TEST_RESULT } from "../actions/selectActions";
 
 const initialState = {
   selectedTestData: {},
+  selectedTestResultData: {},
 };
 
 export default function (state = initialState, action) {
@@ -12,6 +13,13 @@ export default function (state = initialState, action) {
         ...state,
         selectedTestData: action.testData,
       };
+
+      case SELECTED_TEST_RESULT:
+        // console.log("login success fired", action.obj)
+        return {
+          ...state,
+          selectedTestResultData: action.testData,
+        };
 
     default:
       return state;

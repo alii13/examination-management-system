@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { fetchTests } from "../actions/testActions";
-import { selectedTest } from "../actions/selectTestActions";
+import { selectedTest } from "../actions/selectActions";
 import { connect } from "react-redux";
 import "./SelectTest.css";
 import TestList from "./TestList";

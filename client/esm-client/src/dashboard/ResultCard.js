@@ -4,6 +4,7 @@ import { HiOutlineClipboardList, HiClipboardCopy } from "react-icons/hi";
 import { fetchAttemptTests } from "../actions/testActions";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { Skeleton } from "antd";
 
 function ResultCard(props) {
   const { tests, isLoading, profileID } = props;
@@ -24,7 +25,7 @@ function ResultCard(props) {
           <ul className="left__body__list__ul">
             {tests.map((test, index) => (
               <Link to="/result" key={index}>
-                <li className="left__body__test" >
+                <li className="left__body__test">
                   <div className="test__index">
                     <p className="index__box ">{index + 1}</p>
                   </div>
@@ -37,7 +38,112 @@ function ResultCard(props) {
             ))}
           </ul>
         ) : (
-          <p className="left__body__test">Loading...</p>
+          <div className="skeleton">
+            <div className="single-skeleton">
+              <Skeleton.Avatar
+                className="avatar-skelton"
+                active={true}
+                size="default"
+                shape="square"
+              />
+              <Skeleton.Input
+                className="input-skelton"
+                active={true}
+                size="default"
+              />
+            </div>
+            <div className="single-skeleton">
+              <Skeleton.Avatar
+                className="avatar-skelton"
+                active={true}
+                size="default"
+                shape="square"
+              />
+              <Skeleton.Input
+                className="input-skelton"
+                active={true}
+                size="default"
+              />
+            </div>
+            <div className="single-skeleton">
+              <Skeleton.Avatar
+                className="avatar-skelton"
+                active={true}
+                size="default"
+                shape="square"
+              />
+              <Skeleton.Input
+                className="input-skelton"
+                active={true}
+                size="default"
+              />
+            </div>
+            <div className="single-skeleton">
+              <Skeleton.Avatar
+                className="avatar-skelton"
+                active={true}
+                size="default"
+                shape="square"
+              />
+              <Skeleton.Input
+                className="input-skelton"
+                active={true}
+                size="default"
+              />
+            </div>
+            <div className="single-skeleton">
+              <Skeleton.Avatar
+                className="avatar-skelton"
+                active={true}
+                size="default"
+                shape="square"
+              />
+              <Skeleton.Input
+                className="input-skelton"
+                active={true}
+                size="default"
+              />
+            </div>
+            <div className="single-skeleton">
+              <Skeleton.Avatar
+                className="avatar-skelton"
+                active={true}
+                size="default"
+                shape="square"
+              />
+              <Skeleton.Input
+                className="input-skelton"
+                active={true}
+                size="default"
+              />
+            </div>
+            <div className="single-skeleton">
+              <Skeleton.Avatar
+                className="avatar-skelton"
+                active={true}
+                size="default"
+                shape="square"
+              />
+              <Skeleton.Input
+                className="input-skelton"
+                active={true}
+                size="default"
+              />
+            </div>
+            <div className="single-skeleton">
+              <Skeleton.Avatar
+                className="avatar-skelton"
+                active={true}
+                size="default"
+                shape="square"
+              />
+              <Skeleton.Input
+                className="input-skelton"
+                active={true}
+                size="default"
+              />
+            </div>
+          </div>
         )}
       </div>
     </>

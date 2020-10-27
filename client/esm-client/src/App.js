@@ -7,10 +7,14 @@ import ProtectedRoute from './ProtectedRoute';
 import Dashboard from "./dashboard/Dashboard";
 import AttemptTest from "./attemptTest/AttemptTest"
 import Navbar from "./navbar/";
-import TestInstruction from "./TestInstructions/TestInstruction"
-function App() {
-  
+import Result  from "./result/ResultWrapper";
+import TestInstruction from "./TestInstructions/TestInstruction";
+import IndividualResult from "./result/ShowResult";
+import { connect } from "react-redux";
+function App(props) {
 
+  const {selectedTestName} = props;
+  
   return (
     <>
       <Router>
@@ -19,6 +23,8 @@ function App() {
           <Route exact={true} path={"/signin"}  component={Login} />
           <ProtectedRoute exact={true} path="/" component={Dashboard} />
           <ProtectedRoute exact={true} path="/attempt-test" component={AttemptTest} />
+          <ProtectedRoute exact={true} path="/result" component={Result} />
+          <ProtectedRoute exact={true} path={`/result/${selectedTestName}`} component={IndividualResult} />
           <ProtectedRoute exact={true} path="/test-instructions" component={TestInstruction} />
           <Route exact={true} path="/signup" component={Signup} />
           <ProtectedRoute component={Dashboard} />
@@ -28,4 +34,10 @@ function App() {
   )
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return {
+    selectedTestName: state.selectedTest.selectedTestResultData.testName?.replace(/\s+/g, '-').toLowerCase(),
+  };
+};
+
+export default connect(mapStateToProps, null)(App);

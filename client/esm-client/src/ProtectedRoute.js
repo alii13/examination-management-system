@@ -21,10 +21,4 @@ const mapStateToProps = (state) => {
         userInfo: state.auth.user,
     };
   };
-
-  const mapDispatchToProps = (dispatch) => {
-    return {
-        // sendLoginRequest: (values) => dispatch(loginUser(values)),
-    };
-  };
-export default connect(mapStateToProps, mapDispatchToProps)(ProtectedRoute);
+export default connect(mapStateToProps,null)(ProtectedRoute);

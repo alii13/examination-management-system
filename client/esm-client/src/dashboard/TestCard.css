@@ -23,7 +23,24 @@
     font-size: var(--typography-sm);
     margin: 0;
 }
-
+.skeleton{
+    width: 100%;
+}
+.single-skeleton{
+    display: flex;
+    padding: 7px 5px;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+    border-left: 1px solid var(--border);;
+    border-right: 1px solid var(--border);;
+}
+.avatar-skelton{
+    flex: 0.2 !important;
+    margin-left: 2px;
+}
+.input-skelton{
+    flex: 1 !important;
+}
 .left__body__list__ul{
     width: 100%;
     padding-left: 0;

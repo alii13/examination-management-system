@@ -1,16 +1,18 @@
 import React from "react";
 import { Row, Col } from "antd";
 import { connect } from "react-redux";
-import SelectTest from "./SelectTest";
+import "./ShowResult.css";
 
-function ResultWrapper(props) {
-  const { profileID } = props;
+
+ function ShowResult(props) {
   return (
     <>
       <div className="container dashboard">
         <Row gutter={[48, 10]} justify="center">
           <Col className="gutter-row" xs={24} sm={24} md={14} xl={14}>
-            <SelectTest profileID ={profileID} />
+            <div className="result__wrapper">
+
+            </div>
           </Col>
         </Row>
       </div>
@@ -18,10 +20,11 @@ function ResultWrapper(props) {
   );
 }
 
+
 const mapStateToProps = (state) => {
   return {
-    profileID: state.auth.user ? state.auth.profileID : null,
+    selectedTest: state.selectedTest.selectedTestData,
   };
 };
 
-export default connect(mapStateToProps, null)(ResultWrapper);
+export default connect(mapStateToProps, null)(ShowResult);
