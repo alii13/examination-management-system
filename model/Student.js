@@ -8,6 +8,9 @@ const StudentSchema = mongoose.Schema({
   attemptedTest:{
     type: Array,
   },
+  attemptedTestData:{
+    type: Array,
+  },
   createdAt: {
     type: Date,
     default: Date.now(),
