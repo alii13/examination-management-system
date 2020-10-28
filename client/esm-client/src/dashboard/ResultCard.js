@@ -41,110 +41,23 @@ function ResultCard(props) {
           </ul>
         ) : (
           <div className="skeleton">
-            <div className="single-skeleton">
-              <Skeleton.Avatar
-                className="avatar-skelton"
-                active={true}
-                size="default"
-                shape="square"
-              />
-              <Skeleton.Input
-                className="input-skelton"
-                active={true}
-                size="default"
-              />
-            </div>
-            <div className="single-skeleton">
-              <Skeleton.Avatar
-                className="avatar-skelton"
-                active={true}
-                size="default"
-                shape="square"
-              />
-              <Skeleton.Input
-                className="input-skelton"
-                active={true}
-                size="default"
-              />
-            </div>
-            <div className="single-skeleton">
-              <Skeleton.Avatar
-                className="avatar-skelton"
-                active={true}
-                size="default"
-                shape="square"
-              />
-              <Skeleton.Input
-                className="input-skelton"
-                active={true}
-                size="default"
-              />
-            </div>
-            <div className="single-skeleton">
-              <Skeleton.Avatar
-                className="avatar-skelton"
-                active={true}
-                size="default"
-                shape="square"
-              />
-              <Skeleton.Input
-                className="input-skelton"
-                active={true}
-                size="default"
-              />
-            </div>
-            <div className="single-skeleton">
-              <Skeleton.Avatar
-                className="avatar-skelton"
-                active={true}
-                size="default"
-                shape="square"
-              />
-              <Skeleton.Input
-                className="input-skelton"
-                active={true}
-                size="default"
-              />
-            </div>
-            <div className="single-skeleton">
-              <Skeleton.Avatar
-                className="avatar-skelton"
-                active={true}
-                size="default"
-                shape="square"
-              />
-              <Skeleton.Input
-                className="input-skelton"
-                active={true}
-                size="default"
-              />
-            </div>
-            <div className="single-skeleton">
-              <Skeleton.Avatar
-                className="avatar-skelton"
-                active={true}
-                size="default"
-                shape="square"
-              />
-              <Skeleton.Input
-                className="input-skelton"
-                active={true}
-                size="default"
-              />
-            </div>
-            <div className="single-skeleton">
-              <Skeleton.Avatar
-                className="avatar-skelton"
-                active={true}
-                size="default"
-                shape="square"
-              />
-              <Skeleton.Input
-                className="input-skelton"
-                active={true}
-                size="default"
-              />
-            </div>
+            {Array(trimLength)
+              .fill()
+              .map((item, i) => (
+                <div className="single-skeleton">
+                  <Skeleton.Avatar
+                    className="avatar-skelton"
+                    active={true}
+                    size="default"
+                    shape="square"
+                  />
+                  <Skeleton.Input
+                    className="input-skelton"
+                    active={true}
+                    size="default"
+                  />
+                </div>
+              ))}
           </div>
         )}
       </div>
