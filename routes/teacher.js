@@ -123,10 +123,10 @@ router.post("/create-test", auth, async (req, res) => {
       questions,
     });
 
-    await createTest.save();
+    let data = await createTest.save();
 
     const payload = {
-      createTest,
+      data,
     };
 
     res.status(200).json({

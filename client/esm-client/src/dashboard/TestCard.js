@@ -7,7 +7,9 @@ import { connect } from "react-redux";
 import { Skeleton } from "antd";
 
 function TestCard(props) {
-  const { tests, isLoading, studentClassName } = props;
+  let { tests, isLoading, studentClassName, trimLength } = props;
+
+  tests = tests.length > trimLength ? tests.slice(0, trimLength) : tests;
 
   useEffect(() => {
     props.fetchTests(studentClassName);

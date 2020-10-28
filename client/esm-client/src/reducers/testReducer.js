@@ -5,7 +5,7 @@ import {
   FETCH_TEST_FAILURE,
 } from "../actions/testActions";
 
-const trimLength = 8;
+
 
 const initialState = {
   isFetching: false,
@@ -33,10 +33,7 @@ export default function (state = initialState, action) {
         isFetching: false,
         isLoadingTest: false,
         isFetched: true,
-        test:
-          (action.tests.length > trimLength
-            ? action.tests.slice(0,trimLength)
-            : action.tests),
+        test:action.tests,
       };
     case FETCH_ATTEMPT_TEST_SUCCESS:
       // console.log(action.tests)
@@ -44,10 +41,7 @@ export default function (state = initialState, action) {
         ...state,
         isFetching: false,
         isLoadingAttemptedTest: false,
-        attemptedTest:
-          (action.tests[0].attemptedTest.length > trimLength
-            ? action.tests[0].attemptedTest.slice(0,trimLength)
-            : action.tests[0].attemptedTest),
+        attemptedTest:action.tests[0].attemptedTest,
       };
     case FETCH_TEST_FAILURE:
       return {

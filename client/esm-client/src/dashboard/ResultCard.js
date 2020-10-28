@@ -7,7 +7,9 @@ import { Link } from "react-router-dom";
 import { Skeleton } from "antd";
 
 function ResultCard(props) {
-  const { tests, isLoading, profileID } = props;
+  let { tests, isLoading, profileID, trimLength } = props;
+
+  tests = tests.length > trimLength ? tests.slice(0, trimLength) : tests;
 
   useEffect(() => {
     props.fetchTests(profileID);
