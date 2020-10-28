@@ -27,7 +27,8 @@ function TestInstruction(props) {
         icon: <ExclamationCircleOutlined />,
         content: 'Once you click OK , timer will start!',
         onOk() {
-          localStorage.setItem(testName, 0);
+          // localStorage.setItem(testName, 0);
+          console.log(props.selectedTest)
           console.log('OK');
         },
         onCancel() {

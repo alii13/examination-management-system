@@ -1,15 +1,15 @@
 import React from "react";
 import "./App.css";
-import Login from "./Login";
-import Signup from "./Signup";
+import Login from "../logIn/Login";
+import Signup from "../signUp/Signup";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import ProtectedRoute from './ProtectedRoute';
-import Dashboard from "./dashboard/Dashboard";
-import AttemptTest from "./attemptTest/AttemptTest"
-import Navbar from "./navbar/";
-import Result  from "./result/ResultWrapper";
-import TestInstruction from "./TestInstructions/TestInstruction";
-import IndividualResult from "./result/ShowResult";
+import ProtectedRoute from '../protectedRoute/ProtectedRoute';
+import Dashboard from "../dashboard/Dashboard";
+import AttemptTest from "../attemptTest/AttemptTest"
+import Navbar from "../navbar";
+import Result  from "../result/ResultWrapper";
+import TestInstruction from "../TestInstructions/TestInstruction";
+import IndividualResult from "../result/ShowResult";
 import { connect } from "react-redux";
 function App(props) {
 
@@ -21,12 +21,12 @@ function App(props) {
       <Navbar/>
         <Switch>
           <Route exact={true} path={"/signin"}  component={Login} />
+          <Route exact={true} path="/signup" component={Signup} />
           <ProtectedRoute exact={true} path="/" component={Dashboard} />
           <ProtectedRoute exact={true} path="/attempt-test" component={AttemptTest} />
           <ProtectedRoute exact={true} path="/result" component={Result} />
           <ProtectedRoute exact={true} path={`/result/${selectedTestName}`} component={IndividualResult} />
           <ProtectedRoute exact={true} path="/test-instructions" component={TestInstruction} />
-          <Route exact={true} path="/signup" component={Signup} />
           <ProtectedRoute component={Dashboard} />
         </Switch>
       </Router>

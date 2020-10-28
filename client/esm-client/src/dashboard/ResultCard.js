@@ -44,7 +44,7 @@ function ResultCard(props) {
             {Array(trimLength)
               .fill()
               .map((item, i) => (
-                <div className="single-skeleton">
+                <div className="single-skeleton" key={i}>
                   <Skeleton.Avatar
                     className="avatar-skelton"
                     active={true}

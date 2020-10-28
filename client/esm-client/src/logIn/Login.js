@@ -3,7 +3,7 @@ import React, {useEffect} from "react";
 import { Row, Col, Typography } from "antd";
 import "./Login.css";
 import { useHistory } from "react-router-dom";
-import { loginUser } from "./actions/authActions";
+import { loginUser } from "../actions/authActions";
 import { connect } from "react-redux";
 
  function Login(props) {

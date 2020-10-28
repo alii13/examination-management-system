@@ -3,23 +3,24 @@ import { Row, Col } from "antd";
 import { connect } from "react-redux";
 import TestCard from "./TestCard";
 import ResultCard from "./ResultCard";
-import "./Dashboard.css"
+import "./Dashboard.css";
 
 function Dashboard(props) {
   const { studentClassName, profileID } = props;
   const trimLength = 8;
-
- 
 
   return (
     <>
       <div className="container dashboard">
         <Row gutter={[48, 10]} justify="center">
           <Col className="gutter-row" xs={24} sm={24} md={9} xl={9}>
-          <TestCard studentClassName={studentClassName} trimLength ={trimLength }/>
+            <TestCard
+              studentClassName={studentClassName}
+              trimLength={trimLength}
+            />
           </Col>
           <Col className="gutter-row" xs={24} sm={24} md={9} xl={9}>
-            <ResultCard profileID ={profileID} trimLength ={trimLength }/>
+            <ResultCard profileID={profileID} trimLength={trimLength} />
           </Col>
         </Row>
       </div>
@@ -33,6 +34,5 @@ const mapStateToProps = (state) => {
     profileID: state.auth.user ? state.auth.profileID : null,
   };
 };
-
 
 export default connect(mapStateToProps, null)(Dashboard);

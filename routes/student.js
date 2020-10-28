@@ -48,7 +48,7 @@ router.get("/tests/:studentClass", auth, async (req, res) => {
       {
         className: studentClass,
       },
-      "-assignedTo -submitBy -teacherId -_id -__v"
+      "-assignedTo -submitBy -teacherId -__v"
     ).exec(function (err, obj) {
       if (err) {
         return res.status(400).json({ err });
