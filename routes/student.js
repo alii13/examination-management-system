@@ -208,6 +208,13 @@ router.put("/submit-test/:testID", auth, async (req, res) => {
   }
 });
 
+
+/**
+ * @method - PUT
+ * @param - /update-test-status/:testID
+ * @description - Tracking how much time user spented on test using attemptedTime
+ */
+
 router.put("/update-test-status/:testID", auth, async (req, res) => {
   const testID = req.params.testID;
   const profileID = req.body.profileID;
@@ -222,7 +229,13 @@ router.put("/update-test-status/:testID", auth, async (req, res) => {
     let { testStatus } = studentData;
     let test = testStatus.filter((t) => t.testID === testID);
     if (test.length < 1) {
-      studentData.testStatus.push({ testID, attemptedTime });
+      studentData.testStatus.push({
+        testID,
+        attemptedTime,
+        testName,
+        completed,
+        totalTime,
+      });
       studentData.save();
       return res.status(200).json({
         studentData,
