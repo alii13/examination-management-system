@@ -30,7 +30,7 @@ const requestTests = () => {
   };
 
 
-  export const fetchAttemptTests = (studentID) => async(dispatch) => {
+  export const fetchAttemptTests = (profileID) => async(dispatch) => {
     
     dispatch(requestTests());
   
@@ -42,7 +42,7 @@ const requestTests = () => {
       }
     };
   
-    await fetch(`/student/attempt-tests/${studentID}`, requestOptions)
+    await fetch(`/student/attempt-tests/${profileID}`, requestOptions)
       .then((response) => response.json())
       .then((data) => {
         if (data) {

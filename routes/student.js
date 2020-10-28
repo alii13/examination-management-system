@@ -43,15 +43,16 @@ router.get("/profile/:profileID", auth, async (req, res) => {
 router.get("/tests/:studentClass", auth, async (req, res) => {
   const studentClass = req.params.studentClass;
 
-
   try {
-    await Test.find({
-      className: studentClass,
-    }, '-assignedTo -submitBy -teacherId -_id -__v').exec(function (err, obj) {
+    await Test.find(
+      {
+        className: studentClass,
+      },
+      "-assignedTo -submitBy -teacherId -_id -__v"
+    ).exec(function (err, obj) {
       if (err) {
         return res.status(400).json({ err });
       } else {
-
         return res.status(200).json({
           obj,
         });
@@ -62,7 +63,6 @@ router.get("/tests/:studentClass", auth, async (req, res) => {
     res.status(500).send("Error in fetching Test Data");
   }
 });
-
 
 /**
  * @method - GET
@@ -80,7 +80,6 @@ router.get("/attempt-tests/:studentID", auth, async (req, res) => {
       if (err) {
         return res.status(400).json({ err });
       } else {
-
         return res.status(200).json({
           obj,
         });
@@ -189,25 +188,64 @@ router.put("/submit-test/:testID", auth, async (req, res) => {
         if (err) {
           return res.status(400).json({ message: "failed to submit test" });
         } else {
-
           await Student.updateOne(
-            {_id: submittedData[0].id},
+            { _id: submittedData[0].id },
             {
-              $addToSet: {attemptedTest:[
-                {testName, date, ...submittedData }
-              ]}
+              $addToSet: {
+                attemptedTest: [{ testName, date, ...submittedData }],
+              },
             }
-          )
+          );
           return res.status(200).json({
             message: "test submitted succesfully",
           });
         }
       }
     );
-
   } catch (err) {
     console.log(err.message);
     res.status(500).send("Error in submitting test data");
+  }
+});
+
+router.put("/update-test-status/:testID", auth, async (req, res) => {
+  const testID = req.params.testID;
+  const profileID = req.body.profileID;
+  const testName = req.body.testName;
+  const completed = req.body.completed;
+  const attemptedTime = req.body.attemptedTime;
+  const totalTime = req.body.totalTime;
+
+  try {
+    let studentData = await Student.findById(profileID);
+
+    let { testStatus } = studentData;
+    let test = testStatus.filter((t) => t.testID === testID);
+    if (test.length < 1) {
+      studentData.testStatus.push({ testID, attemptedTime });
+      studentData.save();
+      return res.status(200).json({
+        studentData,
+      });
+    } else {
+      await Student.findOneAndUpdate(
+        { _id: profileID, "testStatus.testID": testID },
+        {
+          $set: {
+            "testStatus.$.attemptedTime": attemptedTime,
+          },
+        },
+        { new: true },
+        (err, obj) => {
+          return res.status(200).json({
+            obj,
+          });
+        }
+      );
+    }
+  } catch (err) {
+    console.log(err.message);
+    res.status(500).send("Error in updating test data");
   }
 });
 
