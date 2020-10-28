@@ -61,16 +61,13 @@ p.test__wrapper__heading {
 }
 .select__single-skeleton{
     display: flex;
+    flex-direction: column;
     padding: 1em;
     border: 1px solid var(--border);
     justify-content: space-between;
 }
 .select__avatar-skelton{
-    flex: 0.2 !important;
-    margin-left: 2px;
-    height: 120px;
-}
-.select__input-skelton{
-    flex: 1 !important;
-    height: 120px;
+   width:60% !important;
+    margin-bottom: 5px;
+
 }

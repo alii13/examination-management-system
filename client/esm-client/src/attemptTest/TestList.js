@@ -2,13 +2,13 @@ import React, { useState, useEffect } from "react";
 import { Button } from "antd";
 import SearchBox from "./SearchBox";
 import { useHistory } from "react-router-dom";
+import { Skeleton } from "antd";
 
 export default function TestList(props) {
   const history = useHistory();
   const [tests, setTests] = useState([]);
   const [searchTests, setSearchTests] = useState([]);
   const [searching, setSearching] = useState("");
-
 
   useEffect(() => {
     setTests(props.tests);
@@ -54,8 +54,9 @@ export default function TestList(props) {
               Select Test
             </p>
             <div className="select__test__body">
-              {searching !== ""
-                ? searchTests.map((test, index) => (
+              {tests.length > 0 ? (
+                searching !== "" ? (
+                  searchTests.map((test, index) => (
                     <div
                       key={index}
                       className={`test__wrapper`}
@@ -72,7 +73,8 @@ export default function TestList(props) {
                       </div>
                     </div>
                   ))
-                : tests.map((test, index) => (
+                ) : (
+                  tests.map((test, index) => (
                     <div
                       key={index}
                       className={`test__wrapper`}
@@ -88,7 +90,51 @@ export default function TestList(props) {
                         <p className="time end">End: Oct 29 2020 11:50PM</p>
                       </div>
                     </div>
-                  ))}
+                  ))
+                )
+              ) : (
+                <div className="select__skeleton">
+                  <div className="select__single-skeleton">
+                    <Skeleton.Avatar
+                      className="select__avatar-skelton"
+                      active={true}
+                      size="default"
+                      shape="square"
+                    />
+                    <Skeleton.Input
+                      className="select__input-skelton"
+                      active={true}
+                      size="default"
+                    />
+                  </div>
+                  <div className="select__single-skeleton">
+                    <Skeleton.Avatar
+                      className="select__avatar-skelton"
+                      active={true}
+                      size="default"
+                      shape="square"
+                    />
+                    <Skeleton.Input
+                      className="select__input-skelton"
+                      active={true}
+                      size="default"
+                    />
+                  </div>
+                  <div className="select__single-skeleton">
+                    <Skeleton.Avatar
+                      className="select__avatar-skelton"
+                      active={true}
+                      size="default"
+                      shape="square"
+                    />
+                    <Skeleton.Input
+                      className="select__input-skelton"
+                      active={true}
+                      size="default"
+                    />
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </div>

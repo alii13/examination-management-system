@@ -19,7 +19,7 @@ function SelectTest(props) {
   return (
     <>
       <div className="select__test__container">
-        {tests ? <TestList tests={tests} handleSelectedTest={handleSelectedTest} /> : null}
+       <TestList tests={tests} handleSelectedTest={handleSelectedTest} /> 
       </div>
     </>
   );

@@ -117,6 +117,32 @@ export default function TestList(props) {
                       size="default"
                     />
                   </div>
+                  <div className="select__single-skeleton">
+                    <Skeleton.Avatar
+                      className="select__avatar-skelton"
+                      active={true}
+                      size="default"
+                      shape="square"
+                    />
+                    <Skeleton.Input
+                      className="select__input-skelton"
+                      active={true}
+                      size="default"
+                    />
+                  </div>
+                  <div className="select__single-skeleton">
+                    <Skeleton.Avatar
+                      className="select__avatar-skelton"
+                      active={true}
+                      size="default"
+                      shape="square"
+                    />
+                    <Skeleton.Input
+                      className="select__input-skelton"
+                      active={true}
+                      size="default"
+                    />
+                  </div>
                 </div>
               )}
             </div>
