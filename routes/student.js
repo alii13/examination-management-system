@@ -222,6 +222,9 @@ router.put("/update-test-status/:testID", auth, async (req, res) => {
   const completed = req.body.completed;
   const attemptedTime = req.body.attemptedTime;
   const totalTime = req.body.totalTime;
+  //console.log(...req.body);
+  console.log(testID, profileID, testName,completed, attemptedTime ,totalTime );
+  if(testID){
 
   try {
     let studentData = await Student.findById(profileID);
@@ -260,6 +263,10 @@ router.put("/update-test-status/:testID", auth, async (req, res) => {
     console.log(err.message);
     res.status(500).send("Error in updating test data");
   }
+}else{
+  res.status(500).send("Undefined Test ID");
+}
+
 });
 
 module.exports = router;

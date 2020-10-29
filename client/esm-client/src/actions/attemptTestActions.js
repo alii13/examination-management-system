@@ -23,19 +23,29 @@ const updateTimeSpentError = () => {
 
 export const updateTimeSpentByStudent = (values) => (dispatch) => {
   dispatch(requestUpdateTimeSpent());
-  const {
+  let {
     profileID,
     testName,
     completed,
-    attemptedTime,
-    totalTime,
-    testID,
+    minutes:totalTime,
+    _id:testID,
+    updatingAttemptedMinutes
   } = values;
 
+  updatingAttemptedMinutes = (updatingAttemptedMinutes!==0)?(updatingAttemptedMinutes):(0);
+  console.log(parseInt(updatingAttemptedMinutes));
+  let subtractTime = (updatingAttemptedMinutes==0)?( parseInt(totalTime)):(parseInt(0));
+ 
+
+  let attemptedTime = Math.abs((subtractTime)-(parseInt((updatingAttemptedMinutes)-1)));
+  
+
   const data = { profileID, testName, completed, attemptedTime, totalTime };
+  console.log(completed,totalTime, data.attemptedTime);
+
 
   const requestOptions = {
-    method: "POST",
+    method: "PUT",
     headers: {
       "Content-Type": "application/json",
       Authorization: localStorage.getItem("token"),
@@ -44,19 +54,23 @@ export const updateTimeSpentByStudent = (values) => (dispatch) => {
     body: JSON.stringify(data),
   };
 
-  fetch(`/update-test-status/${testID}`, requestOptions)
+  fetch(`/student/update-test-status/${testID}`, requestOptions)
     .then((response) => response.json())
     .then((data) => {
-      if (data.token) {
-        localStorage.setItem("token", `Bearer ${data.token}`);
-        localStorage.setItem("userProfile", JSON.stringify(data.payload.user));
-        localStorage.setItem("profileID", data.payload.profileID);
-        dispatch(receiveLogin(data.payload.user, data.payload.profileID));
+      if (data) {
+        data.obj.testStatus.map((test,index)=>{
+          if(test.testID === testID){
+            localStorage.setItem(testID, test.attemptedTime);
+          }
+        })
+       
+        console.log(data.obj);
+        dispatch(receiveUpdateTimeSpent(data));
         // history.push("/studentHome");
       }
     })
     .catch((error) => {
       //Do something with the error if you want!
-      dispatch(loginError());
+      dispatch(updateTimeSpentError());
     });
 };

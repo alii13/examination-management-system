@@ -10,6 +10,7 @@ import Navbar from "../navbar";
 import Result  from "../result/ResultWrapper";
 import TestInstruction from "../TestInstructions/TestInstruction";
 import IndividualResult from "../result/ShowResult";
+import TestPreviewWrapper from "../testPreview/TestPreviewWrapper";
 import { connect } from "react-redux";
 function App(props) {
 
@@ -27,6 +28,7 @@ function App(props) {
           <ProtectedRoute exact={true} path="/result" component={Result} />
           <ProtectedRoute exact={true} path={`/result/${selectedTestName}`} component={IndividualResult} />
           <ProtectedRoute exact={true} path="/test-instructions" component={TestInstruction} />
+          <ProtectedRoute exact={true} path="/start-test" component={TestPreviewWrapper} />
           <ProtectedRoute component={Dashboard} />
         </Switch>
       </Router>

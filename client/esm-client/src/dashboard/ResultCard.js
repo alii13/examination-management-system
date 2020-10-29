@@ -8,7 +8,7 @@ import { Skeleton } from "antd";
 
 function ResultCard(props) {
   let { tests, isLoading, profileID, trimLength } = props;
-
+  if(tests)
   tests = tests.length > trimLength ? tests.slice(0, trimLength) : tests;
 
   useEffect(() => {

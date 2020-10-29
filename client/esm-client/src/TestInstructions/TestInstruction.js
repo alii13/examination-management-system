@@ -4,9 +4,11 @@ import { connect } from "react-redux";
 import "./TestInstruction.css";
 import { FaArrowCircleRight } from "react-icons/fa";
 import { ExclamationCircleOutlined } from '@ant-design/icons';
+import { useHistory } from "react-router-dom";
 
 function TestInstruction(props) {
   //console.log(props.selectedTest);
+  const history = useHistory();
   const { confirm } = Modal;
   const {
     outOfMarks,
@@ -16,20 +18,23 @@ function TestInstruction(props) {
     className,
     testName,
     rules,
+    _id:testID
   } = props.selectedTest;
   let testRules;
+
   if (rules) {
     testRules = Object.values(rules[0]);
   }
+
   const handleButtonClick =()=>{
     confirm({
         title: 'Do you give test now?',
         icon: <ExclamationCircleOutlined />,
         content: 'Once you click OK , timer will start!',
         onOk() {
-          // localStorage.setItem(testName, 0);
-          console.log(props.selectedTest)
+         // console.log(props.selectedTest);
           console.log('OK');
+          history.push("/start-test");
         },
         onCancel() {
           console.log('Cancel');
