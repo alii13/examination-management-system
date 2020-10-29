@@ -17,7 +17,6 @@ class TestPreview extends Component {
         this.setState({intervalId: intervalID});
       }
       componentWillUnmount() {
-          console.log("component unmount called", this.state.intervalId)
         clearInterval(this.state.intervalId);
      }
 
