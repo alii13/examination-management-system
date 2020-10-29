@@ -27,22 +27,23 @@ export const updateTimeSpentByStudent = (values) => (dispatch) => {
     profileID,
     testName,
     completed,
-    minutes:totalTime,
-    _id:testID,
-    updatingAttemptedMinutes
+    minutes: totalTime,
+    _id: testID,
+    updatingAttemptedMinutes,
   } = values;
 
-  updatingAttemptedMinutes = (updatingAttemptedMinutes!==0)?(updatingAttemptedMinutes):(0);
+  updatingAttemptedMinutes =
+    updatingAttemptedMinutes !== 0 ? updatingAttemptedMinutes : 0;
   console.log(parseInt(updatingAttemptedMinutes));
-  let subtractTime = (updatingAttemptedMinutes==0)?( parseInt(totalTime)):(parseInt(0));
- 
+  let subtractTime =
+    updatingAttemptedMinutes == 0 ? parseInt(totalTime) : parseInt(0);
 
-  let attemptedTime = Math.abs((subtractTime)-(parseInt((updatingAttemptedMinutes)-1)));
-  
+  let attemptedTime = Math.abs(
+    subtractTime - parseInt(updatingAttemptedMinutes - 1)
+  );
 
   const data = { profileID, testName, completed, attemptedTime, totalTime };
-  console.log(completed,totalTime, data.attemptedTime);
-
+  console.log(completed, totalTime, data.attemptedTime);
 
   const requestOptions = {
     method: "PUT",
@@ -58,12 +59,12 @@ export const updateTimeSpentByStudent = (values) => (dispatch) => {
     .then((response) => response.json())
     .then((data) => {
       if (data) {
-        data.obj.testStatus.map((test,index)=>{
-          if(test.testID === testID){
+        data.obj.testStatus.map((test, index) => {
+          if (test.testID === testID) {
             localStorage.setItem(testID, test.attemptedTime);
           }
-        })
-       
+        });
+
         console.log(data.obj);
         dispatch(receiveUpdateTimeSpent(data));
         // history.push("/studentHome");
