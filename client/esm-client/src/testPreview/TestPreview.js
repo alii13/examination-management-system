@@ -23,8 +23,6 @@ class TestPreview extends Component {
   loadData() {
     try {
 
-
-       // console.log(this.props.selectedTest);
        let testName, minutes, _id;
        if(localStorage.getItem('trash')===null){
           testName=this.state.testName;
@@ -37,13 +35,11 @@ class TestPreview extends Component {
          testName=testData.testName;
          minutes=testData.minutes;
          _id=testData._id;
-         console.log(localStorage.getItem(testData._id),testData._id );
        }
        
         const  profileID = localStorage.getItem("profileID"), completed = false;
         const testData = JSON.parse(localStorage.getItem('trash'));
          let updatingAttemptedMinutes = localStorage.getItem(testData._id);
-         console.log(updatingAttemptedMinutes);
       
         const data = {
           profileID,
@@ -56,7 +52,6 @@ class TestPreview extends Component {
         //console.log(this.props.selectedTest, "props")
         if(_id){
         this.props.updateTimer(data);
-        console.log("req fired");
         }
     
     } catch (e) {
@@ -65,28 +60,7 @@ class TestPreview extends Component {
   }
 
   render() {
-    //    // console.log(this.props.selectedTest);
-    // const loadData = ()=>{
-    //     if(this.props.selectedTest){
-    //         //console.log(this.props.selectedTest);
-    //         const {
-    //             profileID,
-    //             testName,
-    //             completed,
-    //             totalTime,
-    //             _id:testID
-    //           } = this.props.selectedTest;
-    //         const oneMinute  = 1;
-    //         // const updatingAttemptedMinutes = localStorage.getItem(testID);
-    //         const data = {profileID,testName, testID,completed,totalTime, oneMinute}
-    //         this.props.updateTimer(data);
-    //         console.log("req fired");
-    //     }
-    // }
 
-    // if (this.props.selectedTest) {
-    //   setInterval(this.loadData, 60000);
-    // }
 
     return (
       <>
