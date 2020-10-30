@@ -34,11 +34,12 @@ export default function TestList(props) {
 
   const handleSelectTest = (e, index) => {
     if (selectRef) {
-      selectRef.style.backgroundColor = "#fff";
+      selectRef.classList.remove("selected__test");
     }
     selectRef = e.currentTarget;
-    e.currentTarget.style.backgroundColor = "#7ebfff";
+    e.currentTarget.classList.add("selected__test");
     selectedData = tests[index];
+
     //console.log();
   };
 
@@ -54,7 +55,7 @@ export default function TestList(props) {
               Select Test
             </p>
             <div className="select__test__body">
-              {tests.length > 0 ? (
+              {tests && tests.length > 0 ? (
                 searching !== "" ? (
                   searchTests.map((test, index) => (
                     <div

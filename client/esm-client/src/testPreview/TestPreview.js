@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { updateTimeSpentByStudent } from "../actions/attemptTestActions";
+import Counter from "./Counter";
+import HandleLiveTest from "./HandleLiveTest";
 
 class TestPreview extends Component {
   state = {
@@ -8,12 +10,13 @@ class TestPreview extends Component {
     minutes: this.props.selectedTest.minutes,
     _id: this.props.selectedTest._id,
     intervalId: null,
+    timer: this.props.timer,
   };
 
   componentDidMount() {
-    this.loadData();
+    this.loadData(this.state._id);
     const intervalID = setInterval(this.loadData.bind(this), 60000);
-    this.setState({ intervalId: intervalID });
+    this.setState({ intervalId: intervalID, timer: this.state.timer });
   }
   componentWillUnmount() {
     clearInterval(this.state.intervalId);
@@ -21,49 +24,70 @@ class TestPreview extends Component {
 
   loadData() {
     try {
-      let testName, minutes, _id;
-      if (localStorage.getItem("trash") === null) {
+    //   let testName, minutes, _id;
+          let testName, tM, _id, rM;
+      if (JSON.parse(localStorage.getItem(this.state._id))=== null) {
+        // testName = this.state.testName;
+        // minutes = this.state.minutes;
+        // _id = this.state._id;
+        // localStorage.setItem(
+        //   "trash",
+        //   JSON.stringify({ testName, minutes, _id })
+        // );
+
         testName = this.state.testName;
-        minutes = this.state.minutes;
+        tM = this.state.minutes;
         _id = this.state._id;
+         rM = tM;
         localStorage.setItem(
-          "trash",
-          JSON.stringify({ testName, minutes, _id })
-        );
+          `${_id}`,
+          JSON.stringify({ testName, _id, tM, rM }))
+
       } else {
-        console.log("else part");
-        const testData = JSON.parse(localStorage.getItem("trash"));
-        testName = testData.testName;
-        minutes = testData.minutes;
-        _id = testData._id;
+        // console.log("else part");
+        // const testData = JSON.parse(localStorage.getItem("trash"));
+        // testName = testData.testName;
+        // minutes = testData.minutes;
+        // _id = testData._id;
+
+        const testData = JSON.parse(localStorage.getItem(`${this.state._id}`));
+        console.log(testData);
+        let { testName,tM, _id, rM }= testData;
+        rM = rM-1;
+        localStorage.setItem(
+            `${_id}`,
+            JSON.stringify({ testName, _id, tM, rM }))
       }
 
-      const profileID = localStorage.getItem("profileID"),
-        completed = false;
-      const testData = JSON.parse(localStorage.getItem("trash"));
-      let updatingAttemptedMinutes = localStorage.getItem(testData._id);
+    //   const profileID = localStorage.getItem("profileID"),
+    //     completed = false;
+    //   const testData = JSON.parse(localStorage.getItem("trash"));
+    //   let updatingAttemptedMinutes = localStorage.getItem(testData._id);
 
-      const data = {
-        profileID,
-        testName,
-        _id,
-        completed,
-        minutes,
-        updatingAttemptedMinutes,
-      };
-      //console.log(this.props.selectedTest, "props")
-      if (_id) {
-        this.props.updateTimer(data);
-      }
+    //   const data = {
+    //     profileID,
+    //     testName,
+    //     _id,
+    //     completed,
+    //     minutes,
+    //     updatingAttemptedMinutes,
+    //   };
+    //   //console.log(this.props.selectedTest, "props")
+    //   if (_id) {
+    //    // this.props.updateTimer(data);
+    //   }
     } catch (e) {
       console.log(e);
     }
   }
 
   render() {
+   
+    console.log(this.props);
     return (
       <>
-        <p>Test Preview</p>
+        {/* {<Counter testID ={this.state._id} totalMinutes ={this.state.minutes} />} */}
+        <HandleLiveTest testID ={this.state._id} totalMinutes ={this.state.minutes} />
       </>
     );
   }
@@ -72,6 +96,7 @@ class TestPreview extends Component {
 const mapStateToProps = (state) => {
   return {
     selectedTest: state.selectedTest.selectedTestData,
+    timer: state.userAttemptedTime.attemptedTime,
   };
 };
 

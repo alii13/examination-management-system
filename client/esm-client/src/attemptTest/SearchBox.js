@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Input } from "antd";
+import { AudioOutlined } from '@ant-design/icons';
 const { Search } = Input;
+
 export default function SearchBox(props) {
   const [searchTerm, setSearchTerm] = useState("");
 

@@ -8,10 +8,10 @@ const requestUpdateTimeSpent = () => {
   };
 };
 
-const receiveUpdateTimeSpent = (tests) => {
+const receiveUpdateTimeSpent = (time) => {
   return {
     type: UPDATE_ATTEMPT_TEST_SUCCESS,
-    tests,
+    time,
   };
 };
 
@@ -66,7 +66,7 @@ export const updateTimeSpentByStudent = (values) => (dispatch) => {
         });
 
         console.log(data.obj);
-        dispatch(receiveUpdateTimeSpent(data));
+        dispatch(receiveUpdateTimeSpent(localStorage.getItem(testID)));
         // history.push("/studentHome");
       }
     })

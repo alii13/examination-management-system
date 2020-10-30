@@ -35,7 +35,12 @@ p.test__wrapper__heading {
     background-color: var(--border);
     
 }
-
+.selected__test{
+    background-color: #7ebfff;
+}
+.selected__test:hover{
+    background-color: #7ebfff !important;
+}
 .select__test {
     font-size: var( --typography-sm);
     font-weight: 400;

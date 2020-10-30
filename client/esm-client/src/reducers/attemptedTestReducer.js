@@ -5,6 +5,7 @@ const initialState = {
   isFetching:false,
   isFetched:false,
   isFetchingError:false,
+  initializeTimer:false,
 };
 
 export default function (state = initialState, action) {
@@ -19,11 +20,13 @@ export default function (state = initialState, action) {
       case UPDATE_ATTEMPT_TEST_SUCCESS:
         // console.log("login success fired", action.obj)
         //console.log(action.data);
+        const checker = state.initializeTimer;
         return {
           ...state,
           isFetched: true,
           isFetching: false,
-          attemptedTime: 12,
+          attemptedTime: action.time,
+          initializeTimer:true,
         };
     case UPDATE_ATTEMPT_TEST_FAILURE:
       // console.log("login success fired", action.obj)
