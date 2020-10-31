@@ -98,6 +98,7 @@ router.post("/create-test", auth, async (req, res) => {
     rules,
     className,
     outOfMarks,
+    answers,
     questions,
   } = req.body;
   try {
@@ -116,6 +117,7 @@ router.post("/create-test", auth, async (req, res) => {
       teacherId,
       testName,
       category,
+      answers,
       minutes,
       className,
       rules,

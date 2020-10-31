@@ -14,7 +14,7 @@ export default function Counter(props) {
 
   return (
     <>
-      <CountdownTimer count={time} />
+      <CountdownTimer count={3400} hideDay={true}  />
     </>
   );
 }

@@ -40,6 +40,10 @@ const TestSchema = mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  answers:{
+    type:Array,
+    required:true,
+  },
   submitBy: {
     type: Array,
   }

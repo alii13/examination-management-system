@@ -24,70 +24,59 @@ class TestPreview extends Component {
 
   loadData() {
     try {
-    //   let testName, minutes, _id;
-          let testName, tM, _id, rM;
-      if (JSON.parse(localStorage.getItem(this.state._id))=== null) {
-        // testName = this.state.testName;
-        // minutes = this.state.minutes;
-        // _id = this.state._id;
-        // localStorage.setItem(
-        //   "trash",
-        //   JSON.stringify({ testName, minutes, _id })
-        // );
-
+      //   let testName, minutes, _id;
+      let testName, tM, _id, rM;
+      if (JSON.parse(localStorage.getItem(this.state._id)) === null) {
         testName = this.state.testName;
         tM = this.state.minutes;
         _id = this.state._id;
-         rM = tM;
+        rM = tM;
         localStorage.setItem(
           `${_id}`,
-          JSON.stringify({ testName, _id, tM, rM }))
-
+          JSON.stringify({ testName, _id, tM, rM })
+        );
       } else {
-        // console.log("else part");
-        // const testData = JSON.parse(localStorage.getItem("trash"));
-        // testName = testData.testName;
-        // minutes = testData.minutes;
-        // _id = testData._id;
-
         const testData = JSON.parse(localStorage.getItem(`${this.state._id}`));
         console.log(testData);
-        let { testName,tM, _id, rM }= testData;
-        rM = rM-1;
+        let { testName, tM, _id, rM } = testData;
+        rM = rM - 1;
         localStorage.setItem(
-            `${_id}`,
-            JSON.stringify({ testName, _id, tM, rM }))
+          `${_id}`,
+          JSON.stringify({ testName, _id, tM, rM })
+        );
       }
 
-    //   const profileID = localStorage.getItem("profileID"),
-    //     completed = false;
-    //   const testData = JSON.parse(localStorage.getItem("trash"));
-    //   let updatingAttemptedMinutes = localStorage.getItem(testData._id);
+      //   const profileID = localStorage.getItem("profileID"),
+      //     completed = false;
+      //   const testData = JSON.parse(localStorage.getItem("trash"));
+      //   let updatingAttemptedMinutes = localStorage.getItem(testData._id);
 
-    //   const data = {
-    //     profileID,
-    //     testName,
-    //     _id,
-    //     completed,
-    //     minutes,
-    //     updatingAttemptedMinutes,
-    //   };
-    //   //console.log(this.props.selectedTest, "props")
-    //   if (_id) {
-    //    // this.props.updateTimer(data);
-    //   }
+      //   const data = {
+      //     profileID,
+      //     testName,
+      //     _id,
+      //     completed,
+      //     minutes,
+      //     updatingAttemptedMinutes,
+      //   };
+      //   //console.log(this.props.selectedTest, "props")
+      //   if (_id) {
+      //    // this.props.updateTimer(data);
+      //   }
     } catch (e) {
       console.log(e);
     }
   }
 
   render() {
-   
-    console.log(this.props);
+    console.log(this.props.timer);
     return (
       <>
-        {/* {<Counter testID ={this.state._id} totalMinutes ={this.state.minutes} />} */}
-        <HandleLiveTest testID ={this.state._id} totalMinutes ={this.state.minutes} />
+        <Counter testID={this.state._id} totalMinutes={this.state.minutes} />
+        <HandleLiveTest
+          testID={this.state._id}
+          totalMinutes={this.state.minutes}
+        />
       </>
     );
   }
