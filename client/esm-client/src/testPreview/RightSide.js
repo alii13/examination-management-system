@@ -9,7 +9,7 @@ export default class RightSide extends Component {
       questionsData: [],
       changeIndex:0,
       questionIndex:0,
-      selectedAnswers: Array.apply(null, Array(5))
+      selectedAnswers: Array.apply(undefined, Array(5))
     };
   }
 
@@ -23,9 +23,9 @@ export default class RightSide extends Component {
   handleClearResponse = (index) => {
     let newSelectedAnswers = this.state.selectedAnswers;
     console.log(newSelectedAnswers[index]);
-    let blankClearAttempt = (newSelectedAnswers[index]===null)?true:false;
+    let blankClearAttempt = (newSelectedAnswers[index]===undefined)?true:false;
 
-    newSelectedAnswers[index] = null;
+    newSelectedAnswers[index] = undefined;
     this.setState({
       selectedAnswers: newSelectedAnswers
     });
@@ -85,7 +85,7 @@ export default class RightSide extends Component {
     this.props.onRef(undefined)
   }
   render() {
-    console.log(this.state.activateQue)
+    console.log(this.state.selectedAnswers)
     const radioStyle = {
       display: "block",
       height: "30px",

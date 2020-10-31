@@ -105,6 +105,12 @@
 .next__question:active{
     opacity: 0.8;
 }
+.answered{
+    background-color: var(--success) !important;
+}
+.add-flag{
+    background-color: var(--warning) !important;
+}
 
 /* .descripiton__wrapper{
     position: relative;

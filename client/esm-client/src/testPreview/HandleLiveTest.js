@@ -11,19 +11,21 @@ class HandleLiveTest extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      testID: null,
-      totalMinutes: null,
+      testID: undefined,
+      totalMinutes: undefined,
       questionsData: [],
       answers: [],
       totalScore: 0,
       footerClick:false,
       activateQue: 0,
       totalAnswered: 0,
+      answered:false,
       totalPending: 5,
       totalFlagged: 0,
+      flag:false,
       questionIndex:0,
-      userAnswers:Array.apply(null, Array(5)),
-      value: null,
+      userAnswers:Array.apply(undefined, Array(5)),
+      value: undefined,
     };
   }
 
@@ -51,7 +53,11 @@ class HandleLiveTest extends Component {
   //     return nextProps.questions.length != this.props.questions.length;
   // }
   changeActivatedQueFromFooter = (changeActivatedQue) => {
-    this.child.changeActivatedQueInChild(changeActivatedQue) // do stuff
+      if(changeActivatedQue !== "flag__question")
+      this.child.changeActivatedQueInChild(changeActivatedQue)
+      else{
+        
+      } 
   }
   changeParentActivatedQue = (index)=>{
       this.setState({
@@ -60,6 +66,7 @@ class HandleLiveTest extends Component {
       })
 
   }
+
 
   handleFooterButtons = (buttonClicked)=>{
       this.changeActivatedQueFromFooter(buttonClicked);
@@ -76,6 +83,7 @@ class HandleLiveTest extends Component {
         userAnswers: updatedUserAnswers,
         activateQue:index,
         footerClick:false,
+        answered:false,
       });
 }
 
@@ -93,7 +101,8 @@ class HandleLiveTest extends Component {
         totalPending: this.state.totalPending - 1,
         userAnswers:updatedUserAnswers,
         activateQue:index,
-        footerClick:false
+        footerClick:false,
+        answered:true,
       });
     } else {
       let updatedScore = this.state.totalScore;
@@ -110,6 +119,7 @@ class HandleLiveTest extends Component {
         userAnswers:updatedUserAnswers,
         activateQue:index,
         footerClick:false,
+        answered:true,
       });
     }
   };
@@ -149,6 +159,7 @@ class HandleLiveTest extends Component {
               activateQue={this.state.activateQue}
               footerClick={this.state.footerClick}
               onRef={ref => (this.child = ref)}
+              answered={this.state.answered}
             />
           </div>
           <RightSide
