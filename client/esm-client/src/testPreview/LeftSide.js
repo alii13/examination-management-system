@@ -53,6 +53,7 @@ export default class LeftSide extends Component {
       return true;
     }
   }
+
   setFlag=()=>{
     
     this.state.selectRef.classList.add("add-flag");
@@ -92,7 +93,6 @@ export default class LeftSide extends Component {
     return (
       <>
         <div className="questions__wrapper">
-          <div className="">Inside left {this.state.leftActiveQue}</div>
           {this.state.questionsData &&
             this.state.questionsData.map((question, index) => (
               <div
@@ -101,7 +101,7 @@ export default class LeftSide extends Component {
                 onClick={(e) => handleClick(e, index)}
                 key={index}
               >
-                {question.questionIndex - -1}
+                {index - -1}
               </div>
             ))}
         </div>

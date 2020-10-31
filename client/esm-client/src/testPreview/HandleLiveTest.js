@@ -57,6 +57,7 @@ class HandleLiveTest extends Component {
       this.child.changeActivatedQueInChild(changeActivatedQue)
       else{
         
+        
       } 
   }
   changeParentActivatedQue = (index)=>{

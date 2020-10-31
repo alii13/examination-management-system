@@ -105,16 +105,16 @@ export default class RightSide extends Component {
                     <div className="options">
                       <Radio.Group onChange={(e)=> this.onChange(e, index)} value={this.state.selectedAnswers[index]}>
                         <Radio style={radioStyle} value={1}>
-                          Option A
+                         {question.options[0].option}
                         </Radio>
                         <Radio style={radioStyle} value={2}>
-                          Option B
+                        {question.options[1].option}
                         </Radio>
                         <Radio style={radioStyle} value={3}>
-                          Option C
+                        {question.options[2].option}
                         </Radio>
                         <Radio style={radioStyle} value={4}>
-                          Option D
+                        {question.options[3].option}
                         </Radio>
                       </Radio.Group>
                       <div
