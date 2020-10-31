@@ -5,6 +5,7 @@ import { updateTimeSpentByStudent } from "../actions/attemptTestActions";
 import "./HandleLiveTest.css";
 import LeftSide from "./LeftSide";
 import RightSide from "./RightSide";
+import Footer from "./Footer";
 
 class HandleLiveTest extends Component {
   constructor(props) {
@@ -15,10 +16,12 @@ class HandleLiveTest extends Component {
       questionsData: [],
       answers: [],
       totalScore: 0,
-      activateQue: null,
+      footerClick:false,
+      activateQue: 0,
       totalAnswered: 0,
       totalPending: 5,
       totalFlagged: 0,
+      questionIndex:0,
       userAnswers:Array.apply(null, Array(5)),
       value: null,
     };
@@ -44,20 +47,23 @@ class HandleLiveTest extends Component {
 
   //    }
 
-  //    static getDerivedStateFromProps(props, state) {
-  //     if (props.questions.length !== state.questionsData.length) {
-  //       return {
-  //         questionsData: props.questions,
-  //       };
-  //     }
-
-  //     // Return null if the state hasn't changed
-  //     return null;
-  //   }
-
   //   shouldComponentUpdate(nextProps, nextState) {
   //     return nextProps.questions.length != this.props.questions.length;
   // }
+  changeActivatedQueFromFooter = (changeActivatedQue) => {
+    this.child.changeActivatedQueInChild(changeActivatedQue) // do stuff
+  }
+  changeParentActivatedQue = (index)=>{
+      this.setState({
+        activateQue:index,
+        footerClick:true,
+      })
+
+  }
+
+  handleFooterButtons = (buttonClicked)=>{
+      this.changeActivatedQueFromFooter(buttonClicked);
+  }
 
   handleClearResponse = (index, blankClearAttempt) => {
     if(!blankClearAttempt){
@@ -68,6 +74,8 @@ class HandleLiveTest extends Component {
         totalAnswered: this.state.totalAnswered - 1,
         totalPending: this.state.totalPending + 1,
         userAnswers: updatedUserAnswers,
+        activateQue:index,
+        footerClick:false,
       });
 }
 
@@ -84,6 +92,8 @@ class HandleLiveTest extends Component {
         totalAnswered: this.state.totalAnswered + 1,
         totalPending: this.state.totalPending - 1,
         userAnswers:updatedUserAnswers,
+        activateQue:index,
+        footerClick:false
       });
     } else {
       let updatedScore = this.state.totalScore;
@@ -97,15 +107,14 @@ class HandleLiveTest extends Component {
       updatedUserAnswers[index] = option;
       this.setState({
         totalScore: updatedScore,
-        userAnswers:updatedUserAnswers
+        userAnswers:updatedUserAnswers,
+        activateQue:index,
+        footerClick:false,
       });
     }
   };
   handleQuestionClick = (index) => {
-    this.setState({
-      activateQue: index,
-    });
-    console.log(`question ${index - -1} Clicked`);
+    this.child.changeActivatedQueInChild(index)
   };
 
   render() {
@@ -115,7 +124,7 @@ class HandleLiveTest extends Component {
         <div className="question_board dashboard">
           <div className="left__side">
             <div className="score">
-              {`Activated Questions ${this.state.activateQue}`}
+              {`Activated Questions Parent ${this.state.activateQue}`}
             </div>
             <div className="questions__status">
               <div className="total__answered box">
@@ -137,14 +146,22 @@ class HandleLiveTest extends Component {
             <LeftSide
               questionsData={this.state.questionsData}
               handleQuestionClick={this.handleQuestionClick}
+              activateQue={this.state.activateQue}
+              footerClick={this.state.footerClick}
+              onRef={ref => (this.child = ref)}
             />
           </div>
           <RightSide
-            activateQue={this.state.activateQue}
             questionsData={this.state.questionsData}
             questionAnswered={this.questionAnswered}
+            questionIndex={this.state.questionIndex}
             handleClearResponse={this.handleClearResponse}
+            onRef={ref => (this.child = ref)}
+            changeParentActivatedQue={this.changeParentActivatedQue}
           />
+          <div className="footer">
+              <Footer handleFooterButtons={this.handleFooterButtons}/>
+          </div>
         </div>
       </>
     );

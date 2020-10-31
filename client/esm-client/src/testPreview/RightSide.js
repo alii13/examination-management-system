@@ -5,8 +5,9 @@ export default class RightSide extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activateQue: null,
+      activateQue: 0,
       questionsData: [],
+      changeIndex:0,
       questionIndex:0,
       selectedAnswers: Array.apply(null, Array(5))
     };
@@ -15,7 +16,7 @@ export default class RightSide extends Component {
   static getDerivedStateFromProps(props, state) {
     return {
       questionsData: props.questionsData,
-      activateQue: props.activateQue,
+      questionIndex: props.questionIndex,
     };
   }
        
@@ -44,11 +45,47 @@ export default class RightSide extends Component {
         value: e.target.value,
         selectedAnswers: newSelectedAnswers
       });
-      
-  
-
+    
   };
+  componentDidMount() {
+    this.props.onRef(this)
+  }
+
+  changeActivatedQueInChild =(changeActivatedQue)=>{
+    console.log(changeActivatedQue)
+
+    if(changeActivatedQue==="next__question"){
+      console.log("insdie if")
+      console.log(this.state.questionsData.length,this.state.activateQue)
+      if(this.state.activateQue<this.state.questionsData.length-1){
+      this.setState({
+        activateQue:this.state.activateQue+1
+      })
+      this.props.changeParentActivatedQue(this.state.activateQue+1);
+    }
+    }
+    else if(changeActivatedQue==="previous__question"){
+      if(this.state.activateQue>0){
+      this.setState({
+        activateQue:this.state.activateQue-1
+      })
+      this.props.changeParentActivatedQue(this.state.activateQue-1);
+    }
+    }else if(changeActivatedQue==="flag__question"){
+      console.log("flagged")
+    }else{
+      this.setState({
+        activateQue:changeActivatedQue
+      })
+
+    }
+    
+  }
+  componentWillUnmount() {
+    this.props.onRef(undefined)
+  }
   render() {
+    console.log(this.state.activateQue)
     const radioStyle = {
       display: "block",
       height: "30px",
@@ -58,9 +95,10 @@ export default class RightSide extends Component {
     return (
       <>
         <div className="descripiton__wrapper">
+    <div className="question__no">Question {this.state.activateQue+1} out of {5}</div>
           {this.state.questionsData &&
             this.state.questionsData.map((question, index) => {
-              if ((this.state.activateQue === index)|| (this.state.activateQue == null && this.state.questionIndex === index)) {
+              if ((this.state.activateQue === index)) {
                 return (
                   <div className="description__box" key={index}>
                     <div className="descripiton"> {question.description}</div>
