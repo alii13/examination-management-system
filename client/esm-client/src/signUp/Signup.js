@@ -146,9 +146,9 @@ export default function Signup() {
                 
                 >
                   <Select defaultValue="Class" disabled={showSelect}>
-                    <Option value="X">X</Option>
-                    <Option value="XI">XI</Option>
-                    <Option value="XII">XII</Option>
+                    <Option value="IX">IX</Option>
+                    {/* <Option value="XI">XI</Option>
+                    <Option value="XII">XII</Option> */}
                   </Select>
                 </Form.Item>
               </div>

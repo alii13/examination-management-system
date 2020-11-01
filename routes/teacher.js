@@ -106,8 +106,8 @@ router.post("/create-test", auth, async (req, res) => {
     let createTest = await Test.findOne({
       testName,
       className,
-      category
-    })
+      category,
+    });
     if (createTest) {
       return res.status(400).json({
         msg: "Test Already Created",
