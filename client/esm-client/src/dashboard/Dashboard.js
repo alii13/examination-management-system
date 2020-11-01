@@ -6,8 +6,9 @@ import ResultCard from "./ResultCard";
 import "./Dashboard.css";
 
 function Dashboard(props) {
-  const { studentClassName, profileID } = props;
+  const { studentClassName, profileID, userInfo } = props;
   const trimLength = 8;
+  // console.log(userInfo);
 
   return (
     <>
@@ -20,7 +21,7 @@ function Dashboard(props) {
             />
           </Col>
           <Col className="gutter-row" xs={24} sm={24} md={9} xl={9}>
-            <ResultCard profileID={profileID} trimLength={trimLength} />
+            <ResultCard  trimLength={trimLength} />
           </Col>
         </Row>
       </div>
@@ -31,7 +32,7 @@ function Dashboard(props) {
 const mapStateToProps = (state) => {
   return {
     studentClassName: state.auth.user ? state.auth.user.className : null,
-    profileID: state.auth.user ? state.auth.profileID : null,
+    profileID: state.auth.user ? state.auth.user.profileID : null,
   };
 };
 

@@ -51,6 +51,7 @@ export default function (state = initialState, action) {
         isLoading: false,
         isAuthenticated: true,
         user: action.user,
+        profileID: action.profileID
       };
     case LOGIN_FAILURE:
       console.log("login failure fired")

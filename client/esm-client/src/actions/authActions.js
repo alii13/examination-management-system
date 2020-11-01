@@ -23,10 +23,11 @@ const requestLogin = () => {
   };
 };
 
-const receiveLogin = user => {
+const receiveLogin = (user,profileID) => {
   return {
     type: LOGIN_SUCCESS,
-    user
+    user,
+    profileID
   };
 };
 

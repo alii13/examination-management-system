@@ -15,8 +15,11 @@ function ResultCard(props) {
         : tests;
 
   useEffect(() => {
-    if (profileID) props.fetchTests(profileID);
-  }, [profileID]);
+   
+      props.fetchTests(profileID);
+      console.log("fired")
+    
+  }, []);
 
   return (
     <>
@@ -72,6 +75,7 @@ const mapStateToProps = (state) => {
   return {
     isLoading: state.tests.isLoadingAttemptedTest,
     tests: state.tests.attemptedTest,
+    profileID: state.auth.profileID
   };
 };
 const mapDispatchToProps = (dispatch) => {
