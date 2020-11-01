@@ -4,7 +4,7 @@ import reducer from '../reducers/index'
 import logger from 'redux-logger'
 
 const allEnhancers = compose (
-  applyMiddleware (thunk,logger)
+  applyMiddleware(thunk,logger)
 );
 
 const store = createStore (reducer, allEnhancers);
