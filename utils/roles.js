@@ -1,4 +1,5 @@
 module.exports = {
      TEACHER : "teacher",
-     STUDENT : "student"
+     STUDENT : "student",
+     baseURL: "https://ems-in.herokuapp.com"
 }
