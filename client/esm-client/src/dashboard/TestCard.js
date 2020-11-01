@@ -11,7 +11,7 @@ function TestCard(props) {
   if (tests)
     tests =
       tests.length > trimLength
-        ? tests.slice(-(trimLength - 1)).reverse()
+        ? tests.slice(-(trimLength)).reverse()
         : tests;
 
   useEffect(() => {
