@@ -4,6 +4,7 @@ const auth = require("../middleware/auth");
 const Test = require("../model/Test");
 const Teacher = require("../model/Teacher");
 const User = require("../model/User");
+require("dotenv").config();
 
 /**
  * @method - GET
