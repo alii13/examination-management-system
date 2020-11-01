@@ -78,6 +78,7 @@ function App(props) {
             onLeave={ onLeaveComponent }
             component={TestPreviewWrapper}
           />
+           <ProtectedRoute component={Login} />
         </Switch>
       </Router>
     </>
