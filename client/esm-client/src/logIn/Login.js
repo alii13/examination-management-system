@@ -11,14 +11,7 @@ import { connect } from "react-redux";
   const { Title } = Typography;
   const { isLoading } = props;
 
-  const layout = {
-    labelCol: {
-      span: 8,
-    },
-    wrapperCol: {
-      span: 16,
-    },
-  };
+
   const tailLayout = {
     wrapperCol: {
       offset: 8,
@@ -45,11 +38,11 @@ import { connect } from "react-redux";
   return (
     <>
       <Row justify="center" align="middle" className="hero">
-        <Col xs={20} sm={20} md={6} lg={6} className="signin__container">
-          <Title>Sign In</Title>
+        <Col xs={22} sm={22} md={6} lg={6} className="signin__container">
+          <p className="sub-title">🎓 EMS</p>
 
           <Form
-            {...layout}
+            
             name="basic"
             initialValues={{
               remember: true,
@@ -58,7 +51,6 @@ import { connect } from "react-redux";
             onFinishFailed={onFinishFailed}
           >
             <Form.Item
-              label="Email"
               name="email"
               rules={[
                 {
@@ -67,11 +59,11 @@ import { connect } from "react-redux";
                 },
               ]}
             >
-              <Input />
+              <Input  placeholder="Email"/>
             </Form.Item>
 
             <Form.Item
-              label="Password"
+
               name="password"
               rules={[
                 {
@@ -80,14 +72,15 @@ import { connect } from "react-redux";
                 },
               ]}
             >
-              <Input.Password />
+              <Input.Password  placeholder="Password"/>
             </Form.Item>
-            <Form.Item {...tailLayout}>
+            <Form.Item >
               <Button type="primary"
+              className="sign__in"
               style={{minWidth:"44px"}}
               loading={isLoading}
                htmlType="submit">
-                {(!isLoading)?("Submit"):('Logging In')}
+                {(!isLoading)?("Sign In"):('Logging In')}
               </Button>
             </Form.Item>
           </Form>

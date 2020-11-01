@@ -76,6 +76,9 @@ class TestPreview extends Component {
         <HandleLiveTest
           testID={this.state._id}
           totalMinutes={this.state.minutes}
+          testName={this.state.testName}
+          testName={this.state.testName}
+          totalMinutes={this.state.minutes}
         />
       </>
     );

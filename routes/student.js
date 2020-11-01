@@ -189,7 +189,7 @@ router.put("/submit-test/:testID", auth, async (req, res) => {
           return res.status(400).json({ message: "failed to submit test" });
         } else {
           await Student.updateOne(
-            { _id: submittedData[0].id },
+            { _id: submittedData[0].profileID },
             {
               $addToSet: {
                 attemptedTest: [{ testName, date, ...submittedData }],

@@ -17,7 +17,6 @@ export const questions = [
     ],
   },
   {
-
     description: "who is question 2?",
     options: [
       {
@@ -35,7 +34,6 @@ export const questions = [
     ],
   },
   {
-
     description: "who is question 3?",
     options: [
       {
@@ -53,8 +51,6 @@ export const questions = [
     ],
   },
   {
- 
-
     description: "who is question 4?",
     options: [
       {
@@ -72,8 +68,6 @@ export const questions = [
     ],
   },
   {
-  
-
     description: "who is question 5?",
     options: [
       {

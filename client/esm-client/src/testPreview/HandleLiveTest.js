@@ -6,7 +6,7 @@ import LeftSide from "./LeftSide";
 import RightSide from "./RightSide";
 import Footer from "./Footer";
 import { questions } from "./mockData";
-import Counter from "./Counter"
+import Counter from "./Counter";
 
 class HandleLiveTest extends Component {
   constructor(props) {
@@ -25,6 +25,7 @@ class HandleLiveTest extends Component {
       totalFlagged: 0,
       flag: false,
       questionIndex: 0,
+      testName: null,
       userAnswers: Array.apply(undefined, Array(5)),
     };
   }
@@ -34,26 +35,26 @@ class HandleLiveTest extends Component {
     // make a call using redux
 
     this.setState({
-    //   questionsData: this.props.selectedTest.questions,
-    questionsData:questions,
+      questionsData: this.props.selectedTest.questions,
+      // questionsData:questions,
       answers: this.props.selectedTest.answers,
+      testID: this.props.testID,
+      testName: this.props.selectedTest.testName,
     });
     // fire function given by redux
-  
   }
- 
 
   changeActivatedQueFromFooter = (changeActivatedQue) => {
-
-    if (changeActivatedQue !== "flag__question"){
-        this.setState({
-            footerClick:true
-          })
+    if (changeActivatedQue !== "flag__question") {
+      this.setState({
+        footerClick: true,
+      });
       this.child.changeActivatedQueInChild(changeActivatedQue);
-
+    } else {
     }
-    else {
-    }
+  };
+  handleSubmitTest = () => {
+    this.child.submitTest();
   };
   changeParentActivatedQue = (index) => {
     this.setState({
@@ -82,7 +83,6 @@ class HandleLiveTest extends Component {
   };
   questionAnswered = (index, option, changed) => {
     if (!changed) {
-
       let updatedUserAnswers = this.state.userAnswers;
       updatedUserAnswers[index] = option;
       this.setState({
@@ -94,7 +94,6 @@ class HandleLiveTest extends Component {
         answered: true,
       });
     } else {
-
       // answers array
       let updatedUserAnswers = this.state.userAnswers;
       updatedUserAnswers[index] = option;
@@ -111,18 +110,20 @@ class HandleLiveTest extends Component {
   };
 
   render() {
-    console.log(this.props.selectedTest)
+    console.log(this.props.selectedTest);
     return (
       <>
         <div className="question_board">
-            <Counter/>
           <div className="left__side">
-
             <div className="test__info">
-                <div className="username"></div>
-                <div className="test__name"></div>
-                <div className="total__minutes"></div>
-
+              <div className="username"></div>
+              <div className="test__name">
+                TestName: <span className="danger">{this.props.testName}</span>
+              </div>
+              <div className="total__minutes">
+                Total Minutes:{" "}
+                <span className="danger">{this.props.totalMinutes}</span>
+              </div>
             </div>
             <div className="questions__status">
               <div className="total__answered box">
@@ -157,9 +158,16 @@ class HandleLiveTest extends Component {
             handleClearResponse={this.handleClearResponse}
             onRef={(ref) => (this.child = ref)}
             changeParentActivatedQue={this.changeParentActivatedQue}
+            userAnswers={this.state.userAnswers}
+            answers={this.state.answers}
+            testID={this.state.testID}
+            testName={this.state.testName}
           />
           <div className="footer">
-            <Footer handleFooterButtons={this.handleFooterButtons} />
+            <Footer
+              handleFooterButtons={this.handleFooterButtons}
+              handleSubmitTest={this.handleSubmitTest}
+            />
           </div>
         </div>
       </>

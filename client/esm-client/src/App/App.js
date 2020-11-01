@@ -13,6 +13,9 @@ import IndividualResult from "../result/ShowResult";
 import TestPreviewWrapper from "../testPreview/TestPreviewWrapper";
 import { connect } from "react-redux";
 import HandleLiveTest from "../testPreview/HandleLiveTest";
+import { Modal} from "antd";
+import { ExclamationCircleOutlined } from '@ant-design/icons';
+import { useHistory } from "react-router-dom";
 function App(props) {
   // useEffect(() => {
   //  window.addEventListener('contextmenu',(e)=>{
@@ -27,6 +30,23 @@ function App(props) {
   // }, []);
 
   const { selectedTestName } = props;
+  const { confirm } = Modal;
+  const history = useHistory();
+  const onLeaveComponent =()=>{
+    confirm({
+        title: 'Do you really want to quit the test?',
+        icon: <ExclamationCircleOutlined />,
+        content: 'Once you click ok test will stop',
+        onOk() {
+         // console.log(props.selectedTest);
+          console.log('OK');
+          history.push("/");
+        },
+        onCancel() {
+          console.log('Cancel');
+        },
+      });
+  }
 
   return (
     <>
@@ -55,10 +75,9 @@ function App(props) {
           <ProtectedRoute
             exact={true}
             path="/start-test"
+            onLeave={ onLeaveComponent }
             component={TestPreviewWrapper}
           />
-          {/* <ProtectedRoute component={Dashboard} /> */}
-          <Route exact={true} path="/give-test" component={HandleLiveTest}/>
         </Switch>
       </Router>
     </>

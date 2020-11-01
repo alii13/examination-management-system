@@ -31,9 +31,9 @@ p.test__wrapper__heading {
     border: 1px solid var(--border);
     cursor: pointer;
 }
-.test__wrapper:hover{
+
+.test__wrapper:hover {
     background-color: var(--border);
-    
 }
 
 .select__test {
@@ -53,27 +53,32 @@ p.test__wrapper__heading {
 .end {
     color: var(--error);
 }
-.dark{
+
+.dark {
     background-color: var(--light-primary);
 }
-.select__skeleton{
+
+.select__skeleton {
     width: 100%;
 }
-.selected__test{
+
+.selected__test {
     background-color: #7ebfff;
 }
-.selected__test:hover{
+
+.selected__test:hover {
     background-color: #7ebfff !important;
 }
-.select__single-skeleton{
+
+.select__single-skeleton {
     display: flex;
     flex-direction: column;
     padding: 1em;
     border: 1px solid var(--border);
     justify-content: space-between;
 }
-.select__avatar-skelton{
-   width:60% !important;
-    margin-bottom: 5px;
 
+.select__avatar-skelton {
+    width: 60% !important;
+    margin-bottom: 5px;
 }

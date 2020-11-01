@@ -2,6 +2,8 @@
     border: 1px solid var(--border);
     border-radius: 5px;
     padding: 2em;
+    background-color: var(--secondary);
+    box-shadow: 0 0 5px var(--box-shadow);
 }
 
 p.test__wrapper__heading {
@@ -31,16 +33,19 @@ p.test__wrapper__heading {
     border: 1px solid var(--border);
     cursor: pointer;
 }
-.test__wrapper:hover{
+
+.test__wrapper:hover {
     background-color: var(--border);
-    
 }
-.selected__test{
+
+.selected__test {
     background-color: #7ebfff;
 }
-.selected__test:hover{
+
+.selected__test:hover {
     background-color: #7ebfff !important;
 }
+
 .select__test {
     font-size: var( --typography-sm);
     font-weight: 400;
@@ -58,6 +63,7 @@ p.test__wrapper__heading {
 .end {
     color: var(--error);
 }
-.dark{
+
+.dark {
     background-color: var(--light-primary);
 }

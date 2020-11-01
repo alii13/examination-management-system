@@ -5,4 +5,50 @@
     padding: 20px;
     width: 100%;
     border-radius: 5px;
+    padding: 35px 25px 15px 25px !important;
+    box-shadow: 0 0 5px var(--box-shadow);
+}
+
+.element__wrapper {
+    display: flex !important;
+    width: 100%;
+}
+
+.ant-form-item-control-input-content {
+    margin: 0 5px;
+}
+
+input#basic_phone {
+    padding: 12px !important;
+    width: 100%;
+}
+
+input#basic_lastName {
+    padding: 12px;
+}
+
+input#basic_firstName {
+    padding: 12px;
+}
+
+.ant-form-item {
+    width: 100%;
+}
+
+.sign__up {
+    width: 100%;
+    height: 45px;
+}
+
+.sub-title__signup {
+    color: var(--primary);
+    font-size: 1.8em;
+    width: 100%;
+    text-align: center;
+}
+
+@media(max-width:576px) {
+    .signup__container {
+        padding: 35px 10px 20px 10px !important;
+    }
 }

@@ -5,14 +5,14 @@ const StudentSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "users",
   },
-  attemptedTest:{
+  attemptedTest: {
     type: Array,
   },
   // testStatus:{
   //   type: Array,
   // },
-  testStatus:{
-    type:Array
+  testStatus: {
+    type: Array,
   },
   createdAt: {
     type: Date,

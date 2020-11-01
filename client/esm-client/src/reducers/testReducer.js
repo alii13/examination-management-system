@@ -3,9 +3,9 @@ import {
   FETCH_TEST_SUCCESS,
   FETCH_ATTEMPT_TEST_SUCCESS,
   FETCH_TEST_FAILURE,
+  SUBMIT_TEST_FAILURE,
+  SUBMIT_TEST_SUCCESS,
 } from "../actions/testActions";
-
-
 
 const initialState = {
   isFetching: false,
@@ -13,6 +13,8 @@ const initialState = {
   isLoadingAttemptedTest: false,
   fetchingError: false,
   isFetched: false,
+  testSubmitted: false,
+  testSubmitError: false,
   test: [],
   attemptedTest: [],
 };
@@ -33,7 +35,7 @@ export default function (state = initialState, action) {
         isFetching: false,
         isLoadingTest: false,
         isFetched: true,
-        test:action.tests,
+        test: action.tests,
       };
     case FETCH_ATTEMPT_TEST_SUCCESS:
       // console.log(action.tests)
@@ -41,7 +43,7 @@ export default function (state = initialState, action) {
         ...state,
         isFetching: false,
         isLoadingAttemptedTest: false,
-        attemptedTest:action.tests[0].attemptedTest,
+        attemptedTest: action.tests[0].attemptedTest,
       };
     case FETCH_TEST_FAILURE:
       return {
@@ -51,6 +53,19 @@ export default function (state = initialState, action) {
         isLoadingTest: false,
         isLoadingAttemptedTest: false,
         fetchError: true,
+      };
+    case SUBMIT_TEST_SUCCESS:
+      localStorage.removeItem(action.testID);
+      return {
+        ...state,
+        testSubmitted: true,
+        testSubmitError: false,
+      };
+    case SUBMIT_TEST_FAILURE:
+      return {
+        ...state,
+        testSubmitted: false,
+        testSubmitError: true,
       };
 
     default:

@@ -105,7 +105,8 @@
 .ant-drawer-body .ant-menu-horizontal>.ant-menu-item:hover {
   border-bottom-color: transparent;
 }
-.signout{
+
+.signout {
   color: var(--error);
   font-weight: 500;
 }
@@ -126,7 +127,7 @@
   .logo a {
     padding: 10px 20px;
   }
-  .right-side{
+  .right-side {
     padding-left: 24px;
     margin-bottom: 8px;
     height: 40px;

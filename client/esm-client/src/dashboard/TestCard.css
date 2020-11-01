@@ -6,6 +6,7 @@
     display: grid;
     place-items: center;
     color: var(--secondary);
+    box-shadow: 0 0 5px var(--box-shadow);
 
 }
 .red__header{
@@ -52,6 +53,11 @@
     border-bottom: 1px solid var(--border);
     border-left: 1px solid var(--border);;
     border-right: 1px solid var(--border);;
+}
+.left__body{
+    background-color: var(--secondary);
+    box-shadow: 0 0 5px var(--box-shadow);
+   
 }
 .test__index{
 flex:0.2;

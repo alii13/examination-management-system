@@ -30,64 +30,78 @@
     height: 100% !important;
     /* background-color:var(--success) !important */
 }
-.marks__info{
+
+.marks__info {
     display: flex;
 }
-.marks__chart{
+
+.marks__chart {
     flex: 0.5 !important;
 }
+
 .inlarge {
     font-size: 2em;
 }
-.marks{
+
+.marks {
     flex: 0.3;
     display: grid;
     place-items: center;
 }
+
 .marksBox {
     display: flex;
-    font-size:50px;
-    font-weight: 800;
-}
-.obtained__marks {
-  
     font-size: 50px;
     font-weight: 800;
 }
-.attempted{
+
+.obtained__marks {
+    font-size: 50px;
+    font-weight: 800;
+}
+
+.attempted {
     display: flex;
 }
-.total__attempted{
+
+.total__attempted {
     flex: 0.5;
 }
-.correct__attempted{
+
+.correct__attempted {
     flex: 0.5;
 }
-.total__attempted .ant-progress-text{
+
+.total__attempted .ant-progress-text {
     display: none !important;
 }
-.total__attempted .ant-progress-bg{
+
+.total__attempted .ant-progress-bg {
     background-color: var(--warning) !important;
 }
-.correct__attempted .ant-progress-text{
+
+.correct__attempted .ant-progress-text {
     display: none !important;
 }
-.correct__attempted .ant-progress-bg{
+
+.correct__attempted .ant-progress-bg {
     background-color: var(--success) !important;
 }
-@media(max-width:768px){
-    .marks{
+
+@media(max-width:768px) {
+    .marks {
         margin-bottom: 15px;
     }
-    .marks__info{
+    .marks__info {
         flex-direction: column;
     }
-    .attempted{
+    .attempted {
         flex-direction: column;
     }
 }
-@media(min-width:576px){
-    .marks__chart{
+
+@media(min-width:576px) {
+    .marks__chart {
         min-height: 300px;
     }
 }

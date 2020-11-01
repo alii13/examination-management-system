@@ -35,7 +35,7 @@ class Navbar extends Component {
 						<span className="barsBtn"></span>
 					</Button>
 					<Drawer
-						title="Basic Drawer"
+						title="Menu"
 						placement="right"
 						closable={false}
 						onClose={this.onClose}

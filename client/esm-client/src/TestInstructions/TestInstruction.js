@@ -3,7 +3,7 @@ import { Row, Modal, Col, Button } from "antd";
 import { connect } from "react-redux";
 import "./TestInstruction.css";
 import { FaArrowCircleRight } from "react-icons/fa";
-import { ExclamationCircleOutlined } from '@ant-design/icons';
+import { ExclamationCircleOutlined } from "@ant-design/icons";
 import { useHistory } from "react-router-dom";
 
 function TestInstruction(props) {
@@ -16,9 +16,10 @@ function TestInstruction(props) {
     minutes,
     category,
     className,
+    attempted,
     testName,
     rules,
-    _id:testID
+    _id: testID,
   } = props.selectedTest;
   let testRules;
 
@@ -26,21 +27,21 @@ function TestInstruction(props) {
     testRules = Object.values(rules[0]);
   }
 
-  const handleButtonClick =()=>{
+  const handleButtonClick = () => {
     confirm({
-        title: 'Do you give test now?',
-        icon: <ExclamationCircleOutlined />,
-        content: 'Once you click OK , timer will start!',
-        onOk() {
-         // console.log(props.selectedTest);
-          console.log('OK');
-          history.push("/start-test");
-        },
-        onCancel() {
-          console.log('Cancel');
-        },
-      });
-  }
+      title: "Do you give test now?",
+      icon: <ExclamationCircleOutlined />,
+      content: "Once you click OK , timer will start!",
+      onOk() {
+        // console.log(props.selectedTest);
+        console.log("OK");
+        history.push("/start-test");
+      },
+      onCancel() {
+        console.log("Cancel");
+      },
+    });
+  };
 
   return (
     <>
@@ -160,7 +161,11 @@ function TestInstruction(props) {
                       </div>
                     </div>
                     <div className="select__button">
-                      <Button type="primary" onClick={handleButtonClick}>
+                      <Button
+                        type="primary"
+                        onClick={handleButtonClick}
+                        disabled={attempted}
+                      >
                         Continue
                       </Button>
                     </div>

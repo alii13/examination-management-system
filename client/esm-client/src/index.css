@@ -1,22 +1,25 @@
 @import '~antd/dist/antd.css';
-
 :root {
   --primary: #1e90ff;
-  --light-primary:#7ebfff;
-  --secondary:#fff;
-  --warning:#ec971f;
-  --border:#d9d9d9;
+  --light-primary: #7ebfff;
+  --secondary: #fff;
+  --warning: #ec971f;
+  --border: #d9d9d9;
   --dark-secondary: #8b8b8b;
   --active-link: #1890ff;
-  --error:#ff4d4f;
-  --success:#449d44;
-  --hover-primary:#b5dbffb8;
-  --typography-sm:1.2em;
-  --typography-md:2em;
-  --typography-xl:3em;
+  --error: #ff4d4f;
+  --success: #449d44;
+  --hover-primary: #b5dbffb8;
+  --typography-sm: 1.2em;
+  --typography-md: 2em;
+  --typography-xl: 3em;
+  --box-shadow: #f3f1f1;
 }
-html { font-size: 2vw;
-overflow-x:hidden }
+
+html {
+  font-size: 2vw;
+  overflow-x: hidden
+}
 
 /* h1, h2, h3, h4, h5 {
   font-family: 'Viga', sans-serif;
@@ -25,24 +28,29 @@ overflow-x:hidden }
 p, span, a {
   font-family: 'Oxygen', sans-serif;
 } */
+
 body {
   margin: 0;
   padding: 0;
+  background-color: #f7f7f763;
 }
-.hero{
-  height:100vh;
+
+.hero {
+  height: 100vh;
 }
-.container{
+
+.container {
   padding: 1em 20px 2em;
 }
-.is-active{
+
+.is-active {
   color: var(--active-link);
 }
 
 /* media queries */
-@media(min-width:768px){
-  .dashboard{
+
+@media(min-width:768px) {
+  .dashboard {
     margin-top: 10vh;
   }
 }
-

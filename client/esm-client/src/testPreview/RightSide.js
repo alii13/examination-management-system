@@ -1,8 +1,12 @@
 import React, { Component } from "react";
 import { Radio, Input } from "antd";
-import { CloseOutlined} from "@ant-design/icons"
+import { CloseOutlined } from "@ant-design/icons";
+import { submitTest } from "../actions/testActions";
+import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { logoutUser } from "../actions/authActions";
 
-export default class RightSide extends Component {
+class RightSide extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -11,7 +15,8 @@ export default class RightSide extends Component {
       changeIndex: 0,
       questionIndex: 0,
       selectedAnswers: Array.apply(undefined, Array(5)),
-      value:null
+      value: null,
+      testID: null,
     };
   }
 
@@ -19,6 +24,7 @@ export default class RightSide extends Component {
     return {
       questionsData: props.questionsData,
       questionIndex: props.questionIndex,
+      testID: props.testID,
     };
   }
 
@@ -69,6 +75,7 @@ export default class RightSide extends Component {
         this.props.changeParentActivatedQue(this.state.activateQue - 1);
       }
     } else if (changeActivatedQue === "flag__question") {
+    } else if (changeActivatedQue === "end__test") {
     } else {
       this.setState({
         activateQue: changeActivatedQue,
@@ -78,6 +85,36 @@ export default class RightSide extends Component {
   componentWillUnmount() {
     this.props.onRef(undefined);
   }
+  submitTest = () => {
+    const { userAnswers, answers, testName, testID, profileID } = this.props;
+    let correct = 0,
+      wrong = 0,
+      unanswered = 0,
+      totalMarks = answers.length,
+      dataToSubmit;
+
+    userAnswers.map((element, index) => {
+      if (element === undefined) {
+        unanswered = unanswered + 1;
+      } else if (element !== answers[index]) {
+        wrong = wrong + 1;
+      } else {
+        correct = correct + 1;
+      }
+      dataToSubmit = {
+        testID,
+        correct,
+        unanswered,
+        totalMarks,
+        profileID,
+        testName,
+        wrong,
+      };
+    });
+    this.props.submitTest(dataToSubmit);
+    this.props.signOut();
+    return;
+  };
   render() {
     console.log(this.state.selectedAnswers);
     const radioStyle = {
@@ -132,3 +169,18 @@ export default class RightSide extends Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    selectedTest: state.selectedTest.selectedTestData,
+    profileID: state.auth.user ? state.auth.profileID : null,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    submitTest: (data) => dispatch(submitTest(data)),
+    signOut: () => dispatch(logoutUser()),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(RightSide);

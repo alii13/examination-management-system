@@ -8,8 +8,11 @@ import { Skeleton } from "antd";
 
 function TestCard(props) {
   let { tests, isLoading, studentClassName, trimLength } = props;
-  if(tests)
-  tests = tests.length > trimLength ? tests.slice(0, trimLength) : tests;
+  if (tests)
+    tests =
+      tests.length > trimLength
+        ? tests.slice(-(trimLength - 1)).reverse()
+        : tests;
 
   useEffect(() => {
     props.fetchTests(studentClassName);

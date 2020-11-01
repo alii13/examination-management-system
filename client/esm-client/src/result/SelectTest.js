@@ -5,13 +5,12 @@ import { connect } from "react-redux";
 import "./SelectTest.css";
 import TestList from "./TestList";
 
-
 function SelectTest(props) {
   const { tests, profileID } = props;
 
-  const handleSelectedTest =(testData)=>{
-      props.selectedTest(testData);
-  }
+  const handleSelectedTest = (testData) => {
+    props.selectedTest(testData);
+  };
 
   useEffect(() => {
     props.fetchTests(profileID);
@@ -34,7 +33,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchTests: (profileID) => dispatch(fetchAttemptTests(profileID)),
-    selectedTest: (testData) =>dispatch(selectedTestResult(testData)),
+    selectedTest: (testData) => dispatch(selectedTestResult(testData)),
   };
 };
 

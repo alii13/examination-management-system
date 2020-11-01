@@ -21,10 +21,9 @@ export default class LeftSide extends Component {
   }
 
   changeBg = (activatedQue, answered, footerClicked) => {
-    
     if (this.state.selectRef) {
       this.state.selectRef.classList.remove("selected");
-      if (answered == false ) {
+      if (answered == false) {
         this.state.selectRef.classList.remove("answered");
       }
     }
@@ -46,7 +45,11 @@ export default class LeftSide extends Component {
     } else if (nextProps.selectRef !== this.props.selectRef) {
       return false;
     } else {
-      this.changeBg(nextProps.activateQue, nextProps.answered, nextProps.footerClick);
+      this.changeBg(
+        nextProps.activateQue,
+        nextProps.answered,
+        nextProps.footerClick
+      );
 
       return true;
     }
