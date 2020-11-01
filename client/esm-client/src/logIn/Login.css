@@ -35,6 +35,7 @@ input#basic_password {
     color: var(--primary);
     font-size: 1.8em;
     margin: 0;
+    margin-bottom: 15px;
     width: 100%;
     text-align: center;
 }

@@ -1,29 +1,39 @@
-import React, { useState } from "react";
-import { Row, Col, Typography, Form, Input, Button, Select } from "antd";
+import React, { useState, useEffect } from "react";
+import { Row, Col, Typography, Form, Input, Button, Select, notification  } from "antd";
 import "./Signup.css";
+import { connect } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { signUpUser } from "../actions/authActions";
+import { Link } from "react-router-dom";
 
-export default function Signup() {
+function Signup(props) {
   const [showSelect, setShowSelect] = useState(false);
-  const { Title } = Typography;
+  const history = useHistory();
   const { Option } = Select;
+  const { isLoading} = props;
 
   const submitForm = (values) => {
-    const requestOptions = {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(values),
+     props.sendSignUpRequest(values);
+    console.log(values)
+  };
+  const openNotification = () => {
+    const args = {
+      message: 'Account Created',
+      description:
+        'Congratulations, Now you are part of our family. Please login to continue.',
+      duration: 3,
     };
-    //console.log("Success:", values);
-    fetch("/user/signup", requestOptions)
-      .then((response) => response.json())
-      .then((data) => {
-        // localStorage.setItem("token",`Bearer ${data.token}`);
-      });
+    notification.open(args);
   };
 
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
+  useEffect(() => {
+    if (props.accountCreated) {
+      openNotification();
+    }
+  }, [props]);
 
   const handleSelect = (select, optionData) => {
     console.log(optionData);
@@ -37,7 +47,7 @@ export default function Signup() {
     <>
       <Row justify="center" align="middle" className="hero">
         <Col xs={22} sm={22} md={8} lg={8} className="signup__container">
-        <p className="sub-title__signup">🎓 EMS</p>
+          <p className="sub-title__signup">🎓 EMS</p>
           <Form
             name="basic"
             initialValues={{
@@ -109,7 +119,7 @@ export default function Signup() {
                 <Form.Item
                   name="role"
                   rules={[
-                    {
+                    { 
                       message: "Please input your role!",
                     },
                   ]}
@@ -143,7 +153,6 @@ export default function Signup() {
                       message: "Please input your email!",
                     },
                   ]}
-                
                 >
                   <Select defaultValue="Class" disabled={showSelect}>
                     <Option value="IX">IX</Option>
@@ -152,9 +161,20 @@ export default function Signup() {
                   </Select>
                 </Form.Item>
               </div>
+              <div
+                className="link"
+                style={{
+                  textAlign: "center",
+                  fontWeight: 500,
+                  marginBottom: "15px",
+                }}
+              >
+                <Link to="/sigin">Already have account? Signin</Link>
+              </div>
 
-              <Button type="primary"  className="sign__up" htmlType="submit">
-                Sign Up
+              <Button type="primary" className="sign__up" htmlType="submit"
+              loading={isLoading}>
+                {!isLoading ? "Sign Up" : "Creating Account"}
               </Button>
             </Form.Item>
           </Form>
@@ -163,3 +183,18 @@ export default function Signup() {
     </>
   );
 }
+
+const mapStateToProps = (state) => {
+  return {
+    isAuthenticated: state.auth.isAuthenticated,
+    isLoading: state.auth.isLoading,
+    accountCreated: state.auth.accountCreated,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    sendSignUpRequest: (values) => dispatch(signUpUser(values)),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Signup);

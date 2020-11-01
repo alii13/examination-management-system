@@ -25,6 +25,7 @@ const initialState = {
     loginError: false,
     signupError: false,
     logoutError: false,
+    accountCreated:false,
     isAuthenticated: (localStorage.getItem("token"))?(true):false,
     sendPassResetSuccess: false,
     sendPassResetError: false,
@@ -77,8 +78,9 @@ export default function (state = initialState, action) {
         isSigningUp: false,
         isLoading: false,
         signupError: false,
-        isAuthenticated: true,
-        user: action.user,
+        accountCreated:true,
+        // isAuthenticated: true,
+        // user: action.user,
       };
 
     case SIGN_UP_FAILURE:

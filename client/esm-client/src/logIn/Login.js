@@ -5,6 +5,7 @@ import "./Login.css";
 import { useHistory } from "react-router-dom";
 import { loginUser } from "../actions/authActions";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
  function Login(props) {
   const history = useHistory();
@@ -74,6 +75,9 @@ import { connect } from "react-redux";
             >
               <Input.Password  placeholder="Password"/>
             </Form.Item>
+            <div className="link" style={{textAlign:"center", fontWeight:500, marginBottom:"15px"}}>
+              <Link to="/signup">New here? Create your account.</Link>
+            </div>
             <Form.Item >
               <Button type="primary"
               className="sign__in"

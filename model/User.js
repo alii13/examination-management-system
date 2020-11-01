@@ -19,9 +19,11 @@ const UserSchema = mongoose.Schema({
   },
   section: {
     type: String,
+    default:"C",
   },
   className: {
     type: String,
+    default:"IX",
   },
   isVerified: {
     type: Boolean,
@@ -30,7 +32,7 @@ const UserSchema = mongoose.Schema({
   role: {
     type: String,
     required: true,
-    default: "user",
+    default: "student",
   },
   password: {
     type: String,

@@ -43,7 +43,7 @@ const requestsignup = () => {
   };
 };
 
-const receiveSignup = user => {
+const receiveSignup = (user) => {
   return {
     type: SIGN_UP_SUCCESS,
     user
@@ -136,6 +136,34 @@ export const loginUser = (values) => dispatch => {
     .catch(error => {
       //Do something with the error if you want!
       dispatch(loginError());
+    });
+
+};
+
+export const signUpUser = (values) => dispatch => {
+
+  dispatch(requestsignup());
+
+  const requestOptions = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(values),
+  };
+  //console.log("Success:", values);
+  fetch("/user/signup", requestOptions)
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.token) {
+        // localStorage.setItem("token", `Bearer ${data.token}`);
+        // localStorage.setItem('userProfile', JSON.stringify(data.payload.user));
+        // localStorage.setItem('profileID', data.payload.profileID);
+         dispatch(receiveSignup(data.user));
+        //history.push("/studentHome");
+      }
+    })
+    .catch(error => {
+      //Do something with the error if you want!
+      dispatch(signupError());
     });
 
 };
