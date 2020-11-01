@@ -12,7 +12,6 @@ import TestInstruction from "../TestInstructions/TestInstruction";
 import IndividualResult from "../result/ShowResult";
 import TestPreviewWrapper from "../testPreview/TestPreviewWrapper";
 import { connect } from "react-redux";
-import HandleLiveTest from "../testPreview/HandleLiveTest";
 import { Modal} from "antd";
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { useHistory } from "react-router-dom";
