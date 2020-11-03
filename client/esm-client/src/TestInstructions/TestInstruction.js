@@ -9,7 +9,6 @@ import { useHistory } from "react-router-dom";
 function TestInstruction(props) {
   //console.log(props.selectedTest);
   const history = useHistory();
-  const [attempted, setAttempted]= useState(false)
   const { confirm } = Modal;
   const { tests} = props;
   const {
@@ -22,15 +21,17 @@ function TestInstruction(props) {
     rules,
     _id: testID,
   } = props.selectedTest;
-  let testRules;
+
+  let testRules, attempted=false;
 
   if (rules) {
     testRules = rules;
   }
+  
 
   tests.map((test, index)=>{
     if(test.testName === testName){
-      setAttempted(false);
+      attempted=true
     }
   })
 

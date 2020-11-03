@@ -29,6 +29,7 @@ function SelectTest(props) {
 const mapStateToProps = (state) => {
   return {
     tests: state.teacher.assignedTests,
+    
   };
 };
 const mapDispatchToProps = (dispatch) => {
