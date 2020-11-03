@@ -1,26 +1,36 @@
 import React, { useState, useEffect } from "react";
-import { Row, Col, Typography, Form, Input, Button, Select, notification  } from "antd";
+import {
+  Row,
+  Col,
+  Typography,
+  Form,
+  Input,
+  Button,
+  Select,
+  notification,
+} from "antd";
 import "./Signup.css";
 import { connect } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { signUpUser } from "../actions/authActions";
+import { signUpUser, accountCreated } from "../actions/authActions";
 import { Link } from "react-router-dom";
 
 function Signup(props) {
   const [showSelect, setShowSelect] = useState(false);
   const history = useHistory();
   const { Option } = Select;
-  const { isLoading} = props;
+  const { isLoading } = props;
 
   const submitForm = (values) => {
-     props.sendSignUpRequest(values);
-    console.log(values)
+    props.sendSignUpRequest(values);
+    console.log(values);
   };
+
   const openNotification = () => {
     const args = {
-      message: 'Account Created',
+      message: "Account Created",
       description:
-        'Congratulations, Now you are part of our family. Please login to continue.',
+        "Congratulations, Now you are part of our family. Please login to continue.",
       duration: 3,
     };
     notification.open(args);
@@ -32,6 +42,7 @@ function Signup(props) {
   useEffect(() => {
     if (props.accountCreated) {
       openNotification();
+      props.sendUserAccountCreated();
     }
   }, [props]);
 
@@ -102,7 +113,6 @@ function Signup(props) {
             >
               <Input.Password placeholder="Password" />
             </Form.Item>
-            <Form.Item>
               <Form.Item
                 name="phone"
                 rules={[
@@ -119,7 +129,7 @@ function Signup(props) {
                 <Form.Item
                   name="role"
                   rules={[
-                    { 
+                    {
                       message: "Please input your role!",
                     },
                   ]}
@@ -171,9 +181,13 @@ function Signup(props) {
               >
                 <Link to="/sigin">Already have account? Signin</Link>
               </div>
-
-              <Button type="primary" className="sign__up" htmlType="submit"
-              loading={isLoading}>
+              <Form.Item>
+              <Button
+                type="primary"
+                className="sign__up"
+                htmlType="submit"
+                loading={isLoading}
+              >
                 {!isLoading ? "Sign Up" : "Creating Account"}
               </Button>
             </Form.Item>
@@ -194,6 +208,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     sendSignUpRequest: (values) => dispatch(signUpUser(values)),
+    sendUserAccountCreated: () => dispatch(accountCreated()),
   };
 };
 

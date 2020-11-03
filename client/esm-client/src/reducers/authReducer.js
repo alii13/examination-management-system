@@ -13,6 +13,7 @@ import {
   SEND_PASS_RESET_SUCCESS,
   SEND_PASS_RESET,
   SEND_PASS_RESET_ERROR,
+  USER_ACCOUNT_CREATED,
 } from "../actions/authActions";
 // import storageListner from "../storageListener/localStorageListener";
 
@@ -90,6 +91,12 @@ export default function (state = initialState, action) {
         isLoading: false,
         signupError: action.errMess,
       };
+
+    case USER_ACCOUNT_CREATED:
+      return {
+        ...state,
+        accountCreated:false
+      }
 
     case SEND_PASS_RESET:
       return {

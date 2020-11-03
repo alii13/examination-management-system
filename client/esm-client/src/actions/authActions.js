@@ -17,6 +17,8 @@ export const SEND_PASS_RESET = "SEND_PASS_RESET";
 export const SEND_PASS_RESET_ERROR = "SEND_PASS_RESET_ERROR";
 export const SEND_PASS_RESET_SUCCESS = "SEND_PASS_RESET_SUCCESS";
 
+export const USER_ACCOUNT_CREATED = "USER_ACCOUNT_CREATED";
+
 const requestLogin = () => {
   return {
     type: LOGIN_REQUEST
@@ -108,6 +110,13 @@ const sendPassResetSuccess = () => {
   };
 };
 
+const userAccountCreated = () =>{
+  return {
+    type: USER_ACCOUNT_CREATED,
+  };
+
+}
+
 export const loginUser = (values) => dispatch => {
 
   dispatch(requestLogin());
@@ -165,6 +174,12 @@ export const signUpUser = (values) => dispatch => {
       //Do something with the error if you want!
       dispatch(signupError());
     });
+
+};
+
+export const accountCreated = () => dispatch => {
+
+  dispatch(userAccountCreated());
 
 };
 

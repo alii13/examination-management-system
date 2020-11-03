@@ -86,7 +86,7 @@ class RightSide extends Component {
     this.props.onRef(undefined);
   }
   submitTest = () => {
-    const { userAnswers, answers, testName, testID, profileID } = this.props;
+    const { userAnswers, answers, testName, testID, profileID, firstName, lastName } = this.props;
     let correct = 0,
       wrong = 0,
       unanswered = 0,
@@ -108,6 +108,8 @@ class RightSide extends Component {
         totalMarks,
         profileID,
         testName,
+        firstName,
+        lastName,
         wrong,
       };
     });
@@ -173,6 +175,8 @@ const mapStateToProps = (state) => {
   return {
     selectedTest: state.selectedTest.selectedTestData,
     profileID: state.auth.user ? state.auth.profileID : null,
+    firstName: state.auth.user.firstName,
+    lastName: state.auth.user.lastName,
   };
 };
 
@@ -180,6 +184,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     submitTest: (data) => dispatch(submitTest(data)),
     signOut: () => dispatch(logoutUser()),
+  
   };
 };
 

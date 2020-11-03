@@ -1,43 +1,42 @@
 import React, { useEffect } from "react";
-import "./TestCard.css";
 import { HiOutlineClipboardList, HiClipboardCopy } from "react-icons/hi";
-import { fetchAttemptTests } from "../actions/testActions";
+import { fetchTeacherTests } from "../../actions/testActions";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import { Skeleton } from "antd";
+import "./index.css";
 
-function ResultCard(props) {
+function AssignedTests(props) {
   let { tests, isLoading, profileID, trimLength } = props;
   if (tests)
     tests =
-      tests.length > trimLength
-        ? tests.slice(-(trimLength)).reverse()
-        : tests;
+      tests.length > trimLength ? tests.slice(-trimLength).reverse() : tests;
 
   useEffect(() => {
-   
-      props.fetchTests(profileID);
-      console.log("fired")
-    
+    props.fetchTests(profileID);
+    console.log("fired");
   }, []);
 
   return (
     <>
-      <div className="left__header">
-        <p className="left__header__text">
-          {<HiOutlineClipboardList />}Recently Attempted Tests
+      <div className="left__teacher__header">
+        <p className="left__teacher__header__text">
+          {<HiOutlineClipboardList />}Recently Assigned Tests
         </p>
       </div>
       <div className="left__body">
         {!isLoading && tests ? (
           <ul className="left__body__list__ul">
             {tests.map((test, index) => (
-              <Link to="/result" key={index}>
+              <Link to="/assigned-test" key={index}>
                 <li className="left__body__test">
                   <div className="test__index">
-                    <p className="index__box " style={{backgroundColor:"#1e90ff"}}>{index + 1}</p>
+                    <p className="index__box index__box__teacher ">{index + 1}</p>
                   </div>
-                  <div className="test__name"> {test.testName}</div>
+                  <div className="test__name">
+                    {" "}
+                    {test.testName} - Class {test.className}
+                  </div>
                   <div className="test__icon">
                     <HiClipboardCopy />
                   </div>
@@ -73,15 +72,15 @@ function ResultCard(props) {
 
 const mapStateToProps = (state) => {
   return {
-    isLoading: state.tests.isLoadingAttemptedTest,
-    tests: state.tests.attemptedTest,
-    profileID: state.auth.profileID
+    isLoading: state.tests.isLoadingTest,
+    tests: state.tests.test,
+    profileID: state.auth.profileID,
   };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchTests: (profileID) => dispatch(fetchAttemptTests(profileID)),
+    fetchTests: (profileID) => dispatch(fetchTeacherTests(profileID)),
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ResultCard);
+export default connect(mapStateToProps, mapDispatchToProps)(AssignedTests);

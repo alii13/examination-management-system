@@ -3,6 +3,7 @@ import { Menu, Grid } from "antd";
 import { NavLink } from "react-router-dom";
 import { logoutUser } from "../actions/authActions";
 import { connect } from "react-redux";
+import { Roles } from "../Roles/roles";
 // const SubMenu = Menu.SubMenu;
 // const MenuItemGroup = Menu.ItemGroup;
 
@@ -10,6 +11,9 @@ const { useBreakpoint } = Grid;
 
 const LeftMenu = (props) => {
   const [isAuthenticated, setisAuthenticated] = useState(false);
+ // const role = props.role;
+ const role=props.userInfo.role
+  //console.log(props)
 
   useEffect(() => {
     setisAuthenticated(props.isAuthenticated);
@@ -30,6 +34,9 @@ const LeftMenu = (props) => {
   const resultRoute = isAuthenticated ? "/result" : "";
   const signOutRoute = isAuthenticated ? "/signin" : "";
   const profileRoute = isAuthenticated ? "/profile" : "";
+  const createTestRoute = isAuthenticated ? "/create-test" : "";
+  const assignedTestRoute = isAuthenticated ? "/assigned-test" : "";
+  //console.log(role)
 
   return (
     <div className="menu">
@@ -40,12 +47,21 @@ const LeftMenu = (props) => {
           </NavLink>
         </Menu.Item>
         <Menu.Item key="02">
-          <NavLink to={testRoute}>
-            {isAuthenticated ? "Attempt Test" : "SignUp"}
+          <NavLink to={(Roles.teacher===role)?(createTestRoute):testRoute}>
+            {isAuthenticated
+              ? (Roles.teacher===role)
+                ? "Create Test"
+                : "Attempt Test"
+              : "SignUp"}
           </NavLink>
         </Menu.Item>
         <Menu.Item key="03" className={!isAuthenticated ? "display-none" : ""}>
-          <NavLink to={resultRoute}>{isAuthenticated ? "Result" : ""}</NavLink>
+          <NavLink to={(Roles.teacher===role)?(assignedTestRoute):resultRoute}>
+          {isAuthenticated
+              ? (Roles.teacher===role)
+                ? "Assigned Test"
+                : "Result"
+              : ""}</NavLink>
         </Menu.Item>
         <Menu.Item key="05" className={!isAuthenticated ? "display-none" : ""}>
           <NavLink to={profileRoute} onClick={handleProfile}>
@@ -69,6 +85,7 @@ const LeftMenu = (props) => {
 const mapStateToProps = (state) => {
   return {
     isAuthenticated: state.auth.isAuthenticated,
+    userInfo: state.auth.user,
   };
 };
 const mapDispatchToProps = (dispatch) => {

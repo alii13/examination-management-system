@@ -1,0 +1,107 @@
+.result__wrapper {
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 2em;
+}
+
+.result__test__name {
+    font-weight: 500;
+}
+
+.result__heading {
+    display: flex;
+    max-width: 300px;
+    margin: 5px 0;
+}
+
+.result__test__name {
+    flex: 0.5;
+}
+
+.result__test__name__field {
+    flex: 0.5;
+}
+
+.ant-progress-inner {
+    height: 20px !important;
+}
+
+.ant-progress-bg {
+    height: 100% !important;
+    /* background-color:var(--success) !important */
+}
+
+.marks__info {
+    display: flex;
+}
+
+.marks__chart {
+    flex: 0.5 !important;
+}
+
+.inlarge {
+    font-size: 2em;
+}
+
+.marks {
+    flex: 0.3;
+    display: grid;
+    place-items: center;
+}
+
+.marksBox {
+    display: flex;
+    font-size: 50px;
+    font-weight: 800;
+}
+
+.obtained__marks {
+    font-size: 50px;
+    font-weight: 800;
+}
+
+.attempted {
+    display: flex;
+}
+
+.total__attempted {
+    flex: 0.5;
+}
+
+.correct__attempted {
+    flex: 0.5;
+}
+
+.total__attempted .ant-progress-text {
+    display: none !important;
+}
+
+.total__attempted .ant-progress-bg {
+    background-color: var(--warning) !important;
+}
+
+.correct__attempted .ant-progress-text {
+    display: none !important;
+}
+
+.correct__attempted .ant-progress-bg {
+    background-color: var(--success) !important;
+}
+
+@media(max-width:768px) {
+    .marks {
+        margin-bottom: 15px;
+    }
+    .marks__info {
+        flex-direction: column;
+    }
+    .attempted {
+        flex-direction: column;
+    }
+}
+
+@media(min-width:576px) {
+    .marks__chart {
+        min-height: 300px;
+    }
+}

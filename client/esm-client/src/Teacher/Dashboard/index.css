@@ -1,0 +1,88 @@
+.left__teacher__header{
+    background-color: var(--success);
+    height: 60px;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    display: grid;
+    place-items: center;
+    color: var(--secondary);
+    box-shadow: 0 0 5px var(--box-shadow);
+
+}
+.red__header{
+    background-color: var(--error);
+}
+.red__index{
+    background-color: var(--error) !important;
+}
+.left__teacher__header svg{
+    font-size: var(--typography-sm)
+}
+.left__teacher__header__text{
+    display: flex;
+    align-items: center;
+    font-size: var(--typography-sm);
+    margin: 0;
+}
+.skeleton{
+    width: 100%;
+}
+.single-skeleton{
+    display: flex;
+    padding: 7px 5px;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--border);
+    border-left: 1px solid var(--border);;
+    border-right: 1px solid var(--border);;
+}
+.avatar-skelton{
+    flex: 0.2 !important;
+    margin-left: 2px;
+}
+.input-skelton{
+    flex: 1 !important;
+}
+.left__body__list__ul{
+    width: 100%;
+    padding-left: 0;
+}
+.left__body__test{
+    display: flex;
+    padding: 10px;
+    margin: 0 !important;
+    border-bottom: 1px solid var(--border);
+    border-left: 1px solid var(--border);;
+    border-right: 1px solid var(--border);;
+}
+.left__body{
+    background-color: var(--secondary);
+    box-shadow: 0 0 5px var(--box-shadow);
+   
+}
+.test__index{
+flex:0.2;
+}
+.test__name{
+    flex: 0.7;
+    color: black;
+}
+.index__box{
+    width: 20px;
+    margin: 0;
+    height: 20px;
+    text-align: center;
+    border-radius: 2px;
+    background-color: var(--success);
+  
+}
+.index__box__teacher{
+    background-color: var(--success) !important;
+
+}
+.test__icon{
+    flex:0.1;
+}
+.test__icon svg{
+    font-size: 1.5em;
+    color: var(--dark-secondary);
+}

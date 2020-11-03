@@ -20,6 +20,33 @@ html {
   font-size: 2vw;
   overflow-x: hidden
 }
+.primary{
+ color: var(--primary);
+ cursor: pointer;
+ font-size: 22px;
+}
+.primary-wihtoutFont{
+  color: var(--primary);
+
+}
+.danger-wihtoutFont{
+  color: var(--danger);
+
+}
+.success-wihtoutFont{
+  color: var(--success);
+
+}
+.success{
+  color: var(--success);
+  cursor: pointer;
+  font-size: 22px;
+}
+.danger{
+  color: var(--danger);
+  cursor: pointer;
+
+}
 
 /* h1, h2, h3, h4, h5 {
   font-family: 'Viga', sans-serif;
@@ -46,7 +73,12 @@ body {
 .is-active {
   color: var(--active-link);
 }
-
+.d-flex{
+  display: flex;
+}
+.justify-content-between{
+  justify-content: space-between;
+}
 /* media queries */
 
 @media(min-width:768px) {

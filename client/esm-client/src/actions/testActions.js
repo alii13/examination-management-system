@@ -5,6 +5,11 @@ export const FETCH_TEST_FAILURE = "FETCH_TEST_FAILURE";
 export const SUBMIT_TEST_FAILURE = "SUBMIT_TEST_FAILURE";
 export const SUBMIT_TEST_SUCCESS = "SUBMIT_TEST_SUCCESS";
 
+// Teacher action types
+export const FETCH_TEACHER_TEST_REQUEST = "FETCH_TEACHER_TEST_REQUEST";
+export const FETCH_TEACHER_TEST_SUCCESS = "FETCH_TEACHER_TEST_SUCCESS";
+export const FETCH_TEACHER_TEST_FAILURE = "FETCH_TEACHER_TEST_FAILURE";
+
 const requestTests = () => {
   return {
     type: FETCH_TEST_REQUEST,
@@ -21,6 +26,24 @@ const receiveTests = (tests) => {
 const testsError = () => {
   return {
     type: FETCH_TEST_FAILURE,
+  };
+};
+const requestTeacherTests = () => {
+  return {
+    type: FETCH_TEACHER_TEST_REQUEST,
+  };
+};
+
+const receiveTeacherTests = (tests) => {
+  return {
+    type: FETCH_TEACHER_TEST_SUCCESS,
+    tests,
+  };
+};
+
+const testsTeacherError = () => {
+  return {
+    type: FETCH_TEACHER_TEST_FAILURE,
   };
 };
 const testSubmitError = () => {
@@ -101,6 +124,8 @@ export const submitTest = (data) => async (dispatch) => {
     totalMarks,
     profileID,
     testName,
+    firstName,
+    lastName,
     wrong,
   } = data;
   const testData = JSON.parse(localStorage.getItem(testID));
@@ -112,6 +137,8 @@ export const submitTest = (data) => async (dispatch) => {
       totalMarks,
       profileID,
       testName,
+      firstName,
+      lastName,
       wrong,
       submitMinutes,
     },
@@ -144,5 +171,33 @@ export const submitTest = (data) => async (dispatch) => {
     .catch((error) => {
       //Do something with the error if you want!
       dispatch(testSubmitError());
+    });
+};
+
+
+/* Teacher Actions*/
+
+export const fetchTeacherTests = (profileID) => async (dispatch) => {
+  dispatch(requestTeacherTests());
+
+  const requestOptions = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: localStorage.getItem("token"),
+    },
+  };
+
+  await fetch(`/teacher/tests/${profileID}`, requestOptions)
+    .then((response) => response.json())
+    .then((data) => {
+      if (data) {
+        dispatch(receiveTeacherTests(data.obj));
+        // history.push("/studentHome");
+      }
+    })
+    .catch((error) => {
+      //Do something with the error if you want!
+      dispatch(testsTeacherError());
     });
 };

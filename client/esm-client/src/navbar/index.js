@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import LeftMenu from './LeftMenu'
 import { Drawer, Button } from 'antd';
 import {Link} from "react-router-dom";
+import { connect } from "react-redux";
 import "./Navbar.css"
 
 class Navbar extends Component {
@@ -21,7 +22,10 @@ class Navbar extends Component {
 		});
 	};
 
+
 	render() {
+		console.log(this.props.userInfo)
+	
 		return (
 			<nav className="menuBar">
 				<div className="logo">
@@ -41,7 +45,7 @@ class Navbar extends Component {
 						onClose={this.onClose}
 						visible={this.state.visible}
 					>
-						<LeftMenu />
+						<LeftMenu role={this.props} />
 					</Drawer>
 
 				</div>
@@ -49,5 +53,9 @@ class Navbar extends Component {
 		);
 	}
 }
-
-export default Navbar;
+const mapStateToProps = (state) => {
+    return {
+        userInfo: state.auth.user,
+    };
+  };
+export default connect(mapStateToProps,null)(Navbar);

@@ -12,12 +12,13 @@ require("dotenv").config();
  * @description - Fetching All the tests that teacher assigned using testID
  */
 
-router.get("/tests:teacherID", auth, async (req, res) => {
-  const teacherID = req.params.teacherID;
+router.get("/tests/:profileID", auth, async (req, res) => {
+  const profileID = req.params.profileID;
+  console.log("teacher",profileID)
   try {
     await Test.find({
-      _id: teacherID,
-    }).exec(function (err, obj) {
+      teacherId: profileID,
+    },"submitBy className testName").exec(function (err, obj) {
       if (err) {
         return res.status(400).json({ err });
       } else {
@@ -39,13 +40,16 @@ router.get("/tests:teacherID", auth, async (req, res) => {
  */
 
 router.get("/classes", auth, async (req, res) => {
+  console.log("fetch classes")
   try {
-    await User.find({}, "className -_id", function (err, obj) {
+    await User.find({
+      
+    }, "className -_id", function (err, obj) {
       if (err) {
         return res.status(400).json({ err });
       } else {
         return res.status(200).json({
-          ...obj,
+          obj,
         });
       }
     });
@@ -102,6 +106,7 @@ router.post("/create-test", auth, async (req, res) => {
     answers,
     questions,
   } = req.body;
+  console.log(questions,answers,rules )
   try {
     let createTest = await Test.findOne({
       testName,

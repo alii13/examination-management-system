@@ -1,0 +1,84 @@
+.select__test__container {
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    padding: 2em;
+}
+
+p.test__wrapper__heading {
+    padding: 5px 0;
+}
+
+.select__heading {
+    margin-top: 20px;
+}
+
+.select__test__body {
+    height: 30vh;
+    max-height: 30vh;
+    border: 1px solid var(--border);
+    overflow-y: scroll;
+}
+
+.select__button {
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.test__wrapper {
+    padding: 1em;
+    border: 1px solid var(--border);
+    cursor: pointer;
+}
+
+.test__wrapper:hover {
+    background-color: var(--border);
+}
+
+.select__test {
+    font-size: var( --typography-sm);
+    font-weight: 400;
+}
+
+.time {
+    margin: 0;
+    color: var(--dark-secondary);
+}
+
+.start {
+    color: var(--success);
+}
+
+.end {
+    color: var(--error);
+}
+
+.dark {
+    background-color: var(--light-primary);
+}
+
+.select__skeleton {
+    width: 100%;
+}
+
+.selected__test {
+    background-color: #7ebfff;
+}
+
+.selected__test:hover {
+    background-color: #7ebfff !important;
+}
+
+.select__single-skeleton {
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    border: 1px solid var(--border);
+    justify-content: space-between;
+}
+
+.select__avatar-skelton {
+    width: 60% !important;
+    margin-bottom: 5px;
+}

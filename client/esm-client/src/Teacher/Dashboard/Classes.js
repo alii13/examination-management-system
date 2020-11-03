@@ -1,43 +1,41 @@
 import React, { useEffect } from "react";
-import "./TestCard.css";
-import { HiOutlineClipboardList, HiClipboardCopy } from "react-icons/hi";
-import { fetchAttemptTests } from "../actions/testActions";
-import { connect } from "react-redux";
+import "./index.css";
 import { Link } from "react-router-dom";
+import { HiOutlineClipboardList, HiClipboardCopy } from "react-icons/hi";
+import { fetchClasses } from "../../actions/classesActions";
+import { connect } from "react-redux";
 import { Skeleton } from "antd";
 
-function ResultCard(props) {
-  let { tests, isLoading, profileID, trimLength } = props;
-  if (tests)
-    tests =
-      tests.length > trimLength
-        ? tests.slice(-(trimLength)).reverse()
-        : tests;
+function Classes(props) {
+  let { classesList, isLoading, studentClassName, trimLength, classes } = props;
+  if (classesList)
+  classesList =
+  classesList.length > trimLength
+        ? classesList.slice(-(trimLength)).reverse()
+        : classesList;
 
   useEffect(() => {
-   
-      props.fetchTests(profileID);
-      console.log("fired")
-    
+    props.fetchClasses();
   }, []);
+  console.log(props)
 
   return (
     <>
-      <div className="left__header">
+      <div className="left__header red__header">
         <p className="left__header__text">
-          {<HiOutlineClipboardList />}Recently Attempted Tests
+          {<HiOutlineClipboardList />}Recent Registered Classes
         </p>
       </div>
       <div className="left__body">
-        {!isLoading && tests ? (
+        { !isLoading && classesList ? (
           <ul className="left__body__list__ul">
-            {tests.map((test, index) => (
-              <Link to="/result" key={index}>
+            {classesList.map((individualClass, index) => (
+              <Link to="/attempt-test" key={index}>
                 <li className="left__body__test">
                   <div className="test__index">
-                    <p className="index__box " style={{backgroundColor:"#1e90ff"}}>{index + 1}</p>
+                    <p className="index__box red__index">{index + 1}</p>
                   </div>
-                  <div className="test__name"> {test.testName}</div>
+                  <div className="test__name "> Class - {individualClass.className}</div>
                   <div className="test__icon">
                     <HiClipboardCopy />
                   </div>
@@ -73,15 +71,15 @@ function ResultCard(props) {
 
 const mapStateToProps = (state) => {
   return {
-    isLoading: state.tests.isLoadingAttemptedTest,
-    tests: state.tests.attemptedTest,
-    profileID: state.auth.profileID
+    isLoading: state.tests.isLoadingTest,
+    tests: state.tests.test,
+    classesList: state.classesData.classes
   };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchTests: (profileID) => dispatch(fetchAttemptTests(profileID)),
+    fetchClasses: () => dispatch(fetchClasses()),
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ResultCard);
+export default connect(mapStateToProps, mapDispatchToProps)(Classes);

@@ -1,31 +1,36 @@
-import { TEST_SELECTED, SELECTED_TEST_RESULT,SELECTED_ASSIGNED_TEST } from "../actions/selectActions";
+import { FETCH_CLASSES_REQUEST, FETCH_CLASSES_SUCCESS,FETCH_CLASSES_FAILURE } from "../actions/classesActions";
 
 const initialState = {
-  selectedTestData: {},
-  selectedTestResultData: {},
-  selectedAssignedTestData:{},
+    isLoading:false,
+    isFetched:false,
+    isFetchError:false,
+    classes: [],
 };
 
 export default function (state = initialState, action) {
   switch (action.type) {
-    case TEST_SELECTED:
+    case FETCH_CLASSES_REQUEST:
       // console.log("login success fired", action.obj)
       return {
         ...state,
-        selectedTestData: action.testData,
+        isLoading:true,
       };
 
-      case SELECTED_TEST_RESULT:
+      case FETCH_CLASSES_SUCCESS:
         // console.log("login success fired", action.obj)
         return {
           ...state,
-          selectedTestResultData: action.testData,
+          isLoading:false,
+          isFetched:true,
+          classes:action.data
         };
-      case SELECTED_ASSIGNED_TEST:
+
+      case FETCH_CLASSES_FAILURE:
         // console.log("login success fired", action.obj)
         return {
           ...state,
-          selectedAssignedTestData: action.testData,
+          isfetched:false,
+          isLoading:true
         };
 
     default:
