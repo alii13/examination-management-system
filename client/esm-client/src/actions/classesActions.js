@@ -34,12 +34,14 @@ export const fetchClasses = (values) => (dispatch) => {
   fetch("/teacher/classes", requestOptions)
     .then((response) => response.json())
     .then((data) => {
-        const filteredDupicates =data.obj.filter((v,i,a)=>a.findIndex(t=>(t.className === v.className))===i)
-        console.log(filteredDupicates);
+      const filteredDupicates = data.obj.filter(
+        (v, i, a) => a.findIndex((t) => t.className === v.className) === i
+      );
+      console.log(filteredDupicates);
       dispatch(receiveClasses(filteredDupicates));
     })
     .catch((error) => {
-      console.log(error)
+      console.log(error);
       //Do something with the error if you want!
       dispatch(ClassesError());
     });

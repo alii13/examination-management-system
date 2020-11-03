@@ -66,7 +66,12 @@ class Profile extends Component {
                   className="verified"
                 />
               </Popover>
-              <p className="profile__heading" style={{margin:0, textAlign:"center"}}>Your Profile</p>
+              <p
+                className="profile__heading"
+                style={{ margin: 0, textAlign: "center" }}
+              >
+                Your Profile
+              </p>
             </div>
             <Form
               name="basic"

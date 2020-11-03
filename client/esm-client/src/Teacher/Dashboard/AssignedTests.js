@@ -31,7 +31,9 @@ function AssignedTests(props) {
               <Link to="/assigned-test" key={index}>
                 <li className="left__body__test">
                   <div className="test__index">
-                    <p className="index__box index__box__teacher ">{index + 1}</p>
+                    <p className="index__box index__box__teacher ">
+                      {index + 1}
+                    </p>
                   </div>
                   <div className="test__name">
                     {" "}

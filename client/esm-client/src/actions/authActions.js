@@ -21,86 +21,84 @@ export const USER_ACCOUNT_CREATED = "USER_ACCOUNT_CREATED";
 
 const requestLogin = () => {
   return {
-    type: LOGIN_REQUEST
+    type: LOGIN_REQUEST,
   };
 };
 
-const receiveLogin = (user,profileID) => {
+const receiveLogin = (user, profileID) => {
   return {
     type: LOGIN_SUCCESS,
     user,
-    profileID
+    profileID,
   };
 };
 
 const loginError = () => {
   return {
-    type: LOGIN_FAILURE
+    type: LOGIN_FAILURE,
   };
 };
 
 const requestsignup = () => {
   return {
-    type: SIGN_UP_REQUEST
+    type: SIGN_UP_REQUEST,
   };
 };
 
 const receiveSignup = (user) => {
   return {
     type: SIGN_UP_SUCCESS,
-    user
+    user,
   };
 };
 
 const signupError = (errMess) => {
   return {
     type: SIGN_UP_FAILURE,
-    errMess
+    errMess,
   };
 };
 
 const requestLogout = () => {
   return {
-    type: LOGOUT_REQUEST
+    type: LOGOUT_REQUEST,
   };
 };
 
 const receiveLogout = () => {
   return {
-    type: LOGOUT_SUCCESS
+    type: LOGOUT_SUCCESS,
   };
 };
 
 const logoutError = () => {
   return {
-    type: LOGOUT_FAILURE
+    type: LOGOUT_FAILURE,
   };
 };
 
 const verifyRequest = () => {
   return {
-    type: VERIFY_REQUEST
+    type: VERIFY_REQUEST,
   };
 };
 
 const verifySuccess = () => {
   return {
-    type: VERIFY_SUCCESS
+    type: VERIFY_SUCCESS,
   };
 };
 
-
-
 const sendingPassReset = () => {
   return {
-    type: SEND_PASS_RESET
+    type: SEND_PASS_RESET,
   };
 };
 
 const sendPassResetError = (errMess) => {
   return {
     type: SEND_PASS_RESET_ERROR,
-    errMess
+    errMess,
   };
 };
 
@@ -110,15 +108,13 @@ const sendPassResetSuccess = () => {
   };
 };
 
-const userAccountCreated = () =>{
+const userAccountCreated = () => {
   return {
     type: USER_ACCOUNT_CREATED,
   };
+};
 
-}
-
-export const loginUser = (values) => dispatch => {
-
+export const loginUser = (values) => (dispatch) => {
   dispatch(requestLogin());
 
   const requestOptions = {
@@ -136,21 +132,19 @@ export const loginUser = (values) => dispatch => {
     .then((data) => {
       if (data.token) {
         localStorage.setItem("token", `Bearer ${data.token}`);
-        localStorage.setItem('userProfile', JSON.stringify(data.payload.user));
-        localStorage.setItem('profileID', data.payload.profileID);
+        localStorage.setItem("userProfile", JSON.stringify(data.payload.user));
+        localStorage.setItem("profileID", data.payload.profileID);
         dispatch(receiveLogin(data.payload.user, data.payload.profileID));
-       // history.push("/studentHome");
+        // history.push("/studentHome");
       }
     })
-    .catch(error => {
+    .catch((error) => {
       //Do something with the error if you want!
       dispatch(loginError());
     });
-
 };
 
-export const signUpUser = (values) => dispatch => {
-
+export const signUpUser = (values) => (dispatch) => {
   dispatch(requestsignup());
 
   const requestOptions = {
@@ -166,21 +160,18 @@ export const signUpUser = (values) => dispatch => {
         // localStorage.setItem("token", `Bearer ${data.token}`);
         // localStorage.setItem('userProfile', JSON.stringify(data.payload.user));
         // localStorage.setItem('profileID', data.payload.profileID);
-         dispatch(receiveSignup(data.user));
+        dispatch(receiveSignup(data.user));
         //history.push("/studentHome");
       }
     })
-    .catch(error => {
+    .catch((error) => {
       //Do something with the error if you want!
       dispatch(signupError());
     });
-
 };
 
-export const accountCreated = () => dispatch => {
-
+export const accountCreated = () => (dispatch) => {
   dispatch(userAccountCreated());
-
 };
 
 // export const signupUser = (displayName, email, password, password2) => dispatch => {
@@ -197,14 +188,14 @@ export const accountCreated = () => dispatch => {
 //   if(!/^[a-zA-Z ]*$/.test(displayName)){
 //     return dispatch(signupError("Name must contain only alphabets."));
 //   }
-  
+
 //   if(password !== password2){
 //     return dispatch(signupError("Passwords do not match"));
 //   }
 
 // };
 
-export const logoutUser = () => dispatch => {
+export const logoutUser = () => (dispatch) => {
   dispatch(requestLogout());
   dispatch(receiveLogout());
 };
@@ -218,8 +209,6 @@ export const logoutUser = () => dispatch => {
 //     dispatch(verifySuccess());
 //   });
 // };
-
-
 
 // export const sendPasswordResetLink = (email) => dispatch => {
 //   dispatch(sendingPassReset());

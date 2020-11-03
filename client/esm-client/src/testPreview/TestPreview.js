@@ -37,7 +37,7 @@ class TestPreview extends Component {
         );
       } else {
         const testData = JSON.parse(localStorage.getItem(`${this.state._id}`));
-        console.log(testData);
+
         let { testName, tM, _id, rM } = testData;
         rM = rM - 1;
         localStorage.setItem(
@@ -69,7 +69,6 @@ class TestPreview extends Component {
   }
 
   render() {
-    console.log(this.props.timer);
     return (
       <>
         <Counter testID={this.state._id} totalMinutes={this.state.minutes} />

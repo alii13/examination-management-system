@@ -86,7 +86,15 @@ class RightSide extends Component {
     this.props.onRef(undefined);
   }
   submitTest = () => {
-    const { userAnswers, answers, testName, testID, profileID, firstName, lastName } = this.props;
+    const {
+      userAnswers,
+      answers,
+      testName,
+      testID,
+      profileID,
+      firstName,
+      lastName,
+    } = this.props;
     let correct = 0,
       wrong = 0,
       unanswered = 0,
@@ -118,7 +126,6 @@ class RightSide extends Component {
     return;
   };
   render() {
-    console.log(this.state.selectedAnswers);
     const radioStyle = {
       display: "block",
       height: "30px",
@@ -184,7 +191,6 @@ const mapDispatchToProps = (dispatch) => {
   return {
     submitTest: (data) => dispatch(submitTest(data)),
     signOut: () => dispatch(logoutUser()),
-  
   };
 };
 

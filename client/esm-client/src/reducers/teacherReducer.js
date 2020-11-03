@@ -15,7 +15,7 @@ const initialState = {
   testCreated: false,
   testSubmitted: false,
   testSubmitError: false,
-  assignedTests:[]
+  assignedTests: [],
 };
 
 export default function (state = initialState, action) {
@@ -56,7 +56,7 @@ export default function (state = initialState, action) {
         testCreated: true,
         isLoadingTest: false,
         isFetched: true,
-        assignedTests:action.tests
+        assignedTests: action.tests,
       };
     case ASSIGNED_TEST_FAILURE:
       return {

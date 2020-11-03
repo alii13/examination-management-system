@@ -1,5 +1,5 @@
 import { Form, Input, Button } from "antd";
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { Row, Col, Typography } from "antd";
 import "./Login.css";
 import { useHistory } from "react-router-dom";
@@ -7,11 +7,10 @@ import { loginUser } from "../actions/authActions";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
- function Login(props) {
+function Login(props) {
   const history = useHistory();
   const { Title } = Typography;
   const { isLoading } = props;
-
 
   const tailLayout = {
     wrapperCol: {
@@ -20,14 +19,11 @@ import { Link } from "react-router-dom";
     },
   };
 
-
   useEffect(() => {
-    
-    if(props.isAuthenticated){
+    if (props.isAuthenticated) {
       history.push("/");
     }
-
-  }, [props])
+  }, [props]);
 
   const submitForm = (values) => {
     props.sendLoginRequest(values);
@@ -43,7 +39,6 @@ import { Link } from "react-router-dom";
           <p className="sub-title">🎓 EMS</p>
 
           <Form
-            
             name="basic"
             initialValues={{
               remember: true,
@@ -60,11 +55,10 @@ import { Link } from "react-router-dom";
                 },
               ]}
             >
-              <Input  placeholder="Email"/>
+              <Input placeholder="Email" />
             </Form.Item>
 
             <Form.Item
-
               name="password"
               rules={[
                 {
@@ -73,18 +67,27 @@ import { Link } from "react-router-dom";
                 },
               ]}
             >
-              <Input.Password  placeholder="Password"/>
+              <Input.Password placeholder="Password" />
             </Form.Item>
-            <div className="link" style={{textAlign:"center", fontWeight:500, marginBottom:"15px"}}>
+            <div
+              className="link"
+              style={{
+                textAlign: "center",
+                fontWeight: 500,
+                marginBottom: "15px",
+              }}
+            >
               <Link to="/signup">New here? Create your account.</Link>
             </div>
-            <Form.Item >
-              <Button type="primary"
-              className="sign__in"
-              style={{minWidth:"44px"}}
-              loading={isLoading}
-               htmlType="submit">
-                {(!isLoading)?("Sign In"):('Logging In')}
+            <Form.Item>
+              <Button
+                type="primary"
+                className="sign__in"
+                style={{ minWidth: "44px" }}
+                loading={isLoading}
+                htmlType="submit"
+              >
+                {!isLoading ? "Sign In" : "Logging In"}
               </Button>
             </Form.Item>
           </Form>
@@ -92,17 +95,17 @@ import { Link } from "react-router-dom";
       </Row>
     </>
   );
-};
+}
 
 const mapStateToProps = (state) => {
   return {
-      isAuthenticated: state.auth.isAuthenticated,
-      isLoading: state.auth.isLoading,
+    isAuthenticated: state.auth.isAuthenticated,
+    isLoading: state.auth.isLoading,
   };
 };
 const mapDispatchToProps = (dispatch) => {
   return {
-      sendLoginRequest: (values) => dispatch(loginUser(values)),
+    sendLoginRequest: (values) => dispatch(loginUser(values)),
   };
 };
 

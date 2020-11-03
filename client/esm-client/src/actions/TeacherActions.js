@@ -30,10 +30,10 @@ const requestAssignedTest = () => {
   };
 };
 
-const receiveAssignedTest = (tests )=> {
+const receiveAssignedTest = (tests) => {
   return {
     type: ASSIGNED_TEST_SUCCESS,
-    tests
+    tests,
   };
 };
 
@@ -52,7 +52,7 @@ export const submitTest = (values) => (dispatch) => {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: localStorage.getItem("token")
+      Authorization: localStorage.getItem("token"),
     },
 
     body: JSON.stringify(values),
@@ -68,8 +68,6 @@ export const submitTest = (values) => (dispatch) => {
       dispatch(submitTestError());
     });
 };
-
-
 
 export const fetchAssignedTests = (profileID) => async (dispatch) => {
   dispatch(requestAssignedTest());

@@ -10,15 +10,11 @@ function ResultCard(props) {
   let { tests, isLoading, profileID, trimLength } = props;
   if (tests)
     tests =
-      tests.length > trimLength
-        ? tests.slice(-(trimLength)).reverse()
-        : tests;
+      tests.length > trimLength ? tests.slice(-trimLength).reverse() : tests;
 
   useEffect(() => {
-   
-      props.fetchTests(profileID);
-      console.log("fired")
-    
+    props.fetchTests(profileID);
+    console.log("fired");
   }, []);
 
   return (
@@ -35,7 +31,12 @@ function ResultCard(props) {
               <Link to="/result" key={index}>
                 <li className="left__body__test">
                   <div className="test__index">
-                    <p className="index__box " style={{backgroundColor:"#1e90ff"}}>{index + 1}</p>
+                    <p
+                      className="index__box "
+                      style={{ backgroundColor: "#1e90ff" }}
+                    >
+                      {index + 1}
+                    </p>
                   </div>
                   <div className="test__name"> {test.testName}</div>
                   <div className="test__icon">
@@ -75,7 +76,7 @@ const mapStateToProps = (state) => {
   return {
     isLoading: state.tests.isLoadingAttemptedTest,
     tests: state.tests.attemptedTest,
-    profileID: state.auth.profileID
+    profileID: state.auth.profileID,
   };
 };
 const mapDispatchToProps = (dispatch) => {

@@ -23,8 +23,8 @@ class HandleLiveTest extends Component {
       answered: false,
       totalPending: 5,
       totalFlagged: 0,
-      flag: false,
       questionIndex: 0,
+      flag: 0,
       testName: null,
       userAnswers: Array.apply(undefined, Array(5)),
     };
@@ -51,6 +51,12 @@ class HandleLiveTest extends Component {
       });
       this.child.changeActivatedQueInChild(changeActivatedQue);
     } else {
+      this.triggerFlag();
+      if (this.state.flag <= this.state.questionsData.length) {
+        this.setState({
+          flag: this.state.flag + 1,
+        });
+      }
     }
   };
   handleSubmitTest = () => {
@@ -110,7 +116,6 @@ class HandleLiveTest extends Component {
   };
 
   render() {
-    console.log(this.props.selectedTest);
     return (
       <>
         <div className="question_board">
@@ -133,7 +138,8 @@ class HandleLiveTest extends Component {
                 Answered
               </div>
               <div className="total__flagged box">
-                <span className="count__flagged">0 </span>Flagged
+                <span className="count__flagged">{this.state.flag} </span>
+                Flagged
               </div>
               <div className="total__pending box">
                 <span className="count__pending">
@@ -146,9 +152,11 @@ class HandleLiveTest extends Component {
               questionsData={this.state.questionsData}
               handleQuestionClick={this.handleQuestionClick}
               activateQue={this.state.activateQue}
+              answered={this.state.answered}
               footerClick={this.state.footerClick}
               onRef={(ref) => (this.child = ref)}
-              answered={this.state.answered}
+              flagClicked={(click) => (this.triggerFlag = click)}
+              flag={this.state.flag}
             />
           </div>
           <RightSide

@@ -282,3 +282,8 @@
         margin-top: 25px;
     }
 }
+
+.flagged {
+    background-color: var(--warning) !important;
+    color: var(--secondary) !important;
+}

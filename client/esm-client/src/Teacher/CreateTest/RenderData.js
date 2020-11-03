@@ -4,7 +4,7 @@ import { TiDelete } from "react-icons/ti";
 
 export default function RenderData(props) {
   const { ruleData, questionData, question, rules } = props;
-  console.log(props)
+  console.log(props);
   const handleClick = (index) => {
     props.clickedRule(index);
   };
@@ -12,9 +12,9 @@ export default function RenderData(props) {
     <div className="renderData__wrapper">
       {rules
         ? ruleData &&
-        ruleData.map((item, index) => (
+          ruleData.map((item, index) => (
             <div key={index}>
-                 <p className="sub__render__heading">Rule {index+1}</p>
+              <p className="sub__render__heading">Rule {index + 1}</p>
               <div className="render__item">
                 <Input
                   readonly="readOnly"
@@ -30,9 +30,9 @@ export default function RenderData(props) {
             </div>
           ))
         : questionData &&
-        questionData.map((item, index) => (
+          questionData.map((item, index) => (
             <div key={index}>
-                <p className="sub__render__heading">Question {index+1}</p>
+              <p className="sub__render__heading">Question {index + 1}</p>
               <div className="render__item">
                 <Input.TextArea
                   readonly="readOnly"

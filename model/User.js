@@ -19,11 +19,11 @@ const UserSchema = mongoose.Schema({
   },
   section: {
     type: String,
-    default:"C",
+    default: "C",
   },
   className: {
     type: String,
-    default:"IX",
+    default: "IX",
   },
   isVerified: {
     type: Boolean,

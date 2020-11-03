@@ -9,15 +9,15 @@ import { Skeleton } from "antd";
 function Classes(props) {
   let { classesList, isLoading, studentClassName, trimLength, classes } = props;
   if (classesList)
-  classesList =
-  classesList.length > trimLength
-        ? classesList.slice(-(trimLength)).reverse()
+    classesList =
+      classesList.length > trimLength
+        ? classesList.slice(-trimLength).reverse()
         : classesList;
 
   useEffect(() => {
     props.fetchClasses();
   }, []);
-  console.log(props)
+  console.log(props);
 
   return (
     <>
@@ -27,7 +27,7 @@ function Classes(props) {
         </p>
       </div>
       <div className="left__body">
-        { !isLoading && classesList ? (
+        {!isLoading && classesList ? (
           <ul className="left__body__list__ul">
             {classesList.map((individualClass, index) => (
               <Link to="/attempt-test" key={index}>
@@ -35,7 +35,10 @@ function Classes(props) {
                   <div className="test__index">
                     <p className="index__box red__index">{index + 1}</p>
                   </div>
-                  <div className="test__name "> Class - {individualClass.className}</div>
+                  <div className="test__name ">
+                    {" "}
+                    Class - {individualClass.className}
+                  </div>
                   <div className="test__icon">
                     <HiClipboardCopy />
                   </div>
@@ -73,7 +76,7 @@ const mapStateToProps = (state) => {
   return {
     isLoading: state.tests.isLoadingTest,
     tests: state.tests.test,
-    classesList: state.classesData.classes
+    classesList: state.classesData.classes,
   };
 };
 const mapDispatchToProps = (dispatch) => {

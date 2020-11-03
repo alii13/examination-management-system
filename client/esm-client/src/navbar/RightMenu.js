@@ -1,5 +1,5 @@
-import React from 'react';
-import { Menu, Grid } from 'antd';
+import React from "react";
+import { Menu, Grid } from "antd";
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 
@@ -17,6 +17,6 @@ const RightMenu = () => {
       </Menu.Item>
     </Menu>
   );
-}
+};
 
 export default RightMenu;

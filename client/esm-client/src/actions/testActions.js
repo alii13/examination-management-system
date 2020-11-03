@@ -174,7 +174,6 @@ export const submitTest = (data) => async (dispatch) => {
     });
 };
 
-
 /* Teacher Actions*/
 
 export const fetchTeacherTests = (profileID) => async (dispatch) => {

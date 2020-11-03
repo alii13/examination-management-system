@@ -1,9 +1,9 @@
-.student__status__wrapper{
-    box-shadow: 0 0 5px var(--box-shadow);;
-    
-
+.student__status__wrapper {
+    box-shadow: 0 0 5px var(--box-shadow);
+    ;
 }
-.status__header{
+
+.status__header {
     background-color: var(--primary);
     text-align: center;
     margin: 0;
@@ -13,14 +13,17 @@
     border-top-right-radius: 5px;
     padding: 10px;
 }
-.student__status__body{
+
+.student__status__body {
     border: 1px solid var(--border);
     padding: 10px;
 }
-.status__testname{
+
+.status__testname {
     font-weight: 350 !important;
     font-size: 1.3em;
 }
+
 .student__status__body div {
     padding: 5px;
     font-weight: 500;

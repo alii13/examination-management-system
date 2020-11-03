@@ -44,6 +44,8 @@ export default class LeftSide extends Component {
       return false;
     } else if (nextProps.selectRef !== this.props.selectRef) {
       return false;
+    } else if (nextProps.flag !== this.props.flag) {
+      return false;
     } else {
       this.changeBg(
         nextProps.activateQue,
@@ -53,6 +55,12 @@ export default class LeftSide extends Component {
 
       return true;
     }
+  }
+  flagQuestion = () => {
+    this.state.selectRef.classList.add("flagged");
+  };
+  componentDidMount() {
+    this.props.flagClicked(this.flagQuestion);
   }
 
   setFlag = () => {

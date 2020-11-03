@@ -113,75 +113,75 @@ function Signup(props) {
             >
               <Input.Password placeholder="Password" />
             </Form.Item>
+            <Form.Item
+              name="phone"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your Phone Number!",
+                },
+              ]}
+            >
+              <Input type="tel" placeholder="7275XXXXXX" />
+            </Form.Item>
+
+            <div className="element__wrapper">
               <Form.Item
-                name="phone"
+                name="role"
                 rules={[
                   {
-                    required: true,
-                    message: "Please input your Phone Number!",
+                    message: "Please input your role!",
                   },
                 ]}
               >
-                <Input type="tel" placeholder="7275XXXXXX" />
+                <Select defaultValue="Role" onSelect={handleSelect}>
+                  <Option value="student">Student</Option>
+                  <Option value="teacher">Teacher</Option>
+                </Select>
               </Form.Item>
 
-              <div className="element__wrapper">
-                <Form.Item
-                  name="role"
-                  rules={[
-                    {
-                      message: "Please input your role!",
-                    },
-                  ]}
-                >
-                  <Select defaultValue="Role" onSelect={handleSelect}>
-                    <Option value="student">Student</Option>
-                    <Option value="teacher">Teacher</Option>
-                  </Select>
-                </Form.Item>
-
-                <Form.Item
-                  name="section"
-                  rules={[
-                    {
-                      message: "Please input your section!",
-                    },
-                  ]}
-                >
-                  <Select defaultValue="Section" disabled={showSelect}>
-                    <Option value="A">A</Option>
-                    <Option value="B">B</Option>
-                    <Option value="C">C</Option>
-                    <Option value="D">D</Option>
-                  </Select>
-                </Form.Item>
-
-                <Form.Item
-                  name="className"
-                  rules={[
-                    {
-                      message: "Please input your email!",
-                    },
-                  ]}
-                >
-                  <Select defaultValue="Class" disabled={showSelect}>
-                    <Option value="IX">IX</Option>
-                    {/* <Option value="XI">XI</Option>
-                    <Option value="XII">XII</Option> */}
-                  </Select>
-                </Form.Item>
-              </div>
-              <div
-                className="link"
-                style={{
-                  textAlign: "center",
-                  fontWeight: 500,
-                  marginBottom: "15px",
-                }}
+              <Form.Item
+                name="section"
+                rules={[
+                  {
+                    message: "Please input your section!",
+                  },
+                ]}
               >
-                <Link to="/sigin">Already have account? Signin</Link>
-              </div>
-              <Form.Item>
+                <Select defaultValue="Section" disabled={showSelect}>
+                  <Option value="A">A</Option>
+                  <Option value="B">B</Option>
+                  <Option value="C">C</Option>
+                  <Option value="D">D</Option>
+                </Select>
+              </Form.Item>
+
+              <Form.Item
+                name="className"
+                rules={[
+                  {
+                    message: "Please input your email!",
+                  },
+                ]}
+              >
+                <Select defaultValue="Class" disabled={showSelect}>
+                  <Option value="IX">IX</Option>
+                  {/* <Option value="XI">XI</Option>
+                    <Option value="XII">XII</Option> */}
+                </Select>
+              </Form.Item>
+            </div>
+            <div
+              className="link"
+              style={{
+                textAlign: "center",
+                fontWeight: 500,
+                marginBottom: "15px",
+              }}
+            >
+              <Link to="/sigin">Already have account? Signin</Link>
+            </div>
+            <Form.Item>
               <Button
                 type="primary"
                 className="sign__up"

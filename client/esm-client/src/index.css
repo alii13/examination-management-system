@@ -20,32 +20,34 @@ html {
   font-size: 2vw;
   overflow-x: hidden
 }
-.primary{
- color: var(--primary);
- cursor: pointer;
- font-size: 22px;
-}
-.primary-wihtoutFont{
+
+.primary {
   color: var(--primary);
-
+  cursor: pointer;
+  font-size: 22px;
 }
-.danger-wihtoutFont{
+
+.primary-wihtoutFont {
+  color: var(--primary);
+}
+
+.danger-wihtoutFont {
   color: var(--danger);
-
 }
-.success-wihtoutFont{
+
+.success-wihtoutFont {
   color: var(--success);
-
 }
-.success{
+
+.success {
   color: var(--success);
   cursor: pointer;
   font-size: 22px;
 }
-.danger{
+
+.danger {
   color: var(--danger);
   cursor: pointer;
-
 }
 
 /* h1, h2, h3, h4, h5 {
@@ -73,12 +75,15 @@ body {
 .is-active {
   color: var(--active-link);
 }
-.d-flex{
+
+.d-flex {
   display: flex;
 }
-.justify-content-between{
+
+.justify-content-between {
   justify-content: space-between;
 }
+
 /* media queries */
 
 @media(min-width:768px) {

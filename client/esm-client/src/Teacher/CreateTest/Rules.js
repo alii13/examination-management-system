@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import {  AiFillPlusCircle } from "react-icons/ai";
-import {  Input, Popover } from "antd";
+import { AiFillPlusCircle } from "react-icons/ai";
+import { Input, Popover } from "antd";
 
 export default function Rules(props) {
   const [rule, setRule] = useState("");
@@ -14,26 +14,28 @@ export default function Rules(props) {
     setRule(e.target.value);
   };
   const handleAddRule = () => {
-    if(rule !==""){
-    props.addRule(rule);
-    setRule("");
+    if (rule !== "") {
+      props.addRule(rule);
+      setRule("");
     }
   };
   console.log(rule);
   return (
     <>
       <div className="rules__wrapper">
-      <div className="options__wrapper">
-        <Input
-          placeholder="Write your rule for test"
-          className="input"
-          value={rule}
-          onChange={handleOnChnage}
-          style={{ margin: "0 5px" }}
-        />
+        <div className="options__wrapper">
+          <Input
+            placeholder="Write your rule for test"
+            className="input"
+            value={rule}
+            onChange={handleOnChnage}
+            style={{ margin: "0 5px" }}
+          />
           <div className="add__new" onClick={handleAddRule}>
             {
-              <Popover content={submitInput}><AiFillPlusCircle className="success" /></Popover>
+              <Popover content={submitInput}>
+                <AiFillPlusCircle className="success" />
+              </Popover>
             }
           </div>
         </div>

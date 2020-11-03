@@ -10,9 +10,7 @@ function TestCard(props) {
   let { tests, isLoading, studentClassName, trimLength } = props;
   if (tests)
     tests =
-      tests.length > trimLength
-        ? tests.slice(-(trimLength)).reverse()
-        : tests;
+      tests.length > trimLength ? tests.slice(-trimLength).reverse() : tests;
 
   useEffect(() => {
     props.fetchTests(studentClassName);

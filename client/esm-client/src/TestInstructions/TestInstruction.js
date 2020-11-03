@@ -91,7 +91,9 @@ function TestInstruction(props) {
                         {testRules?.map((rule, index) => (
                           <p className="rule" key={index}>
                             <FaArrowCircleRight />{" "}
-                            <span className="rule__description">{rule.value}</span>
+                            <span className="rule__description">
+                              {rule.value}
+                            </span>
                           </p>
                         ))}
                       </div>

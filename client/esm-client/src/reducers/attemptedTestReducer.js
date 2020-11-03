@@ -1,11 +1,15 @@
-import { UPDATE_ATTEMPT_TEST_REQUEST, UPDATE_ATTEMPT_TEST_SUCCESS, UPDATE_ATTEMPT_TEST_FAILURE } from "../actions/attemptTestActions";
+import {
+  UPDATE_ATTEMPT_TEST_REQUEST,
+  UPDATE_ATTEMPT_TEST_SUCCESS,
+  UPDATE_ATTEMPT_TEST_FAILURE,
+} from "../actions/attemptTestActions";
 
 const initialState = {
   attemptedTime: 0,
-  isFetching:false,
-  isFetched:false,
-  isFetchingError:false,
-  initializeTimer:false,
+  isFetching: false,
+  isFetched: false,
+  isFetchingError: false,
+  initializeTimer: false,
 };
 
 export default function (state = initialState, action) {
@@ -17,17 +21,17 @@ export default function (state = initialState, action) {
         isFetching: true,
       };
 
-      case UPDATE_ATTEMPT_TEST_SUCCESS:
-        // console.log("login success fired", action.obj)
-        //console.log(action.data);
-        const checker = state.initializeTimer;
-        return {
-          ...state,
-          isFetched: true,
-          isFetching: false,
-          attemptedTime: action.time,
-          initializeTimer:true,
-        };
+    case UPDATE_ATTEMPT_TEST_SUCCESS:
+      // console.log("login success fired", action.obj)
+      //console.log(action.data);
+      const checker = state.initializeTimer;
+      return {
+        ...state,
+        isFetched: true,
+        isFetching: false,
+        attemptedTime: action.time,
+        initializeTimer: true,
+      };
     case UPDATE_ATTEMPT_TEST_FAILURE:
       // console.log("login success fired", action.obj)
       return {
@@ -35,7 +39,6 @@ export default function (state = initialState, action) {
         isFetching: false,
         isFetched: false,
         isFetchingError: true,
-
       };
 
     default:

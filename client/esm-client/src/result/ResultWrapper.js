@@ -10,7 +10,7 @@ function ResultWrapper(props) {
       <div className="container dashboard">
         <Row gutter={[48, 10]} justify="center">
           <Col className="gutter-row" xs={24} sm={24} md={14} xl={14}>
-            <SelectTest profileID ={profileID} />
+            <SelectTest profileID={profileID} />
           </Col>
         </Row>
       </div>

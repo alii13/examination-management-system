@@ -7,7 +7,7 @@ import {
   SUBMIT_TEST_SUCCESS,
   FETCH_TEACHER_TEST_REQUEST,
   FETCH_TEACHER_TEST_SUCCESS,
-  FETCH_TEACHER_TEST_FAILURE
+  FETCH_TEACHER_TEST_FAILURE,
 } from "../actions/testActions";
 
 const initialState = {
@@ -58,15 +58,15 @@ export default function (state = initialState, action) {
         test: action.tests,
       };
 
-      case FETCH_TEACHER_TEST_FAILURE:
-        return {
-          ...state,
-          isFetching: false,
-          isFetched: false,
-          isLoadingTest: false,
-          isLoadingAttemptedTest: false,
-          fetchError: true,
-        };
+    case FETCH_TEACHER_TEST_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        isFetched: false,
+        isLoadingTest: false,
+        isLoadingAttemptedTest: false,
+        fetchError: true,
+      };
 
     case FETCH_ATTEMPT_TEST_SUCCESS:
       // console.log(action.tests)

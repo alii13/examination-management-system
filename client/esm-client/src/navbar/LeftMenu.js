@@ -11,8 +11,8 @@ const { useBreakpoint } = Grid;
 
 const LeftMenu = (props) => {
   const [isAuthenticated, setisAuthenticated] = useState(false);
- // const role = props.role;
- const role=props.userInfo.role
+  // const role = props.role;
+  const role = props.userInfo.role;
   //console.log(props)
 
   useEffect(() => {
@@ -47,21 +47,24 @@ const LeftMenu = (props) => {
           </NavLink>
         </Menu.Item>
         <Menu.Item key="02">
-          <NavLink to={(Roles.teacher===role)?(createTestRoute):testRoute}>
+          <NavLink to={Roles.teacher === role ? createTestRoute : testRoute}>
             {isAuthenticated
-              ? (Roles.teacher===role)
+              ? Roles.teacher === role
                 ? "Create Test"
                 : "Attempt Test"
               : "SignUp"}
           </NavLink>
         </Menu.Item>
         <Menu.Item key="03" className={!isAuthenticated ? "display-none" : ""}>
-          <NavLink to={(Roles.teacher===role)?(assignedTestRoute):resultRoute}>
-          {isAuthenticated
-              ? (Roles.teacher===role)
+          <NavLink
+            to={Roles.teacher === role ? assignedTestRoute : resultRoute}
+          >
+            {isAuthenticated
+              ? Roles.teacher === role
                 ? "Assigned Test"
                 : "Result"
-              : ""}</NavLink>
+              : ""}
+          </NavLink>
         </Menu.Item>
         <Menu.Item key="05" className={!isAuthenticated ? "display-none" : ""}>
           <NavLink to={profileRoute} onClick={handleProfile}>

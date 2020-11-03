@@ -1,31 +1,37 @@
-.create__test__form{
+.create__test__form {
     width: 100% !important;
 }
-.rules__wrapper{
+
+.rules__wrapper {
     width: 100%;
 }
-.add__new{
+
+.add__new {
     color: var(--primary);
     font-weight: 500;
 }
-.renderData__wrapper{
+
+.renderData__wrapper {
     width: 100%;
 }
-.options__wrapper{
+
+.options__wrapper {
     display: flex;
     align-items: center;
     margin-bottom: 15px;
 }
-.render__item{
+
+.render__item {
     display: flex !important;
     margin-bottom: 25px;
     align-items: center;
 }
-.question__options{
-    margin-bottom: 40px;
 
+.question__options {
+    margin-bottom: 40px;
 }
-.option{
+
+.option {
     margin-top: 5px;
     margin-bottom: 5px;
 }

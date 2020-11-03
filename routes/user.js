@@ -10,7 +10,7 @@ const auth = require("../middleware/auth");
 const { STUDENT, TEACHER } = require("../utils/roles");
 const nodemailer = require("nodemailer");
 var smtpTransport = require("nodemailer-smtp-transport");
-const {baseURL} = require("../utils/roles");
+const { baseURL } = require("../utils/roles");
 require("dotenv").config();
 
 //transporter for nodemailer
@@ -207,8 +207,8 @@ router.post(
           const teacherProfileID = teacherData._id;
           payload.profileID = teacherProfileID;
           break;
-          default:
-            console.log("OK");
+        default:
+          console.log("OK");
       }
 
       jwt.sign(
@@ -433,8 +433,8 @@ router.post(
             );
           }
           res.status(200).json({
-           payload,
-           token
+            payload,
+            token,
           });
         }
       );

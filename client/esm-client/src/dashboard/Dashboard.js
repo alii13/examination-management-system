@@ -21,7 +21,7 @@ function Dashboard(props) {
             />
           </Col>
           <Col className="gutter-row" xs={24} sm={24} md={9} xl={9}>
-            <ResultCard  trimLength={trimLength} />
+            <ResultCard trimLength={trimLength} />
           </Col>
         </Row>
       </div>

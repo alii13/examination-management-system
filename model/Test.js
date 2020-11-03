@@ -40,13 +40,13 @@ const TestSchema = mongoose.Schema({
     type: Boolean,
     default: false,
   },
-  answers:{
-    type:Array,
-    required:true,
+  answers: {
+    type: Array,
+    required: true,
   },
   submitBy: {
     type: Array,
-  }
+  },
 });
 
 module.exports = mongoose.model("tests", TestSchema);

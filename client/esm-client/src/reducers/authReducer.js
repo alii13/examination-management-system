@@ -18,27 +18,28 @@ import {
 // import storageListner from "../storageListener/localStorageListener";
 
 const initialState = {
-    isLoggingIn: false,
-    isSigningUp: false,
-    isLoading: false,
-    isLoggingOut: false,
-    isVerifying: false,
-    loginError: false,
-    signupError: false,
-    logoutError: false,
-    accountCreated:false,
-    isAuthenticated: (localStorage.getItem("token"))?(true):false,
-    sendPassResetSuccess: false,
-    sendPassResetError: false,
-    profileID:localStorage.getItem('profileID'),
-    user: ((JSON.parse(localStorage.getItem('userProfile'))?(JSON.parse(localStorage.getItem('userProfile'))):{})),
-  }
+  isLoggingIn: false,
+  isSigningUp: false,
+  isLoading: false,
+  isLoggingOut: false,
+  isVerifying: false,
+  loginError: false,
+  signupError: false,
+  logoutError: false,
+  accountCreated: false,
+  isAuthenticated: localStorage.getItem("token") ? true : false,
+  sendPassResetSuccess: false,
+  sendPassResetError: false,
+  profileID: localStorage.getItem("profileID"),
+  user: JSON.parse(localStorage.getItem("userProfile"))
+    ? JSON.parse(localStorage.getItem("userProfile"))
+    : {},
+};
 
 export default function (state = initialState, action) {
-    
   switch (action.type) {
     case LOGIN_REQUEST:
-      console.log("login request fired")
+      console.log("login request fired");
       return {
         ...state,
         isLoggingIn: true,
@@ -46,17 +47,17 @@ export default function (state = initialState, action) {
         loginError: false,
       };
     case LOGIN_SUCCESS:
-      console.log("login success fired", action.obj)
+      console.log("login success fired", action.obj);
       return {
         ...state,
         isLoggingIn: false,
         isLoading: false,
         isAuthenticated: true,
         user: action.user,
-        profileID: action.profileID
+        profileID: action.profileID,
       };
     case LOGIN_FAILURE:
-      console.log("login failure fired")
+      console.log("login failure fired");
       return {
         ...state,
         isLoggingIn: false,
@@ -79,7 +80,7 @@ export default function (state = initialState, action) {
         isSigningUp: false,
         isLoading: false,
         signupError: false,
-        accountCreated:true,
+        accountCreated: true,
         // isAuthenticated: true,
         // user: action.user,
       };
@@ -95,8 +96,8 @@ export default function (state = initialState, action) {
     case USER_ACCOUNT_CREATED:
       return {
         ...state,
-        accountCreated:false
-      }
+        accountCreated: false,
+      };
 
     case SEND_PASS_RESET:
       return {
@@ -144,4 +145,4 @@ export default function (state = initialState, action) {
     default:
       return state;
   }
-};
+}

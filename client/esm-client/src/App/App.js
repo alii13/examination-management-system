@@ -39,7 +39,7 @@ function App(props) {
   const role = props.userInfo.role;
   const { confirm } = Modal;
   const history = useHistory();
-  console.log(props);
+
   const onLeaveComponent = () => {
     confirm({
       title: "Do you really want to quit the test?",
@@ -124,8 +124,8 @@ const mapStateToProps = (state) => {
       .toLowerCase(),
     userInfo: state.auth.user,
     selectedAssignedTestName: state.selectedTest.selectedAssignedTestData.testName
-    ?.replace(/\s+/g, "-")
-    .toLowerCase(),
+      ?.replace(/\s+/g, "-")
+      .toLowerCase(),
   };
 };
 

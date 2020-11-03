@@ -14,11 +14,14 @@ require("dotenv").config();
 
 router.get("/tests/:profileID", auth, async (req, res) => {
   const profileID = req.params.profileID;
-  console.log("teacher",profileID)
+  console.log("teacher", profileID);
   try {
-    await Test.find({
-      teacherId: profileID,
-    },"submitBy className testName").exec(function (err, obj) {
+    await Test.find(
+      {
+        teacherId: profileID,
+      },
+      "submitBy className testName"
+    ).exec(function (err, obj) {
       if (err) {
         return res.status(400).json({ err });
       } else {
@@ -40,11 +43,9 @@ router.get("/tests/:profileID", auth, async (req, res) => {
  */
 
 router.get("/classes", auth, async (req, res) => {
-  console.log("fetch classes")
+  console.log("fetch classes");
   try {
-    await User.find({
-      
-    }, "className -_id", function (err, obj) {
+    await User.find({}, "className -_id", function (err, obj) {
       if (err) {
         return res.status(400).json({ err });
       } else {
@@ -106,7 +107,7 @@ router.post("/create-test", auth, async (req, res) => {
     answers,
     questions,
   } = req.body;
-  console.log(questions,answers,rules )
+  console.log(questions, answers, rules);
   try {
     let createTest = await Test.findOne({
       testName,

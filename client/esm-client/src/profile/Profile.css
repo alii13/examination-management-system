@@ -1,21 +1,22 @@
-.avatar-wrapper{
+.avatar-wrapper {
     padding: 10px;
     margin-bottom: 15px;
     position: relative;
-   
 }
-.avatar-image{
+
+.avatar-image {
     border: 1px solid var(--border);
-  
 }
-.verified{
+
+.verified {
     max-width: 20px;
     height: 20px;
     position: absolute;
     right: 10%;
     cursor: pointer;
 }
-.input{
+
+.input {
     -webkit-box-sizing: border-box;
     box-sizing: border-box;
     margin: 0;
@@ -39,20 +40,22 @@
     -webkit-transition: all 0.3s;
     transition: all 0.3s;
 }
-.popover{
+
+.popover {
     color: var(--success);
 }
-.notverifieid-popover{
+
+.notverifieid-popover {
     color: var(--error);
 }
-.hidden{
+
+.hidden {
     display: none;
 }
-.profile__heading{
+
+.profile__heading {
     text-align: center;
     margin: 0px;
     color: var(--primary);
     font-weight: 500;
-
-
 }
