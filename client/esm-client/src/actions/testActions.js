@@ -149,7 +149,7 @@ export const submitTest = (data) => async (dispatch) => {
     testID,
     testName,
   };
-  console.log(postedData);
+
 
   const requestOptions = {
     method: "PUT",

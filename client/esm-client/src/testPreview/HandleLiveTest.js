@@ -21,7 +21,7 @@ class HandleLiveTest extends Component {
       activateQue: 0,
       totalAnswered: 0,
       answered: false,
-      totalPending: 5,
+      totalPending: null,
       totalFlagged: 0,
       questionIndex: 0,
       flag: 0,
@@ -33,6 +33,7 @@ class HandleLiveTest extends Component {
   componentDidMount() {
     //  const answers = question
     // make a call using redux
+    this.props.counterEnd(this.submitTestOnCounterEnd);
 
     this.setState({
       questionsData: this.props.selectedTest.questions,
@@ -40,6 +41,7 @@ class HandleLiveTest extends Component {
       answers: this.props.selectedTest.answers,
       testID: this.props.testID,
       testName: this.props.selectedTest.testName,
+      totalPending: this.props.selectedTest.questions.length,
     });
     // fire function given by redux
   }
@@ -67,6 +69,9 @@ class HandleLiveTest extends Component {
       activateQue: index,
       footerClick: true,
     });
+  };
+  submitTestOnCounterEnd = () => {
+    this.handleSubmitTest();
   };
 
   handleFooterButtons = (buttonClicked) => {

@@ -136,7 +136,7 @@ class RightSide extends Component {
       <>
         <div className="descripiton__wrapper">
           <div className="question__no">
-            Question {this.state.activateQue + 1} out of {5}
+            Question {this.state.activateQue + 1} out of {this.state.questionsData.length}
           </div>
           {this.state.questionsData &&
             this.state.questionsData.map((question, index) => {

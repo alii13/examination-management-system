@@ -11,10 +11,13 @@ export default function Counter(props) {
     let remainingTime = testData.rM;
     time = parseInt(remainingTime * 60);
   }
+  const handleCounterEnd =()=>{
+    props.handleCounter();
+  }
 
   return (
     <>
-      <CountdownTimer count={time} hideDay={true} />
+      <CountdownTimer count={time} hideDay={true} onEnd={handleCounterEnd} />
     </>
   );
 }
