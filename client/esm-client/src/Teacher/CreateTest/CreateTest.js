@@ -89,8 +89,15 @@ class CreateTest extends Component {
   handleSelect = (select, optionData) => {};
 
   handleDeleteRule = (Removeindex) => {
+    
     this.setState({
       rules: this.state.rules.filter((item, index) => index !== Removeindex),
+    });
+  };
+  handleDeleteQuestion = (Removeindex) => {
+  
+    this.setState({
+      questions: this.state.questions.filter((item, index) => index !== Removeindex),
     });
   };
   addRule = (value) => {
@@ -245,7 +252,7 @@ class CreateTest extends Component {
               <RenderData
                 questionData={this.state.questions}
                 questions={true}
-                clickedRule={this.handleDeleteRule}
+                clickedRule={this.handleDeleteQuestion}
               />
               <Form.Item>
                 <Questions addQuestion={this.addQuestion} />

@@ -19,7 +19,7 @@ export default function Rules(props) {
       setRule("");
     }
   };
-  console.log(rule);
+  
   return (
     <>
       <div className="rules__wrapper">

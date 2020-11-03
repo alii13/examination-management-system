@@ -4,7 +4,7 @@ import { TiDelete } from "react-icons/ti";
 
 export default function RenderData(props) {
   const { ruleData, questionData, question, rules } = props;
-  console.log(props);
+
   const handleClick = (index) => {
     props.clickedRule(index);
   };
@@ -25,6 +25,7 @@ export default function RenderData(props) {
                 <TiDelete
                   className="danger"
                   onClick={() => handleClick(index)}
+                  style={{ fontSize:"30px"}}
                 />
               </div>
             </div>
@@ -43,6 +44,7 @@ export default function RenderData(props) {
                 <TiDelete
                   className="danger"
                   onClick={() => handleClick(index)}
+                  style={{ fontSize:"30px"}}
                 />
               </div>
               <div className="question__options">
