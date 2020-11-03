@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { Row, Modal, Col, Button } from "antd";
 import { connect } from "react-redux";
 import "./TestInstruction.css";
@@ -9,14 +9,15 @@ import { useHistory } from "react-router-dom";
 function TestInstruction(props) {
   //console.log(props.selectedTest);
   const history = useHistory();
+  const [attempted, setAttempted]= useState(false)
   const { confirm } = Modal;
+  const { tests} = props;
   const {
     outOfMarks,
     questions,
     minutes,
     category,
     className,
-    attempted,
     testName,
     rules,
     _id: testID,
@@ -26,6 +27,12 @@ function TestInstruction(props) {
   if (rules) {
     testRules = rules;
   }
+
+  tests.map((test, index)=>{
+    if(test.testName === testName){
+      setAttempted(false);
+    }
+  })
 
   const handleButtonClick = () => {
     confirm({
@@ -185,6 +192,7 @@ function TestInstruction(props) {
 const mapStateToProps = (state) => {
   return {
     selectedTest: state.selectedTest.selectedTestData,
+     tests: state.tests.attemptedTest,
   };
 };
 
