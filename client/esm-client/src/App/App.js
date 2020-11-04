@@ -23,38 +23,23 @@ import AssignedTestsWrapper from "../Teacher/AssigenedTest/AssignedTestsWrapper"
 import TestStatus from "../Teacher/TestStatus/TestStatus";
 
 function App(props) {
-  // useEffect(() => {
-  //  window.addEventListener('contextmenu',(e)=>{
-  //   e.preventDefault();
-  //  });
-  //  window.addEventListener('keydown', (e)=>{
-  //    console.log(e);
-  //    if(e.key=="F12"){
-  //     e.preventDefault();
-  //    }
-  //  })
-  // }, []);
+  useEffect(() => {
+   window.addEventListener('contextmenu',(e)=>{
+    e.preventDefault();
+   });
+   window.addEventListener('keydown', (e)=>{
+     console.log(e);
+     if(e.key=="F12"){
+      e.preventDefault();
+     }
+   })
+  }, []);
 
   const { selectedTestName, selectedAssignedTestName } = props;
   const role = props.userInfo.role;
   const { confirm } = Modal;
   const history = useHistory();
 
-  const onLeaveComponent = () => {
-    confirm({
-      title: "Do you really want to quit the test?",
-      icon: <ExclamationCircleOutlined />,
-      content: "Once you click ok test will stop",
-      onOk() {
-        // console.log(props.selectedTest);
-        console.log("OK");
-        history.push("/");
-      },
-      onCancel() {
-        console.log("Cancel");
-      },
-    });
-  };
 
   return (
     <>
@@ -94,7 +79,6 @@ function App(props) {
           <ProtectedRoute
             exact={true}
             path="/start-test"
-            onLeave={onLeaveComponent}
             component={TestPreviewWrapper}
           />
           <ProtectedRoute exact={true} path="/profile" component={Profile} />

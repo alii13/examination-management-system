@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import "./Navbar.css";
 
+
+
 class Navbar extends Component {
   state = {
     current: "mail",
@@ -28,7 +30,7 @@ class Navbar extends Component {
     return (
       <nav className="menuBar">
         <div className="logo">
-          <Link to="/">🎓 EMS</Link>
+          <Link >🎓 EMS</Link>
         </div>
         <div className="menuCon">
           <div className="leftMenu">
