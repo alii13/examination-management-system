@@ -6,7 +6,7 @@ This Examination Portal is made up on top of MERN stack. EMS supports both web a
 
 `Accepting Hacktoberfest Contributions`
 
-EMS is an examination portal for educational insititutions which will help them to take test & communicate remotely in this quarantine period.
+EMS is an examination portal for educational insititutions which will help them to take test & communicate remotely with students in this quarantine period.
 
 Features of EMS:
 
