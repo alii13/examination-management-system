@@ -55,6 +55,7 @@ create a feature issue to discuss about the feature you would like to take up.
 - [ ] Automatic Logout on expiration of token
 - [ ] Display error message on failed Request to server
 - [ ] Warning Popup on moving out of test ( Student )
+- [ ] Automatic logout on token expiration
 
 Valid Feature Requests will be added to the above list over time.
 
@@ -132,7 +133,7 @@ at our Contribution guidelines
 ### License
 
 MIT Licensed (Check
-[here](https://github.com/monizb/FireShort/blob/master/LICENSE))
+[here]())
 
 ## Contributors ✨
 
