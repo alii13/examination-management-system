@@ -27,6 +27,9 @@ Features of EMS:
 - Can flag a particular question during attempting the test
 - Can Clear the question answer during attempting the test
 - One attempt per test ( Second attempt prohibited )
+- Automatic logout on token expiration
+- Show warning popup on no Internet Connection
+- Pointer events get's disabled on an offline connection
 
 
 
@@ -43,6 +46,9 @@ Features of EMS:
 - Can see all the registered class in EMS
 - Can see the students who attempted a particular test
 - Can see the students marks analysis in detail
+- Automatic logout on token expiration
+- Show warning popup on no Internet Connection
+- Pointer events get's disabled on an offline connection
 
 ### Features To Be Added
 
@@ -55,7 +61,6 @@ create a feature issue to discuss about the feature you would like to take up.
 - [ ] Automatic Logout on expiration of token
 - [ ] Display error message on failed Request to server
 - [ ] Warning Popup on moving out of test ( Student )
-- [ ] Automatic logout on token expiration
 
 Valid Feature Requests will be added to the above list over time.
 
