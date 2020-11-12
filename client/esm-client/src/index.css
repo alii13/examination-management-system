@@ -83,7 +83,10 @@ body {
 .justify-content-between {
   justify-content: space-between;
 }
-
+.pointer__select__none{
+  user-select:  none !important;
+  pointer-events: none !important;
+}
 /* media queries */
 
 @media(min-width:768px) {

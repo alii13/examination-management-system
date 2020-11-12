@@ -88,7 +88,7 @@ router.get("/attempt-tests/:studentID", auth, async (req, res) => {
     });
   } catch (err) {
     console.log(err.message);
-    res.status(500).send("Error in fetching Test Data");
+    res.status(500).send(err);
   }
 });
 

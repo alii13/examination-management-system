@@ -8,7 +8,7 @@ export default function StudentStatus(props) {
   const testName = props.testName;
   return (
     <>
-      <Col className="gutter-row" sm={24} xs={24} md={6} lg={6}>
+      <Col className="gutter-row gutter-col-adder" sm={24} xs={24} md={6} lg={6}>
         <div className="student__status__wrapper">
           <div className="status__header">
             <p className="status__header__heading">

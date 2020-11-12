@@ -166,6 +166,7 @@ export const signUpUser = (values) => (dispatch) => {
     })
     .catch((error) => {
       //Do something with the error if you want!
+      console.log(error)
       dispatch(signupError());
     });
 };

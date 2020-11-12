@@ -1,3 +1,4 @@
+import { logoutUser } from "./authActions";
 export const UPDATE_ATTEMPT_TEST_REQUEST = "UPDATE_ATTEMPT_TEST_REQUEST";
 export const UPDATE_ATTEMPT_TEST_SUCCESS = "UPDATE_ATTEMPT_TEST_SUCCESS";
 export const UPDATE_ATTEMPT_TEST_FAILURE = "UPDATE_ATTEMPT_TEST_FAILURE";
@@ -59,19 +60,23 @@ export const updateTimeSpentByStudent = (values) => (dispatch) => {
     .then((response) => response.json())
     .then((data) => {
       if (data) {
-        data.obj.testStatus.map((test, index) => {
-          if (test.testID === testID) {
-            localStorage.setItem(testID, test.attemptedTime);
-          }
-        });
+        if (data?.error?.name === "TokenExpiredError") {
+          dispatch(logoutUser());
+        } else {
+          data.obj.testStatus.map((test, index) => {
+            if (test.testID === testID) {
+              localStorage.setItem(testID, test.attemptedTime);
+            }
+          });
 
-        console.log(data.obj);
-        dispatch(receiveUpdateTimeSpent(localStorage.getItem(testID)));
-        // history.push("/studentHome");
+          console.log(data.obj);
+          dispatch(receiveUpdateTimeSpent(localStorage.getItem(testID)));
+        }
       }
     })
     .catch((error) => {
       //Do something with the error if you want!
+      console.log(error);
       dispatch(updateTimeSpentError());
     });
 };

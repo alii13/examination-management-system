@@ -11,7 +11,7 @@ function TestStatus(props) {
   const testName = props.selectedTest.testName;
   return (
     <>
-      <div className="container dashboard">
+      <div className="container student__status">
         <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
           {students.length > 0 &&
             students.map((student, index) => (

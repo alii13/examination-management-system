@@ -1,3 +1,4 @@
+import { logoutUser } from "./authActions";
 export const FETCH_TEST_REQUEST = "FETCH_TEST_REQUEST";
 export const FETCH_TEST_SUCCESS = "FETCH_TEST_SUCCESS";
 export const FETCH_ATTEMPT_TEST_SUCCESS = "FETCH_ATTEMPT_TEST_SUCCESS";
@@ -23,7 +24,7 @@ const receiveTests = (tests) => {
   };
 };
 
-const testsError = () => {
+const testsError = (errorData) => {
   return {
     type: FETCH_TEST_FAILURE,
   };
@@ -80,12 +81,16 @@ export const fetchAttemptTests = (profileID) => async (dispatch) => {
     .then((response) => response.json())
     .then((data) => {
       if (data) {
-        dispatch(receiveAttemptTests(data.obj));
-        // history.push("/studentHome");
+        if (data?.error?.name === "TokenExpiredError") {
+          dispatch(logoutUser());
+        } else {
+          dispatch(receiveAttemptTests(data.obj));
+        }
       }
     })
     .catch((error) => {
       //Do something with the error if you want!
+      console.log(error);
       dispatch(testsError());
     });
 };
@@ -104,14 +109,15 @@ export const fetchTests = (className) => async (dispatch) => {
   await fetch(`/student/tests/${className}`, requestOptions)
     .then((response) => response.json())
     .then((data) => {
-      if (data) {
+      if (data?.error?.name === "TokenExpiredError") {
+        dispatch(logoutUser());
+      } else {
         dispatch(receiveTests(data.obj));
-        // history.push("/studentHome");
       }
     })
     .catch((error) => {
       //Do something with the error if you want!
-      dispatch(testsError());
+      console.log(error);
     });
 };
 
@@ -150,7 +156,6 @@ export const submitTest = (data) => async (dispatch) => {
     testName,
   };
 
-
   const requestOptions = {
     method: "PUT",
     headers: {
@@ -164,12 +169,16 @@ export const submitTest = (data) => async (dispatch) => {
     .then((response) => response.json())
     .then((data) => {
       if (data) {
-        dispatch(testSubmitted(testID));
-        // history.push("/studentHome");
+        if (data?.error?.name === "TokenExpiredError") {
+          dispatch(logoutUser());
+        } else {
+          dispatch(testSubmitted(testID));
+        }
       }
     })
     .catch((error) => {
       //Do something with the error if you want!
+      console.log(error);
       dispatch(testSubmitError());
     });
 };
@@ -191,12 +200,16 @@ export const fetchTeacherTests = (profileID) => async (dispatch) => {
     .then((response) => response.json())
     .then((data) => {
       if (data) {
-        dispatch(receiveTeacherTests(data.obj));
-        // history.push("/studentHome");
+        if (data?.error?.name === "TokenExpiredError") {
+          dispatch(logoutUser());
+        } else {
+          dispatch(receiveTeacherTests(data.obj));
+        }
       }
     })
     .catch((error) => {
       //Do something with the error if you want!
+      console.log(error);
       dispatch(testsTeacherError());
     });
 };

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Row, Col } from "antd";
 import { connect } from "react-redux";
 import TestCard from "./TestCard";
@@ -8,11 +8,12 @@ import "./Dashboard.css";
 function Dashboard(props) {
   const { studentClassName, profileID, userInfo } = props;
   const trimLength = 8;
+
   // console.log(userInfo);
 
   return (
     <>
-      <div className="container dashboard">
+      <div className={"container dashboard"}>
         <Row gutter={[48, 10]} justify="center">
           <Col className="gutter-row" xs={24} sm={24} md={9} xl={9}>
             <TestCard

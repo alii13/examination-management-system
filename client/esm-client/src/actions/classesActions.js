@@ -1,3 +1,4 @@
+import { logoutUser } from "./authActions";
 export const FETCH_CLASSES_REQUEST = "FETCH_CLASSES_REQUEST";
 export const FETCH_CLASSES_SUCCESS = "FETCH_CLASSES_SUCCESS";
 export const FETCH_CLASSES_FAILURE = "FETCH_CLASSES_FAILURE";
@@ -34,11 +35,14 @@ export const fetchClasses = (values) => (dispatch) => {
   fetch("/teacher/classes", requestOptions)
     .then((response) => response.json())
     .then((data) => {
-      const filteredDupicates = data.obj.filter(
-        (v, i, a) => a.findIndex((t) => t.className === v.className) === i
-      );
-      console.log(filteredDupicates);
-      dispatch(receiveClasses(filteredDupicates));
+      if (data?.error?.name === "TokenExpiredError") {
+        dispatch(logoutUser());
+      } else {
+        const filteredDupicates = data.obj.filter(
+          (v, i, a) => a.findIndex((t) => t.className === v.className) === i
+        );
+        dispatch(receiveClasses(filteredDupicates));
+      }
     })
     .catch((error) => {
       console.log(error);

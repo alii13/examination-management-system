@@ -50,6 +50,7 @@ export default function Rules(props) {
     setOption2("");
     setOption3("");
     setOption4("");
+    setAnswer("");
   };
 
   return (
@@ -107,6 +108,9 @@ export default function Rules(props) {
             value={answer}
             onChange={handleAnswer}
             style={{ margin: "10 5px" }}
+            min={1}
+            max={4}
+            
           />
         </div>
       </div>

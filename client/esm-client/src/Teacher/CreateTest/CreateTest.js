@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import Rules from "./Rules";
 import Questions from "./Questions";
 import RenderData from "./RenderData";
-import { submitTest } from "../../actions/TeacherActions";
+import { submitTest, testCreatedFalse } from "../../actions/TeacherActions";
 
 class CreateTest extends Component {
   constructor(props) {
@@ -38,7 +38,7 @@ class CreateTest extends Component {
       minutes,
       outOfMarks,
     } = values;
-    console.log(this.state.questions);
+
 
     questions = this.state.questions.map((question, index) => {
       return {
@@ -105,6 +105,8 @@ class CreateTest extends Component {
       rules: [...this.state.rules, { value }],
     });
   };
+
+
   openNotification = () => {
     const args = {
       message: "Test Created",
@@ -112,10 +114,8 @@ class CreateTest extends Component {
       duration: 3,
     };
     notification.open(args);
-    this.setState({
-      testCreated: false,
-    });
   };
+
   addQuestion = ({
     questionDescripiton,
     opiton1,
@@ -132,11 +132,15 @@ class CreateTest extends Component {
     });
   };
 
+  componentDidUpdate(){
+    if (this.props.testCreated) {
+      this.props.testCreatedFalse()
+      this.openNotification();
+    }
+  }
+
   render() {
     const { Option } = Select;
-    // if (this.state.testCreated) {
-    //   this.openNotification();
-    // }
 
     return (
       <>
@@ -263,6 +267,7 @@ class CreateTest extends Component {
                   loading={this.state.isLoading}
                   className="sign__up"
                   htmlType="submit"
+                  disabled={(this.state.questions.length<1)?(true):(false)}
                 >
                   {this.state.isLoading ? "Creating Test" : "Create Test"}
                 </Button>
@@ -284,6 +289,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     submitTest: (values) => dispatch(submitTest(values)),
+    testCreatedFalse: () => dispatch(testCreatedFalse()),
   };
 };
 

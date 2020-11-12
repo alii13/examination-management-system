@@ -5,6 +5,7 @@ import {
   ASSIGNED_TEST_REQUEST,
   ASSIGNED_TEST_FAILURE,
   ASSIGNED_TEST_SUCCESS,
+  SET_TEST_CREATED_FALSE,
 } from "../actions/TeacherActions";
 
 const initialState = {
@@ -64,6 +65,11 @@ export default function (state = initialState, action) {
         isFetching: true,
         isLoadingTest: true,
         fetchingError: false,
+      };
+    case SET_TEST_CREATED_FALSE:
+      return {
+        ...state,
+        testCreated: false,
       };
 
     default:

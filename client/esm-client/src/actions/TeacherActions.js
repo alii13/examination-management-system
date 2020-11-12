@@ -1,3 +1,4 @@
+import { logoutUser } from "./authActions";
 export const SUBMIT_TEST_REQUEST = "SUBMIT_TEST_REQUEST";
 export const SUBMIT_TEST_SUCCESS = "SUBMIT_TEST_SUCCESS";
 export const SUBMIT_TEST_FAILURE = "SUBMIT_TEST_FAILURE";
@@ -5,6 +6,8 @@ export const SUBMIT_TEST_FAILURE = "SUBMIT_TEST_FAILURE";
 export const ASSIGNED_TEST_REQUEST = "ASSIGNED_TEST_REQUEST";
 export const ASSIGNED_TEST_SUCCESS = "ASSIGNED_TEST_SUCCESS";
 export const ASSIGNED_TEST_FAILURE = "ASSIGNED_TEST_FAILURE";
+
+export const SET_TEST_CREATED_FALSE = "SET_TEST_CREATED_FALSE";
 
 const requestSubmitTest = () => {
   return {
@@ -43,6 +46,12 @@ const AssignedTestError = () => {
   };
 };
 
+const setTestCreatedFalse = () => {
+  return {
+    type: SET_TEST_CREATED_FALSE,
+  };
+};
+
 export const submitTest = (values) => (dispatch) => {
   console.log(values);
 
@@ -61,10 +70,15 @@ export const submitTest = (values) => (dispatch) => {
   fetch("/teacher/create-test", requestOptions)
     .then((response) => response.json())
     .then((data) => {
-      dispatch(receiveSubmitTest(data.user));
+      if (data?.error?.name === "TokenExpiredError") {
+        dispatch(logoutUser());
+      } else {
+        dispatch(receiveSubmitTest(data.user));
+      }
     })
     .catch((error) => {
       //Do something with the error if you want!
+      console.log(error);
       dispatch(submitTestError());
     });
 };
@@ -84,12 +98,21 @@ export const fetchAssignedTests = (profileID) => async (dispatch) => {
     .then((response) => response.json())
     .then((data) => {
       if (data) {
-        dispatch(receiveAssignedTest(data.obj));
+        if (data?.error?.name === "TokenExpiredError") {
+          dispatch(logoutUser());
+        } else {
+          dispatch(receiveAssignedTest(data.obj));
+        }
         // history.push("/studentHome");
       }
     })
     .catch((error) => {
       //Do something with the error if you want!
+      console.log(error);
       dispatch(AssignedTestError());
     });
+};
+
+export const testCreatedFalse = () => async (dispatch) => {
+  dispatch(setTestCreatedFalse());
 };

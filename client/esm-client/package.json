@@ -10,6 +10,7 @@
     "antd": "^4.7.3",
     "react": "^16.14.0",
     "react-component-countdown-timer": "^0.1.8",
+    "react-detect-offline": "^2.4.0",
     "react-dom": "^16.14.0",
     "react-google-charts": "^3.0.15",
     "react-icons": "^3.11.0",

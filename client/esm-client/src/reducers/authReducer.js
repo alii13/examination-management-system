@@ -127,6 +127,9 @@ export default function (state = initialState, action) {
       return { ...state, isLoggingOut: true, logoutError: false };
 
     case LOGOUT_SUCCESS:
+      localStorage.removeItem("token");
+      localStorage.removeItem("userProfile");
+      localStorage.removeItem("profileID");
       return {
         ...state,
         isLoggingOut: false,

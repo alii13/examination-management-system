@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import Login from "../logIn/Login";
 import Signup from "../signUp/Signup";
@@ -21,18 +21,30 @@ import { Roles } from "../Roles/roles";
 import CreateTest from "../Teacher/CreateTest/CreateTest";
 import AssignedTestsWrapper from "../Teacher/AssigenedTest/AssignedTestsWrapper";
 import TestStatus from "../Teacher/TestStatus/TestStatus";
+import { message } from "antd";
+import { Offline, Online } from "react-detect-offline";
 
 function App(props) {
+  const [count, setCount] = useState(1);
+
+  const handleOffline = () => {
+    setCount(count + 1);
+    if (count % 2 == 0) {
+      message.success("Connected to internet");
+    } else {
+      message.error("Please connect to internet");
+    }
+  };
   useEffect(() => {
-   window.addEventListener('contextmenu',(e)=>{
-    e.preventDefault();
-   });
-   window.addEventListener('keydown', (e)=>{
-     console.log(e);
-     if(e.key=="F12"){
+    window.addEventListener("contextmenu", (e) => {
       e.preventDefault();
-     }
-   })
+    });
+    window.addEventListener("keydown", (e) => {
+      console.log(e);
+      if (e.key == "F12") {
+        e.preventDefault();
+      }
+    });
   }, []);
 
   const { selectedTestName, selectedAssignedTestName } = props;
@@ -40,9 +52,9 @@ function App(props) {
   const { confirm } = Modal;
   const history = useHistory();
 
-
   return (
-    <>
+    <div className={count % 2 ? "" : " pointer__select__none"}>
+      <Offline onChange={(e) => handleOffline(e)}></Offline>
       <Router>
         <Navbar />
         <Switch>
@@ -97,7 +109,7 @@ function App(props) {
           <ProtectedRoute component={Login} />
         </Switch>
       </Router>
-    </>
+    </div>
   );
 }
 

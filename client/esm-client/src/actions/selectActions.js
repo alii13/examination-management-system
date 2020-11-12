@@ -1,3 +1,4 @@
+import { logoutUser } from "./authActions";
 export const TEST_SELECTED = "TEST_SELECTED";
 export const SELECTED_TEST_RESULT = "SELECTED_TEST_RESULT";
 export const SELECTED_ASSIGNED_TEST = "SELECTED_ASSIGNED_TEST";
