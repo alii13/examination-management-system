@@ -98,6 +98,11 @@ MONGODB_DATABASE_NAME =
 MONGODB_USERNAME = 
 MONGODB_PASSWORD = 
 ```
+[![](https://i.ibb.co/SR06H2S/image.png)]
+
+
+
+[![](https://i.ibb.co/m9cHftr/image.png)]
 
 To start the server run :
 
